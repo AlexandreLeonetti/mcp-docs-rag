@@ -1,0 +1,21 @@
+tree -I "venv|pycache|say"
+
+
+zip -r content-gen.zip . \
+  -x "venv/*" \
+     "node_modules/*" \
+     "build/*" \
+     "remotion/node_modules/*" \
+     "assets/*" \
+     "projects/*.wav" \
+     "g2pW/*" \
+     "__pycache__/*" \
+     "*.pyc" \
+     "*.mp4" \
+     ".venv/*" \
+     ".git/*" \
+     ".derived-data/*" \
+     "*.DS_Store"
+
+
+
