@@ -82,32 +82,6 @@ addEvent("chat_client", "mcp_connected", {
   args: ["server.js"],
 });
 
-const tools = [
-  {
-    type: "function",
-    function: {
-      name: "search_internal_docs",
-      description:
-        "Searches internal docs and returns relevant chunks with citations",
-      parameters: {
-        type: "object",
-        properties: {
-          query: {
-            type: "string",
-            description: "The search query",
-          },
-          limit: {
-            type: "number",
-            description: "Max number of chunks to return",
-          },
-        },
-        required: ["query"],
-        additionalProperties: false,
-      },
-    },
-  },
-];
-
 const rl = readline.createInterface({ input, output });
 
 console.log("Internal Docs MCP CLI started.");
@@ -117,7 +91,6 @@ console.log(`JSON session log: ${sessionFile}\n`);
 
 while (true) {
   const userInput = await rl.question("You: ");
-
   addEvent("user", "user_input", { text: userInput });
 
   if (userInput.trim().toLowerCase() === "exit") {
@@ -125,153 +98,72 @@ while (true) {
     break;
   }
 
-  const messages = [
-    {
-      role: "system",
-      content:
-        [
-          "You are a helpful internal knowledge assistant.",
-          "For questions about company knowledge, documentation, policy, onboarding, billing, auth, or support, use the search_internal_docs tool first.",
-          "Answer only from retrieved documents when using the tool.",
-          "If the retrieved results are insufficient, say so clearly.",
-          "When you answer from retrieved docs, cite sources using the SOURCE identifiers exactly as provided, for example [auth.md#chunk-1].",
-          "Do not invent documentation that was not retrieved.",
-        ].join(" "),
-    },
-    {
-      role: "user",
-      content: userInput,
-    },
-  ];
-
-  const firstPayload = {
-    model: "deepseek-chat",
-    messages,
-    tools,
-    tool_choice: "auto",
-    stream: false,
-  };
-
-  addEvent("chat_client", "deepseek_request_1", firstPayload);
-
-  let firstResponse;
+  let toolResult;
   try {
-    firstResponse = await openai.chat.completions.create(firstPayload);
-    addEvent("deepseek", "deepseek_response_1", firstResponse);
+    toolResult = await mcpClient.callTool({
+      name: "search_internal_docs",
+      arguments: {
+        query: userInput,
+        limit: 5,
+      },
+    });
+    addEvent("mcp_server", "mcp_tool_result", toolResult);
   } catch (error) {
-    addEvent("deepseek", "deepseek_error_1", {
+    addEvent("mcp_server", "mcp_tool_error", {
       message: error?.message,
       stack: error?.stack,
     });
-    console.log("\nAssistant: Error while calling DeepSeek.\n");
+    console.log("\nAssistant: Error while searching internal docs.\n");
     continue;
   }
 
-  const assistantMessage = firstResponse.choices[0].message;
-  addEvent("deepseek", "assistant_message_1", assistantMessage);
+  const retrievedContext =
+    toolResult.content?.map((item) => item.text || "").join("\n") ||
+    "No relevant results found.";
 
-  if (assistantMessage.tool_calls && assistantMessage.tool_calls.length > 0) {
-    messages.push(assistantMessage);
+  const payload = {
+    model: "deepseek-chat",
+    stream: false,
+    messages: [
+      {
+        role: "system",
+        content: [
+          "You are a helpful internal knowledge assistant.",
+          "Answer only from the retrieved documentation.",
+          "If the retrieved documentation is insufficient, say so clearly.",
+          "Do not ask to search again.",
+          "Do not mention tools.",
+          "Cite sources using the SOURCE identifiers exactly as provided.",
+        ].join(" "),
+      },
+      {
+        role: "user",
+        content: [
+          `Question: ${userInput}`,
+          "",
+          "Retrieved documentation:",
+          retrievedContext,
+        ].join("\n"),
+      },
+    ],
+  };
 
-    for (const toolCall of assistantMessage.tool_calls) {
-      const toolName = toolCall.function.name;
+  addEvent("chat_client", "deepseek_request", payload);
 
-      let args = {};
-      try {
-        args = JSON.parse(toolCall.function.arguments || "{}");
-      } catch (error) {
-        addEvent("chat_client", "tool_args_parse_error", {
-          rawArguments: toolCall.function.arguments,
-          message: error?.message,
-        });
-      }
+  try {
+    const response = await openai.chat.completions.create(payload);
+    addEvent("deepseek", "deepseek_response", response);
 
-      addEvent("deepseek", "tool_call_requested", {
-        toolName,
-        args,
-        rawToolCall: toolCall,
-      });
+    const finalText = response.choices[0].message.content || "";
+    addEvent("assistant", "assistant_final", { text: finalText });
 
-      if (toolName === "search_internal_docs") {
-        addEvent("chat_client", "mcp_tool_call_started", {
-          toolName,
-          args,
-        });
-
-        try {
-          const result = await mcpClient.callTool({
-            name: "search_internal_docs",
-            arguments: args,
-          });
-
-          addEvent("mcp_server", "mcp_tool_result", result);
-
-          const toolText =
-            result.content?.map((item) => item.text || "").join("\n") ||
-            "No tool output";
-
-          addEvent("chat_client", "tool_text_for_model", {
-            tool_call_id: toolCall.id,
-            toolName,
-            toolText,
-          });
-
-          messages.push({
-            role: "tool",
-            tool_call_id: toolCall.id,
-            content: toolText,
-          });
-        } catch (error) {
-          addEvent("mcp_server", "mcp_tool_error", {
-            toolName,
-            args,
-            message: error?.message,
-            stack: error?.stack,
-          });
-
-          messages.push({
-            role: "tool",
-            tool_call_id: toolCall.id,
-            content: "Tool execution failed.",
-          });
-        }
-      } else {
-        messages.push({
-          role: "tool",
-          tool_call_id: toolCall.id,
-          content: `Unknown tool: ${toolName}`,
-        });
-      }
-    }
-
-    const secondPayload = {
-      model: "deepseek-chat",
-      messages,
-      stream: false,
-    };
-
-    addEvent("chat_client", "deepseek_request_2", secondPayload);
-
-    try {
-      const finalResponse = await openai.chat.completions.create(secondPayload);
-      addEvent("deepseek", "deepseek_response_2", finalResponse);
-
-      const finalText = finalResponse.choices[0].message.content || "";
-      addEvent("assistant", "assistant_final", { text: finalText });
-
-      console.log(`\nAssistant: ${finalText}\n`);
-    } catch (error) {
-      addEvent("deepseek", "deepseek_error_2", {
-        message: error?.message,
-        stack: error?.stack,
-      });
-
-      console.log("\nAssistant: Error while generating the final answer.\n");
-    }
-  } else {
-    const directText = assistantMessage.content || "";
-    addEvent("assistant", "assistant_direct", { text: directText });
-    console.log(`\nAssistant: ${directText}\n`);
+    console.log(`\nAssistant: ${finalText}\n`);
+  } catch (error) {
+    addEvent("deepseek", "deepseek_error", {
+      message: error?.message,
+      stack: error?.stack,
+    });
+    console.log("\nAssistant: Error while generating the answer.\n");
   }
 }
 
