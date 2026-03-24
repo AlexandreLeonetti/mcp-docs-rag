@@ -1,0 +1,13 @@
+Support Playbook
+
+SLA:
+- Critical issues: respond within 1 hour
+- Normal issues: respond within 24 hours
+
+Escalation:
+- Billing issues go to finance support
+- Login/auth issues go to technical support
+- Security issues should be escalated immediately
+
+Password reset:
+If the reset email is not received, instruct the user to check spam, then retry after 5 minutes.
