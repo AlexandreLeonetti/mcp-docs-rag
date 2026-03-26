@@ -6,8 +6,10 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import fs from "node:fs";
 import path from "node:path";
+import { generateGroundedAnswer } from "./lib/answering.js";
 
 const LOG_DIR = process.env.LOG_DIR || "./logs";
+const RETRIEVAL_DEBUG = /^1|true|yes$/i.test(String(process.env.RETRIEVAL_DEBUG || ""));
 
 function ensureDir(dir) {
   fs.mkdirSync(dir, { recursive: true });
@@ -60,10 +62,13 @@ function addEvent(actor, type, data = {}) {
 
 persistSessionLog();
 
-const openai = new OpenAI({
-  apiKey: process.env.DEEPSEEK_API_KEY,
-  baseURL: "https://api.deepseek.com",
-});
+const useDeepSeek = Boolean(process.env.DEEPSEEK_API_KEY);
+const openai = useDeepSeek
+  ? new OpenAI({
+      apiKey: process.env.DEEPSEEK_API_KEY,
+      baseURL: "https://api.deepseek.com",
+    })
+  : null;
 
 const transport = new StdioClientTransport({
   command: "node",
@@ -88,6 +93,9 @@ console.log("Internal Docs MCP CLI started.");
 console.log('Ask things like: "how do we handle auth in onboarding?"');
 console.log('Type "exit" to quit.\n');
 console.log(`JSON session log: ${sessionFile}\n`);
+if (!useDeepSeek) {
+  console.log("DeepSeek API key not set. Falling back to local grounded summaries.\n");
+}
 
 while (true) {
   const userInput = await rl.question("You: ");
@@ -105,6 +113,7 @@ while (true) {
       arguments: {
         query: userInput,
         limit: 5,
+        debug: RETRIEVAL_DEBUG,
       },
     });
     addEvent("mcp_server", "mcp_tool_result", toolResult);
@@ -121,6 +130,19 @@ while (true) {
     toolResult.content?.map((item) => item.text || "").join("\n") ||
     "No relevant results found.";
 
+  const structured = toolResult.structuredContent || toolResult.structured || null;
+
+  if (!useDeepSeek) {
+    const fallback = generateGroundedAnswer(userInput, structured?.result || {
+      analysis: { mode: "fact_lookup" },
+      finalHits: [],
+      broadSummary: null,
+    });
+    addEvent("assistant", "assistant_final_local", fallback);
+    console.log(`\nAssistant: ${fallback.answer}\n`);
+    continue;
+  }
+
   const payload = {
     model: "deepseek-chat",
     stream: false,
@@ -131,9 +153,10 @@ while (true) {
           "You are a helpful internal knowledge assistant.",
           "Answer only from the retrieved documentation.",
           "If the retrieved documentation is insufficient, say so clearly.",
+          "For broad questions such as recurring themes, first mention, or evolution over time, only answer if the evidence spans multiple chunks or dates.",
           "Do not ask to search again.",
           "Do not mention tools.",
-          "Cite sources using the SOURCE identifiers exactly as provided.",
+          "Use the provided CITATION values exactly when citing sources.",
         ].join(" "),
       },
       {
@@ -163,7 +186,13 @@ while (true) {
       message: error?.message,
       stack: error?.stack,
     });
-    console.log("\nAssistant: Error while generating the answer.\n");
+    const fallback = generateGroundedAnswer(userInput, structured?.result || {
+      analysis: { mode: "fact_lookup" },
+      finalHits: [],
+      broadSummary: null,
+    });
+    addEvent("assistant", "assistant_final_fallback", fallback);
+    console.log(`\nAssistant: ${fallback.answer}\n`);
   }
 }
 

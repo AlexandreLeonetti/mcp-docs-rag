@@ -1,362 +1,278 @@
-Absolutely — here is a compact `README.md` you can paste into the project.
+# MCP Docs RAG Phase 1
 
-````md
-# MCP Docs RAG MVP
+Small local RAG-style knowledge search for Node.js with:
 
-A small local **RAG-style internal docs assistant** built with:
+- metadata-aware indexing
+- lexical retrieval with optional embeddings
+- heuristic reranking
+- temporal daily-note analysis
+- MCP server access
+- CLI chat
 
-- **Node.js**
-- **MCP (Model Context Protocol)**
-- **DeepSeek API**
-- a simple local document index stored in JSON
+The project stays intentionally small. It still uses a JSON index on disk and a simple MCP tool, but the retrieval stack is stronger and easier to inspect.
 
-This project lets you ask natural-language questions about local documentation files, retrieve relevant chunks, and generate grounded answers with citations.
+## What Changed
 
----
+The original version was a keyword-only chunk retriever. This phase adds:
 
-## What this project is
+- richer chunk metadata: `source_path`, `filename`, `extension`, `title`, `doc_type`, `date`, `month`, `tags`, `section_heading`, `chunk_id`
+- daily-note aware chunking for date-based files
+- optional hybrid retrieval with embeddings
+- a reranking layer with metadata boosts
+- query analysis and retrieval planning
+- broader evidence gathering for recurring themes / first mention / over-time questions
+- consistent citations
+- retrieval debug output
+- lightweight evaluation scaffolding
 
-This is a **basic local docs RAG assistant**.
-
-Flow:
-
-1. local docs are indexed into `data/index.json`
-2. the MCP server exposes a `search_internal_docs` tool
-3. the CLI retrieves relevant chunks through MCP
-4. DeepSeek answers using only the retrieved context
-
-This is **not a full autonomous agent**.
-It is better described as:
-
-- **RAG assistant**
-- **local knowledge assistant**
-- **MCP-powered retrieval demo**
-
----
-
-## Project structure
+## Project Structure
 
 ```text
 .
-├── README.md
 ├── build-index.js
 ├── chat.js
-├── data
+├── server.js
+├── docs/
+├── data/
 │   └── index.json
-├── docs
-│   ├── auth.md
-│   ├── billing.md
-│   ├── support.txt
-│   └── company.md
-├── logs
-│   └── session-*.json
-├── package.json
-└── server.js
-````
-
-### Main files
-
-* `docs/`
-  Your source documentation files
-
-* `build-index.js`
-  Reads files from `docs/` and creates the searchable index
-
-* `data/index.json`
-  Generated document index used for retrieval
-
-* `server.js`
-  MCP server exposing `search_internal_docs`
-
-* `chat.js`
-  CLI chat app that:
-
-  * calls the MCP retrieval tool
-  * sends retrieved context to DeepSeek
-  * prints the final grounded answer
-
-* `logs/`
-  JSON session logs for debugging
-
----
+├── eval/
+│   ├── questions.json
+│   └── results/
+├── lib/
+│   ├── answering.js
+│   ├── embeddings.js
+│   ├── indexing.js
+│   ├── query-analysis.js
+│   ├── retrieval.js
+│   └── text-utils.js
+└── scripts/
+    └── run-eval.js
+```
 
 ## Requirements
 
-* Node.js 18+ recommended
-* a DeepSeek API key
+- Node.js 18+
+- `DEEPSEEK_API_KEY` for LLM answers in the CLI
+- optional `OPENAI_API_KEY` if you want embedding-based retrieval
 
----
+## Setup
 
-## Installation
-
-Clone or copy the project locally, then install dependencies:
+Install dependencies:
 
 ```bash
 npm install
 ```
 
-Create a `.env` file in the project root:
+Create `.env`:
 
 ```env
-DEEPSEEK_API_KEY=your_deepseek_api_key_here
+DEEPSEEK_API_KEY=your_deepseek_api_key
 INDEX_FILE=./data/index.json
 LOG_DIR=./logs
+
+# Optional hybrid retrieval
+EMBEDDING_PROVIDER=none
+# EMBEDDING_PROVIDER=openai
+# OPENAI_API_KEY=your_openai_key
+# EMBEDDING_MODEL=text-embedding-3-small
+
+# Optional retrieval debugging
+# RETRIEVAL_DEBUG=1
 ```
 
-Only `DEEPSEEK_API_KEY` is required in most cases.
+## Metadata-Aware Retrieval
 
----
+When you run `npm run build-index`, each chunk now stores:
 
-## Add your documents
+- `source_path`
+- `filename`
+- `extension`
+- `title`
+- `doc_type`
+- `date`
+- `month`
+- `tags`
+- `section_heading`
+- `chunk_id`
 
-Put your local documentation files inside the `docs/` folder.
+`doc_type` is inferred with simple heuristics:
 
-Example:
+- `daily note`
+- `company doc`
+- `prep/interview note`
+- `app/product note`
+- `miscellaneous`
 
-* `docs/auth.md`
-* `docs/billing.md`
-* `docs/company.md`
-* `docs/support.txt`
+Date-style filenames such as `20251204.txt` are parsed automatically into `date=2025-12-04` and `month=2025-12`.
 
-You can use `.md` and `.txt` files for a simple MVP.
+## Chunking
 
-Example `billing.md`:
+Normal docs still use paragraph-oriented chunking with heading preservation.
 
-```md
-# Billing Policy
+Daily notes use a special mode:
 
-Customers are billed monthly.
+- chunks are built from paragraph groups / bullet groups
+- tiny blocks are merged to avoid useless micro-chunks
+- heading linkage is preserved when detectable
+- local neighboring context is attached to chunks for debugging and answer synthesis
 
-## Refunds
-Refund requests must be submitted within 14 days of the billing date.
+## Hybrid Retrieval
 
-## Failed payments
-If a payment fails, the account remains active for a 3-day grace period before restriction.
-```
+Retrieval works in two layers:
 
----
+1. lexical scoring over content, filename, path, title, heading, tags
+2. optional semantic scoring from embeddings
 
-## Build the search index
+If embeddings are enabled, the final retrieval score combines:
 
-After adding or editing documents, rebuild the index:
+- lexical score
+- semantic score
+- reranker boosts
 
-```bash
-npm run build-index
-```
+If embeddings are not configured, the system stays fully functional in lexical-only mode.
 
-This generates:
-
-```text
-data/index.json
-```
-
-If you change the docs and do not rebuild the index, the assistant will keep using old content.
-
----
-
-## Start the chat CLI
-
-Run:
-
-```bash
-npm run chat
-```
-
-You should see something like:
-
-```text
-Internal Docs MCP CLI started.
-Ask things like: "how do we handle auth in onboarding?"
-Type "exit" to quit.
-```
-
-Example questions:
-
-```text
-who is the ceo?
-are customers billed weekly?
-what is the refund policy?
-who leads onboarding?
-where is the headquarters?
-```
-
-Exit with:
-
-```text
-exit
-```
-
----
-
-## How it works
-
-### 1. Retrieval
-
-`chat.js` sends your question to the MCP server tool:
-
-* tool name: `search_internal_docs`
-
-The server searches the local JSON index and returns the best matching chunks.
-
-### 2. Grounded answer generation
-
-The retrieved chunks are inserted into a single DeepSeek prompt.
-
-The model is instructed to:
-
-* answer only from retrieved documentation
-* avoid inventing missing facts
-* cite the returned sources
-
-### 3. Logging
-
-Each session creates a JSON file in `logs/` so you can inspect:
-
-* user questions
-* retrieval results
-* model requests
-* model responses
-* errors
-
----
-
-## Typical workflow
-
-### First time setup
-
-```bash
-npm install
-npm run build-index
-npm run chat
-```
-
-### After editing docs
-
-```bash
-npm run build-index
-npm run chat
-```
-
----
-
-## Example usage
-
-Question:
-
-```text
-are customers billed weekly?
-```
-
-Possible answer:
-
-```text
-Based on the retrieved documentation, customers are not billed weekly. Customers are billed monthly (SOURCE: billing.md#chunk-1).
-```
-
----
-
-## Troubleshooting
-
-### 1. `Index file not found`
-
-Error like:
-
-```text
-Index file not found: ./data/index.json
-```
-
-Fix:
-
-```bash
-npm run build-index
-```
-
----
-
-### 2. DeepSeek API errors
-
-Check that your `.env` contains a valid API key:
+To enable embeddings:
 
 ```env
-DEEPSEEK_API_KEY=...
+EMBEDDING_PROVIDER=openai
+OPENAI_API_KEY=your_openai_key
+EMBEDDING_MODEL=text-embedding-3-small
 ```
 
-Also make sure your account and credits are working.
+Fallback mode without embeddings:
 
----
+```env
+EMBEDDING_PROVIDER=none
+```
 
-### 3. The assistant does not find new content
+## Query Analysis And Temporal Search
 
-You probably forgot to rebuild the index.
+Before retrieval, the query is classified into one of these modes:
 
-Run:
+- `fact_lookup`
+- `scoped_lookup`
+- `temporal_summary`
+- `recurring_themes`
+- `first_mention`
+- `evolution_over_time`
+- `comparison`
+- `unsupported / unknown`
+
+The pipeline also extracts filters where possible:
+
+- date range
+- month/year
+- doc type preference
+- filename clues
+- topic keywords
+
+Broad temporal questions do not stop at the top 5 chunks. The retriever widens the pool, filters by metadata, groups evidence by date or file, and produces aggregated evidence before the final answer step.
+
+This is especially useful for:
+
+- exact fact lookup
+- month-scoped daily-note queries
+- recurring themes across many notes
+- first-mentioned questions
+- evolution / over-time summaries
+
+## MCP Server
+
+The MCP tool name is still:
+
+```text
+search_internal_docs
+```
+
+It now returns:
+
+- query analysis
+- retrieval mode
+- aggregated evidence for broad queries when available
+- retrieved chunks with richer metadata
+- consistent citations in this format:
+
+```text
+[filename | chunk_id | date]
+```
+
+## Build The Index
+
+After changing docs:
 
 ```bash
 npm run build-index
 ```
 
----
+Example output:
 
-### 4. Retrieval quality feels weak
+```text
+Index built: ./data/index.json
+Files indexed: 66
+Chunks indexed: 200
+Embeddings: disabled (lexical fallback only)
+```
 
-This MVP uses simple indexing and scoring.
-It works for small demos, but larger corpora will need:
+## Run The Chat CLI
 
-* better chunking
-* richer metadata
-* embeddings or hybrid search
-* reranking
+```bash
+npm run chat
+```
 
----
+The CLI still uses the MCP server for retrieval. If `DEEPSEEK_API_KEY` is not set, it falls back to a local grounded summary so the project still runs locally.
 
-## Current limitations
+## Debug Retrieval
 
-This is intentionally a simple MVP.
+Enable retrieval debugging:
 
-Current limitations include:
+```bash
+RETRIEVAL_DEBUG=1 npm run chat
+```
 
-* local files only
-* simple token-based retrieval
-* no embeddings yet
-* no reranker
-* no permissions model
-* no web UI
-* no source connectors like Confluence, Notion, Slack, or Google Drive
+Debug mode exposes:
 
----
+- query classification
+- extracted filters
+- retrieval mode used
+- top lexical hits
+- top semantic hits
+- final reranked hits
+- reranker boost reasons
 
-## Good next improvements
+## Evaluation Scaffolding
 
-If you want to evolve this into a more serious enterprise-style project, the best next steps are:
+Sample queries live in:
 
-1. better chunking by headings and sections
-2. metadata enrichment
-3. Postgres + pgvector
-4. real connectors:
+- `eval/questions.json`
 
-   * Confluence
-   * Notion
-   * Google Drive
-   * Slack
-5. web UI
-6. evaluation scripts
-7. observability and cost tracking
-8. permission-aware retrieval
+Run the evaluation script:
 
----
+```bash
+npm run eval
+```
 
-## Summary
+This writes a review-friendly JSON file under `eval/results/` containing:
 
-This project is a small but useful demo of:
+- query
+- expected mode
+- query analysis
+- retrieval mode
+- broad summary
+- retrieved chunks
+- final answer
+- citations
 
-* local document ingestion
-* MCP-based retrieval
-* one-shot grounded answering
-* simple RAG architecture
+## Suggested Questions
 
-It is a good starting point for building a more serious internal knowledge assistant.
+- `Who is the CEO of Northstar Metrics?`
+- `What recurring priorities appear in the December 2025 daily notes?`
+- `On which date was Alipay first mentioned in the daily notes?`
+- `How did the focus on Chinese tutoring evolve over time in the daily notes?`
+- `Compare the company billing policy with what appears in the daily notes about billing or payments.`
 
----
+## Notes And Limits
 
-
-
+- broad summaries are heuristic and grounded, not model-perfect
+- theme extraction is token-based, so labels can still be rough
+- semantic retrieval only works if embeddings were built into the index
+- the system does not yet do permission filtering, structured scoring benchmarks, or true learned reranking

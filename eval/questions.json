@@ -1,0 +1,68 @@
+{
+  "easy": [
+    {
+      "id": "easy-1",
+      "query": "Who is the CEO of Northstar Metrics?",
+      "expected_mode": "fact_lookup"
+    },
+    {
+      "id": "easy-2",
+      "query": "Are Starter customers billed monthly or weekly?",
+      "expected_mode": "fact_lookup"
+    },
+    {
+      "id": "easy-3",
+      "query": "What is the refund window?",
+      "expected_mode": "fact_lookup"
+    },
+    {
+      "id": "easy-4",
+      "query": "Who leads the onboarding team?",
+      "expected_mode": "fact_lookup"
+    }
+  ],
+  "medium": [
+    {
+      "id": "medium-1",
+      "query": "What recurring priorities appear in the December 2025 daily notes?",
+      "expected_mode": "recurring_themes"
+    },
+    {
+      "id": "medium-2",
+      "query": "Summarize the October 2025 daily notes.",
+      "expected_mode": "temporal_summary"
+    },
+    {
+      "id": "medium-3",
+      "query": "On which date was Alipay first mentioned in the daily notes?",
+      "expected_mode": "first_mention"
+    },
+    {
+      "id": "medium-4",
+      "query": "How did the focus on Chinese tutoring evolve over time in the daily notes?",
+      "expected_mode": "evolution_over_time"
+    }
+  ],
+  "hard": [
+    {
+      "id": "hard-1",
+      "query": "Compare the company billing policy with what appears in the daily notes about billing or payments.",
+      "expected_mode": "comparison"
+    },
+    {
+      "id": "hard-2",
+      "query": "What recurring themes appear in the November 2025 daily notes around freelance work and interviews?",
+      "expected_mode": "recurring_themes"
+    },
+    {
+      "id": "hard-3",
+      "query": "When was DeepSeek first mentioned together with app or product work?",
+      "expected_mode": "first_mention"
+    },
+    {
+      "id": "hard-4",
+      "query": "How did priorities shift from freelancing to product-building over time?",
+      "expected_mode": "evolution_over_time"
+    }
+  ]
+}

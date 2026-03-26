@@ -1,0 +1,1324 @@
+[
+  {
+    "difficulty": "easy",
+    "id": "easy-1",
+    "query": "Who is the CEO of Northstar Metrics?",
+    "expected_mode": "fact_lookup",
+    "analysis": {
+      "mode": "fact_lookup",
+      "broadQuery": false,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "doc_type": null,
+        "filename_clues": [],
+        "topic_keywords": [
+          "ceo",
+          "northstar",
+          "metrics"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": null,
+    "retrieved_chunks": [
+      {
+        "citation": "company.md | company.md#chunk-1 | n/a",
+        "source_path": "docs/company.md",
+        "title": "Company Overview",
+        "doc_type": "company doc",
+        "date": null,
+        "score": 72,
+        "boost_reasons": [
+          "phrase overlap (ceo)",
+          "phrase overlap (northstar)",
+          "phrase overlap (metrics)"
+        ],
+        "content_preview": "Company Overview\n**Northstar Metrics** is a fictional B2B SaaS company that provides analytics and workflow software for logistics teams, e-commerce operators, and internal support departments.\n\nCompany Overview\nThe company was founded in 2"
+      },
+      {
+        "citation": "company.md | company.md#chunk-2 | n/a",
+        "source_path": "docs/company.md",
+        "title": "Company Overview",
+        "doc_type": "company doc",
+        "date": null,
+        "score": 36,
+        "boost_reasons": [
+          "phrase overlap (northstar)",
+          "phrase overlap (metrics)"
+        ],
+        "content_preview": "Customer Support\nThe support team handles account access issues, billing questions, onboarding guidance, and bug reports.\n\nCustomer Support\nMain support email: **support@northstarmetrics.example**\n\nCustomer Support\nSupport hours:\n- Monday t"
+      }
+    ],
+    "final_answer": "The CEO of Northstar Metrics is Claire Moreau.  \nCITATION: company.md | company.md#chunk-1 | n/a",
+    "citations": [
+      "company.md | company.md#chunk-1 | n/a",
+      "company.md | company.md#chunk-2 | n/a"
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "id": "easy-2",
+    "query": "Are Starter customers billed monthly or weekly?",
+    "expected_mode": "fact_lookup",
+    "analysis": {
+      "mode": "fact_lookup",
+      "broadQuery": false,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "doc_type": null,
+        "filename_clues": [],
+        "topic_keywords": [
+          "starter",
+          "customers",
+          "billed",
+          "monthly",
+          "weekly"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": null,
+    "retrieved_chunks": [
+      {
+        "citation": "company.md | company.md#chunk-2 | n/a",
+        "source_path": "docs/company.md",
+        "title": "Company Overview",
+        "doc_type": "company doc",
+        "date": null,
+        "score": 98,
+        "boost_reasons": [
+          "phrase overlap (starter)",
+          "phrase overlap (customers)",
+          "phrase overlap (billed)",
+          "phrase overlap (monthly)"
+        ],
+        "content_preview": "Customer Support\nThe support team handles account access issues, billing questions, onboarding guidance, and bug reports.\n\nCustomer Support\nMain support email: **support@northstarmetrics.example**\n\nCustomer Support\nSupport hours:\n- Monday t"
+      },
+      {
+        "citation": "billing.md | billing.md#chunk-1 | n/a",
+        "source_path": "docs/billing.md",
+        "title": "Billing Policy",
+        "doc_type": "company doc",
+        "date": null,
+        "score": 47,
+        "boost_reasons": [
+          "phrase overlap (customers)",
+          "phrase overlap (billed)",
+          "phrase overlap (monthly)"
+        ],
+        "content_preview": "Billing Policy\nCustomers are billed monthly.\n\nRefunds\nRefund requests must be submitted within 14 days of the billing date.\n\nFailed payments\nIf a payment fails, the account remains active for a 3-day grace period before restriction.\n`"
+      },
+      {
+        "citation": "company.md | company.md#chunk-3 | n/a",
+        "source_path": "docs/company.md",
+        "title": "Company Overview",
+        "doc_type": "company doc",
+        "date": null,
+        "score": 25,
+        "boost_reasons": [
+          "phrase overlap (customers)"
+        ],
+        "content_preview": "Security and Access\n- All employees must use SSO with multi-factor authentication.\n- New hires receive access through the onboarding team.\n- Access reviews are conducted every quarter.\n- Production access is restricted to approved engineeri"
+      },
+      {
+        "citation": "20250811.txt | 20250811.txt#chunk-1 | 2025-08-11",
+        "source_path": "docs/daily/august/20250811.txt",
+        "title": "OK> subscribe to BNP Apartment insurance",
+        "doc_type": "daily note",
+        "date": "2025-08-11",
+        "score": 16,
+        "boost_reasons": [
+          "phrase overlap (monthly)"
+        ],
+        "content_preview": "20250811\n\nOK> subscribe to BNP Apartment insurance\nOK> get that 1000euro in the bank then :\nOK> received Antibes Caution\nOK> resent resign letter\nOK> implement word grouping.\n\n> implement better UI design.\n> TUESDAY >open bank account for m"
+      },
+      {
+        "citation": "20250812.txt | 20250812.txt#chunk-3 | 2025-08-12",
+        "source_path": "docs/daily/august/20250812.txt",
+        "title": "OK TUESDAY open bank account for micro entreprise",
+        "doc_type": "daily note",
+        "date": "2025-08-12",
+        "score": 16,
+        "boost_reasons": [
+          "phrase overlap (monthly)"
+        ],
+        "content_preview": "> start making videos about i quit my job and see how that goes\n\nwednesday :\n> sweep the floor\n> buy WD40\n\nmonthly\n\nTUESDAY >open bank account for micro entreprise\nmake a clean tree\n\ncopy sanofi project\nlastly copy the geotab flexis content"
+      },
+      {
+        "citation": "20250815.txt | 20250815.txt#chunk-4 | 2025-08-15",
+        "source_path": "docs/daily/august/20250815.txt",
+        "title": "OK TUESDAY open bank account for micro entreprise",
+        "doc_type": "daily note",
+        "date": "2025-08-15",
+        "score": 16,
+        "boost_reasons": [
+          "phrase overlap (monthly)"
+        ],
+        "content_preview": "> implement better UI design.\n> start looking for freelance missions and add them to excel starting by november\n\n> start making videos about i quit my job and see how that goes\n\nwednesday :\n> sweep the floor\n> buy WD40\n\nmonthly\n\nTUESDAY >op"
+      }
+    ],
+    "final_answer": "Based solely on the provided context, Starter customers are billed monthly. The context states: \"Customers on the Starter and Growth plans are billed monthly by default\" (CITATION: company.md | company.md#chunk-2 | n/a).",
+    "citations": [
+      "company.md | company.md#chunk-2 | n/a",
+      "billing.md | billing.md#chunk-1 | n/a",
+      "company.md | company.md#chunk-3 | n/a",
+      "20250811.txt | 20250811.txt#chunk-1 | 2025-08-11"
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "id": "easy-3",
+    "query": "What is the refund window?",
+    "expected_mode": "fact_lookup",
+    "analysis": {
+      "mode": "fact_lookup",
+      "broadQuery": false,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "doc_type": null,
+        "filename_clues": [],
+        "topic_keywords": [
+          "refund",
+          "window"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": null,
+    "retrieved_chunks": [
+      {
+        "citation": "billing.md | billing.md#chunk-1 | n/a",
+        "source_path": "docs/billing.md",
+        "title": "Billing Policy",
+        "doc_type": "company doc",
+        "date": null,
+        "score": 21,
+        "boost_reasons": [
+          "phrase overlap (refund)"
+        ],
+        "content_preview": "Billing Policy\nCustomers are billed monthly.\n\nRefunds\nRefund requests must be submitted within 14 days of the billing date.\n\nFailed payments\nIf a payment fails, the account remains active for a 3-day grace period before restriction.\n`"
+      },
+      {
+        "citation": "company.md | company.md#chunk-3 | n/a",
+        "source_path": "docs/company.md",
+        "title": "Company Overview",
+        "doc_type": "company doc",
+        "date": null,
+        "score": 21,
+        "boost_reasons": [
+          "phrase overlap (refund)"
+        ],
+        "content_preview": "Security and Access\n- All employees must use SSO with multi-factor authentication.\n- New hires receive access through the onboarding team.\n- Access reviews are conducted every quarter.\n- Production access is restricted to approved engineeri"
+      }
+    ],
+    "final_answer": "Refund requests must be submitted within 14 days of the billing date.  \nCITATION: billing.md | billing.md#chunk-1 | n/a",
+    "citations": [
+      "billing.md | billing.md#chunk-1 | n/a",
+      "company.md | company.md#chunk-3 | n/a"
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "id": "easy-4",
+    "query": "Who leads the onboarding team?",
+    "expected_mode": "fact_lookup",
+    "analysis": {
+      "mode": "fact_lookup",
+      "broadQuery": false,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "doc_type": "company doc",
+        "filename_clues": [],
+        "topic_keywords": [
+          "leads",
+          "onboarding",
+          "team"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": null,
+    "retrieved_chunks": [
+      {
+        "citation": "company.md | company.md#chunk-3 | n/a",
+        "source_path": "docs/company.md",
+        "title": "Company Overview",
+        "doc_type": "company doc",
+        "date": null,
+        "score": 163,
+        "boost_reasons": [
+          "doc_type match (company doc)",
+          "metadata overlap (onboarding)",
+          "phrase overlap (onboarding)",
+          "metadata overlap (team)",
+          "phrase overlap (team)"
+        ],
+        "content_preview": "Security and Access\n- All employees must use SSO with multi-factor authentication.\n- New hires receive access through the onboarding team.\n- Access reviews are conducted every quarter.\n- Production access is restricted to approved engineeri"
+      },
+      {
+        "citation": "company.md | company.md#chunk-1 | n/a",
+        "source_path": "docs/company.md",
+        "title": "Company Overview",
+        "doc_type": "company doc",
+        "date": null,
+        "score": 142,
+        "boost_reasons": [
+          "doc_type match (company doc)",
+          "metadata overlap (onboarding)",
+          "phrase overlap (onboarding)",
+          "metadata overlap (team)",
+          "phrase overlap (team)"
+        ],
+        "content_preview": "Company Overview\n**Northstar Metrics** is a fictional B2B SaaS company that provides analytics and workflow software for logistics teams, e-commerce operators, and internal support departments.\n\nCompany Overview\nThe company was founded in 2"
+      },
+      {
+        "citation": "company.md | company.md#chunk-2 | n/a",
+        "source_path": "docs/company.md",
+        "title": "Company Overview",
+        "doc_type": "company doc",
+        "date": null,
+        "score": 82,
+        "boost_reasons": [
+          "doc_type match (company doc)",
+          "metadata overlap (onboarding)",
+          "phrase overlap (onboarding)",
+          "metadata overlap (team)",
+          "phrase overlap (team)"
+        ],
+        "content_preview": "Customer Support\nThe support team handles account access issues, billing questions, onboarding guidance, and bug reports.\n\nCustomer Support\nMain support email: **support@northstarmetrics.example**\n\nCustomer Support\nSupport hours:\n- Monday t"
+      },
+      {
+        "citation": "20251013.txt | 20251013.txt#chunk-1 | 2025-10-13",
+        "source_path": "docs/daily/october/20251013.txt",
+        "title": "> check all leads messages",
+        "doc_type": "daily note",
+        "date": "2025-10-13",
+        "score": 26,
+        "boost_reasons": [
+          "metadata overlap (leads)",
+          "phrase overlap (leads)"
+        ],
+        "content_preview": "20251011\n\n> check all leads messages\n> record a short that provide a few audio test or questions. Prompt people to answer in comments.\n> react in chinese and teach a few french words.\n\n> prepare one file for calendly stuff\n> check freelanci"
+      },
+      {
+        "citation": "20251015.txt | 20251015.txt#chunk-1 | 2025-10-15",
+        "source_path": "docs/daily/october/20251015.txt",
+        "title": "> check all leads messages",
+        "doc_type": "daily note",
+        "date": "2025-10-15",
+        "score": 26,
+        "boost_reasons": [
+          "metadata overlap (leads)",
+          "phrase overlap (leads)"
+        ],
+        "content_preview": "20251011\n\n> check all leads messages\n> record a short that provide a few audio test or questions. Prompt people to answer in comments.\n> react in chinese and teach a few french words.\n\n> prepare one file for calendly stuff\n> check freelanci"
+      },
+      {
+        "citation": "20251016.txt | 20251016.txt#chunk-1 | 2025-10-16",
+        "source_path": "docs/daily/october/20251016.txt",
+        "title": "evening or tmr",
+        "doc_type": "daily note",
+        "date": "2025-10-16",
+        "score": 25,
+        "boost_reasons": [
+          "phrase overlap (leads)"
+        ],
+        "content_preview": "20251016\n\nevening or tmr\n- prepare 10 lessons A1 level for zaza, show payments and schedule in the lead file ( update ) cp from learn french with xxx\n> find some french series or movies that she can learn from \n> prepare oral\n\nOK lunch food"
+      }
+    ],
+    "final_answer": "The onboarding team is led by **Nina Petrova** (Tech Lead, Onboarding Team) [CITATION: company.md | company.md#chunk-1 | n/a].",
+    "citations": [
+      "company.md | company.md#chunk-3 | n/a",
+      "company.md | company.md#chunk-1 | n/a",
+      "company.md | company.md#chunk-2 | n/a",
+      "20251013.txt | 20251013.txt#chunk-1 | 2025-10-13"
+    ]
+  },
+  {
+    "difficulty": "medium",
+    "id": "medium-1",
+    "query": "What recurring priorities appear in the December 2025 daily notes?",
+    "expected_mode": "recurring_themes",
+    "analysis": {
+      "mode": "recurring_themes",
+      "broadQuery": true,
+      "filters": {
+        "dateRange": {
+          "start": "2025-12-01",
+          "end": "2025-12-31"
+        },
+        "explicitDate": null,
+        "month": "2025-12",
+        "doc_type": "daily note",
+        "filename_clues": [],
+        "topic_keywords": [
+          "recurring",
+          "priorities",
+          "appear",
+          "december",
+          "2025"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": {
+      "summary": "Recurring themes observed across the retrieved notes:\n- cisco: appears across 8 files ([20251218.txt | 20251218.txt#chunk-1 | 2025-12-18], [20251220.txt | 20251220.txt#chunk-1 | 2025-12-20])\n- answers: appears across 6 files ([20251223.txt | 20251223.txt#chunk-1 | 2025-12-23], [20251226.txt | 20251226.txt#chunk-1 | 2025-12-26])\n- cheat: appears across 5 files ([20251203.txt | 20251203.txt#chunk-1 | 2025-12-03], [20251204.txt | 20251204.txt#chunk-1 | 2025-12-04])\n- french: appears across 5 files ([20251202.txt | 20251202.txt#chunk-1 | 2025-12-02], [20251203.txt | 20251203.txt#chunk-1 | 2025-12-03])\n- update: appears across 5 files ([20251214.txt | 20251214.txt#chunk-1 | 2025-12-14], [20251222.txt | 20251222.txt#chunk-1 | 2025-12-22])",
+      "citations": [
+        "[20251218.txt | 20251218.txt#chunk-1 | 2025-12-18]",
+        "[20251220.txt | 20251220.txt#chunk-1 | 2025-12-20]",
+        "[20251223.txt | 20251223.txt#chunk-1 | 2025-12-23]",
+        "[20251226.txt | 20251226.txt#chunk-1 | 2025-12-26]",
+        "[20251203.txt | 20251203.txt#chunk-1 | 2025-12-03]",
+        "[20251204.txt | 20251204.txt#chunk-1 | 2025-12-04]",
+        "[20251202.txt | 20251202.txt#chunk-1 | 2025-12-02]",
+        "[20251214.txt | 20251214.txt#chunk-1 | 2025-12-14]",
+        "[20251222.txt | 20251222.txt#chunk-1 | 2025-12-22]"
+      ]
+    },
+    "retrieved_chunks": [
+      {
+        "citation": "20251226.txt | 20251226.txt#chunk-1 | 2025-12-26",
+        "source_path": "docs/daily/december/20251226.txt",
+        "title": "OK create cecilia 9-11am on december 30th",
+        "doc_type": "daily note",
+        "date": "2025-12-26",
+        "score": 70,
+        "boost_reasons": [
+          "month match (2025-12)",
+          "doc_type match (daily note)",
+          "metadata overlap (december)",
+          "phrase overlap (december)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)"
+        ],
+        "content_preview": "20251226\n\nOK create cecilia 9-11am on december 30th\n\nOK try to quickly setup the mini data lake and put it on github, and make a readme cheatsheet\nOK take care of the icon that looks different on browser tabs vs google search results\n\n> add"
+      },
+      {
+        "citation": "20251223.txt | 20251223.txt#chunk-1 | 2025-12-23",
+        "source_path": "docs/daily/december/20251223.txt",
+        "title": "> try to quickly setup the mini data lake and put it on github, and make a readme cheatsheet",
+        "doc_type": "daily note",
+        "date": "2025-12-23",
+        "score": 64,
+        "boost_reasons": [
+          "month match (2025-12)",
+          "doc_type match (daily note)",
+          "metadata overlap (december)",
+          "phrase overlap (december)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)"
+        ],
+        "content_preview": "20251223\n\n> try to quickly setup the mini data lake and put it on github, and make a readme cheatsheet\n> create task for december 30 for Cecilia\n> try to finish answering every customer or getting their coordinates.\n\n> take care of the icon"
+      },
+      {
+        "citation": "20251204.txt | 20251204.txt#chunk-1 | 2025-12-04",
+        "source_path": "docs/daily/december/20251204.txt",
+        "title": "OK sent 10 messqges on linkedin",
+        "doc_type": "daily note",
+        "date": "2025-12-04",
+        "score": 50,
+        "boost_reasons": [
+          "month match (2025-12)",
+          "doc_type match (daily note)",
+          "metadata overlap (december)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)"
+        ],
+        "content_preview": "20251204\n\nOK sent 10 messqges on linkedin\n\nOK prepare TCF / TEF exam and then move into basic pronunciation course\n\nOK make a TCF folder.\nOK download a few mp3 separately to make student can listen and follow questions.\nOK download video ju"
+      },
+      {
+        "citation": "20251205.txt | 20251205.txt#chunk-1 | 2025-12-05",
+        "source_path": "docs/daily/december/20251205.txt",
+        "title": "OK create voov link and send it for 5pm beijing time ( 10 am french time )",
+        "doc_type": "daily note",
+        "date": "2025-12-05",
+        "score": 50,
+        "boost_reasons": [
+          "month match (2025-12)",
+          "doc_type match (daily note)",
+          "metadata overlap (december)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)"
+        ],
+        "content_preview": "20251204\nhttps://c46e136a583f7e334124-ac22991740ab4ff17e21daf2ed577041.ssl.cf1.rackcdn.com/Certificate/ScrumFundamentalsCertified-AlexandreLeonetti-1133444.pdf"
+      },
+      {
+        "citation": "20251210.txt | 20251210.txt#chunk-1 | 2025-12-10",
+        "source_path": "docs/daily/december/20251210.txt",
+        "title": "OK buy ticket for jan 07",
+        "doc_type": "daily note",
+        "date": "2025-12-10",
+        "score": 50,
+        "boost_reasons": [
+          "month match (2025-12)",
+          "doc_type match (daily note)",
+          "metadata overlap (december)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)"
+        ],
+        "content_preview": "20251210\n\nOK buy ticket for jan 07\nOK add certifications to CV with logos and send it through linkedin\nOK finish until exam checkpoint before lunch\nOK check stranger thing spot in paris this afternoon\n\nOK pass the last part of Cisco network"
+      },
+      {
+        "citation": "20251212.txt | 20251212.txt#chunk-1 | 2025-12-12",
+        "source_path": "docs/daily/december/20251212.txt",
+        "title": "OK brush teeth,",
+        "doc_type": "daily note",
+        "date": "2025-12-12",
+        "score": 50,
+        "boost_reasons": [
+          "month match (2025-12)",
+          "doc_type match (daily note)",
+          "metadata overlap (december)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)"
+        ],
+        "content_preview": "20251212\n\nOK brush teeth, \nOK shave beard\nOK clean the kitchen quickly\n> shower body throw trash\n\nrecord some chinese video\ninspire from will hart video\nand from the sucessfull repeated french sentences video perhaps add some chinese commen"
+      },
+      {
+        "citation": "20251214.txt | 20251214.txt#chunk-1 | 2025-12-14",
+        "source_path": "docs/daily/december/20251214.txt",
+        "title": "OK dress up",
+        "doc_type": "daily note",
+        "date": "2025-12-14",
+        "score": 50,
+        "boost_reasons": [
+          "month match (2025-12)",
+          "doc_type match (daily note)",
+          "metadata overlap (december)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)"
+        ],
+        "content_preview": "20251214\n\nOK dress up \nOK tidyi room\n\nOK plug mic and setup lights\nOK course\nOK go to intermarché b uy necessities :)\nOK update excel file seriously for each student\nOK train script and record it.\n\nOK upload on all platforms\nOK youtube\nOK f"
+      },
+      {
+        "citation": "20251218.txt | 20251218.txt#chunk-1 | 2025-12-18",
+        "source_path": "docs/daily/december/20251218.txt",
+        "title": "OK gave course",
+        "doc_type": "daily note",
+        "date": "2025-12-18",
+        "score": 50,
+        "boost_reasons": [
+          "month match (2025-12)",
+          "doc_type match (daily note)",
+          "metadata overlap (december)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)"
+        ],
+        "content_preview": "20251218\n\nOK gave course \n> 大家好我是Alex老师\n今天给你们十个法语A1水平的句子\n我会说得很慢让你们听得清楚\n> generate 4 others so i can edit in train.\n大家好，我是 Alex 老师。 这是法语入门 A1 必学的十个句子。 我会说得很慢，方便你们学习。\n> take care of the icon that looks different on browser tabs vs google sear"
+      }
+    ],
+    "final_answer": "Based solely on the provided context, the recurring priorities that appear in the December 2025 daily notes are:\n\n1. **Creating technical cheatsheets**, specifically for Kubernetes, Elm, Cisco, and Terraform (mentioned on 2025-12-23, 2025-12-26, 2025-12-14, and 2025-12-18) [CITATION: 20251223.txt | 20251223.txt#chunk-1 | 2025-12-23][CITATION: 20251226.txt | 20251226.txt#chunk-1 | 2025-12-26][CITATION: 20251214.txt | 20251214.txt#chunk-1 | 2025-12-14][CITATION: 20251218.txt | 20251218.txt#chunk-1 | 2025-12-18].\n2. **Working on Cisco certification**, including reviewing answers and passing the exam (mentioned on 2025-12-23 and 2025-12-26) [CITATION: 20251223.txt | 20251223.txt#chunk-1 | 2025-12-23][CITATION: 20251226.txt | 20251226.txt#chunk-1 | 2025-12-26].\n3. **Fixing a website icon** that looks different on browser tabs versus Google search results (mentioned on 2025-12-23, 2025-12-26, and 2025-12-14) [CITATION: 20251223.txt | 20251223.txt#chunk-1 | 2025-12-23][CITATION: 20251226.txt | 20251226.txt#chunk-1 | 2025-12-26][CITATION: 20251214.txt | 20251214.txt#chunk-1 | 2025-12-14].\n4. **Adding project owners on LinkedIn** (aiming for 50 more, mentioned on 2025-12-23, 2025-12-26, and 2025-12-14) [CITATION: 20251223.txt | 20251223.txt#chunk-1 | 2025-12-23][CITATION: 20251226.txt | 20251226.txt#chunk-1 | 2025-12-26][CITATION: 20251214.txt | 20251214.txt#chunk-1 | 2025-12-14].\n5. **Setting up a \"mini data lake\" and putting it on GitHub** with a README cheatsheet (mentioned on 2025-12-23 and 2025-12-26) [CITATION: 20251223.txt | 20251223.txt#chunk-1 | 2025-12-23][CITATION: 20251226.txt | 20251226.txt#chunk-1 | 2025-12-26].\n6. **Updating the location to Paris on Freework** (mentioned on 2025-12-23, 2025-12-26, and 2025-12-18) [CITATION: 20251223.txt | 20251223.txt#chunk-1 | 2025-12-23][CITATION: 20251226.txt | 20251226.txt#chunk-1 | 2025-12-26][CITATION: 20251218.txt | 20251218.txt#chunk-1 | 2025-12-18].\n7. **Creating and recording Chinese/French language learning videos** (mentioned on 2025-12-12, 2025-12-14, and 2025-12-18) [CITATION: 20251212.txt | 20251212.txt#chunk-1 | 2025-12-12][CITATION: 20251214.txt | 20251214.txt#chunk-1 | 2025-12-14][CITATION: 20251218.txt | 20251218.txt#chunk-1 | 2025-12-18].\n8. **Scheduling or preparing a task for \"Cecilia\"** on December 30th (mentioned on 2025-12-23 and 2025-12-26) [CITATION: 20251223.txt | 20251223.txt#chunk-1 | 2025-12-23][CITATION: 20251226.txt | 20251226.txt#chunk-1 | 2025-12-26].",
+    "citations": [
+      "[20251218.txt | 20251218.txt#chunk-1 | 2025-12-18]",
+      "[20251220.txt | 20251220.txt#chunk-1 | 2025-12-20]",
+      "[20251223.txt | 20251223.txt#chunk-1 | 2025-12-23]",
+      "[20251226.txt | 20251226.txt#chunk-1 | 2025-12-26]",
+      "[20251203.txt | 20251203.txt#chunk-1 | 2025-12-03]",
+      "[20251204.txt | 20251204.txt#chunk-1 | 2025-12-04]",
+      "[20251202.txt | 20251202.txt#chunk-1 | 2025-12-02]",
+      "[20251214.txt | 20251214.txt#chunk-1 | 2025-12-14]",
+      "[20251222.txt | 20251222.txt#chunk-1 | 2025-12-22]"
+    ]
+  },
+  {
+    "difficulty": "medium",
+    "id": "medium-2",
+    "query": "Summarize the October 2025 daily notes.",
+    "expected_mode": "temporal_summary",
+    "analysis": {
+      "mode": "unsupported / unknown",
+      "broadQuery": false,
+      "filters": {
+        "dateRange": {
+          "start": "2025-10-01",
+          "end": "2025-10-31"
+        },
+        "explicitDate": null,
+        "month": "2025-10",
+        "doc_type": "daily note",
+        "filename_clues": [],
+        "topic_keywords": [
+          "summarize",
+          "october",
+          "2025"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": null,
+    "retrieved_chunks": [
+      {
+        "citation": "20260117.txt | 20260117.txt#chunk-1 | 2026-01-17",
+        "source_path": "docs/daily/2026/january/20260117.txt",
+        "title": "20260117 14 days left",
+        "doc_type": "daily note",
+        "date": "2026-01-17",
+        "score": 35,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "phrase overlap (2025)"
+        ],
+        "content_preview": "20260117 14 days left\n free work ile de france\n\nOK eggs zinc breakfast\n\nOK find 10 freelancing missions containing\n\ncloud ( azure / gcp / aws / kubernetes )\nbackend (python / java / node )\nfront (react/ react-native)\n\nmake set of questions "
+      },
+      {
+        "citation": "20260119.txt | 20260119.txt#chunk-2 | 2026-01-19",
+        "source_path": "docs/daily/2026/january/20260119.txt",
+        "title": "20260119 12 days left",
+        "doc_type": "daily note",
+        "date": "2026-01-19",
+        "score": 35,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "phrase overlap (2025)"
+        ],
+        "content_preview": "> > > > > Jan 18th 2025\n> ansible cheatsheet, practice, question-answers.\n> helm argocd cheatsheet, practice, question-answers.\n> openshift cheatsheet, practice, question-answers.\n> gcp kubernetes centric + cloudbuild\n> was mini datalake vp"
+      },
+      {
+        "citation": "_20250808.txt | _20250808.txt#chunk-1 | n/a",
+        "source_path": "docs/daily/_20250808.txt",
+        "title": "copy phone video app to new mac",
+        "doc_type": "daily note",
+        "date": null,
+        "score": 27,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)"
+        ],
+        "content_preview": "20250808\n\ncopy phone video app to new mac\ncopy sanofi project\nlastly copy the geotab flexis content\n\nalso copy the microentreprise stuff here\n\nmake a clean tree"
+      },
+      {
+        "citation": "20250808.txt | 20250808.txt#chunk-1 | 2025-08-08",
+        "source_path": "docs/daily/august/20250808.txt",
+        "title": "copy phone video app to new mac",
+        "doc_type": "daily note",
+        "date": "2025-08-08",
+        "score": 27,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)"
+        ],
+        "content_preview": "20250808\n\ncopy phone video app to new mac\ncopy sanofi project\nlastly copy the geotab flexis content\n\nalso copy the microentreprise stuff here\n\nmake a clean tree"
+      },
+      {
+        "citation": "20250809.txt | 20250809.txt#chunk-1 | 2025-08-09",
+        "source_path": "docs/daily/august/20250809.txt",
+        "title": "OK copy phone video app to new mac",
+        "doc_type": "daily note",
+        "date": "2025-08-09",
+        "score": 27,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)"
+        ],
+        "content_preview": "20250809\n\nOK copy phone video app to new mac\n\n> implement word grouping.\n> implement better UI design.\n> implement audio treatment\n> find if we can buy a microphone that connects to the iphone.\n> go get glasses at optic2000\n> clean the toil"
+      },
+      {
+        "citation": "20250811.txt | 20250811.txt#chunk-1 | 2025-08-11",
+        "source_path": "docs/daily/august/20250811.txt",
+        "title": "OK> subscribe to BNP Apartment insurance",
+        "doc_type": "daily note",
+        "date": "2025-08-11",
+        "score": 27,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)"
+        ],
+        "content_preview": "20250811\n\nOK> subscribe to BNP Apartment insurance\nOK> get that 1000euro in the bank then :\nOK> received Antibes Caution\nOK> resent resign letter\nOK> implement word grouping.\n\n> implement better UI design.\n> TUESDAY >open bank account for m"
+      }
+    ],
+    "final_answer": "Based solely on the retrieved context, there are no daily notes from October 2025 provided. The available notes are from January 2026, August 2025, and one from January 2025.\n\n**Answer:** Insufficient evidence. The retrieved context does not contain any daily notes from October 2025.",
+    "citations": [
+      "20260117.txt | 20260117.txt#chunk-1 | 2026-01-17",
+      "20260119.txt | 20260119.txt#chunk-2 | 2026-01-19",
+      "_20250808.txt | _20250808.txt#chunk-1 | n/a",
+      "20250808.txt | 20250808.txt#chunk-1 | 2025-08-08"
+    ]
+  },
+  {
+    "difficulty": "medium",
+    "id": "medium-3",
+    "query": "On which date was Alipay first mentioned in the daily notes?",
+    "expected_mode": "first_mention",
+    "analysis": {
+      "mode": "first_mention",
+      "broadQuery": true,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "doc_type": "daily note",
+        "filename_clues": [],
+        "topic_keywords": [
+          "alipay"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": {
+      "summary": "The earliest grounded mention found is on 2025-08-15: OK implement or make sure the micro phone is picked up by the iphone but i have to publish it first to test.\nOK testing microphone will help : \n -unlocking perfect courses online\n -unlocking freelancing shorts for you... [20250815.txt | 20250815.txt#chunk-2 | 2025-08-15]",
+      "citations": [
+        "[20250815.txt | 20250815.txt#chunk-2 | 2025-08-15]"
+      ]
+    },
+    "retrieved_chunks": [
+      {
+        "citation": "20250815.txt | 20250815.txt#chunk-2 | 2025-08-15",
+        "source_path": "docs/daily/august/20250815.txt",
+        "title": "OK TUESDAY open bank account for micro entreprise",
+        "doc_type": "daily note",
+        "date": "2025-08-15",
+        "score": 40,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "phrase overlap (alipay)"
+        ],
+        "content_preview": "OK implement or make sure the micro phone is picked up by the iphone but i have to publish it first to test.\nOK testing microphone will help : \n -unlocking perfect courses online\n -unlocking freelancing shorts for youtube and tiktok\n\nOK dep"
+      },
+      {
+        "citation": "20250817.txt | 20250817.txt#chunk-1 | 2025-08-17",
+        "source_path": "docs/daily/august/20250817.txt",
+        "title": "OK deploy video app on testflight.",
+        "doc_type": "daily note",
+        "date": "2025-08-17",
+        "score": 40,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "phrase overlap (alipay)"
+        ],
+        "content_preview": "20250817\n\nOK deploy video app on testflight.\nOk try adding punctuation and see if there is any iprovement.\n\n> register on freelancing websites as dev full stack cloud and devops\n> test stripe pay links and see if alipay or wechatpay got app"
+      },
+      {
+        "citation": "20250824.txt | 20250824.txt#chunk-1 | 2025-08-24",
+        "source_path": "docs/daily/august/20250824.txt",
+        "title": "OK OAP x10 + 8 + 4 +4  + 4 = x30",
+        "doc_type": "daily note",
+        "date": "2025-08-24",
+        "score": 40,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "phrase overlap (alipay)"
+        ],
+        "content_preview": "20250824\n\nOK OAP x10 + 8 + 4 +4 + 4 = x30 \nOK deploy logo of app \nOK deploy on test flight\n\nOK make a receipes list before we forget\n\n> deploy ZeroEdit to the actual appstore\n> add ZeroEdit to my CV and link to the app\n\n> make sure ZeroEdit"
+      },
+      {
+        "citation": "20250825.txt | 20250825.txt#chunk-2 | 2025-08-25",
+        "source_path": "docs/daily/august/20250825.txt",
+        "title": "OK shave and wash brush teeth",
+        "doc_type": "daily note",
+        "date": "2025-08-25",
+        "score": 40,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "phrase overlap (alipay)"
+        ],
+        "content_preview": "> register on freelancing websites as dev full stack cloud and devops\n> test stripe pay links and see if alipay or wechatpay got approved\n\n>>> ideally create a single page where people can directly book me\non some calendly with an automated"
+      },
+      {
+        "citation": "20250827.txt | 20250827.txt#chunk-2 | 2025-08-27",
+        "source_path": "docs/daily/august/20250827.txt",
+        "title": "OK move subtitles at 60 or 70 % of screen height",
+        "doc_type": "daily note",
+        "date": "2025-08-27",
+        "score": 40,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "phrase overlap (alipay)"
+        ],
+        "content_preview": "> install veracrypt dmg on mac using fuse t\n\n> add ZeroEdit to my CV and link to the app\n> make a webpage with calendly and stuff so people can book me and pay \n> create an instagram account for freelancing to sell what ?\n\n> feature edit fo"
+      },
+      {
+        "citation": "20250902.txt | 20250902.txt#chunk-1 | 2025-09-02",
+        "source_path": "docs/daily/september/20250902.txt",
+        "title": "OK set up availability lets check back in 24h",
+        "doc_type": "daily note",
+        "date": "2025-09-02",
+        "score": 40,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "phrase overlap (alipay)"
+        ],
+        "content_preview": "OK set up availability lets check back in 24h\nOK make first audio and upload it morning\nOK create xiaohong shu account.\nOK install veracrypt\n\nOK add app to cv\nOK upload all videos in sync to all three accounts\n\n> create webpage and ask gpt5"
+      }
+    ],
+    "final_answer": "Alipay was first mentioned in the daily notes on **2025-08-15** (CITATION: 20250815.txt | 20250815.txt#chunk-2 | 2025-08-15).",
+    "citations": [
+      "[20250815.txt | 20250815.txt#chunk-2 | 2025-08-15]"
+    ]
+  },
+  {
+    "difficulty": "medium",
+    "id": "medium-4",
+    "query": "How did the focus on Chinese tutoring evolve over time in the daily notes?",
+    "expected_mode": "evolution_over_time",
+    "analysis": {
+      "mode": "evolution_over_time",
+      "broadQuery": true,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "doc_type": "daily note",
+        "filename_clues": [],
+        "topic_keywords": [
+          "focus",
+          "chinese",
+          "tutoring",
+          "evolve"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": {
+      "summary": "Observed progression for focus, chinese, tutoring, evolve:\n- 2025-08-27: 20250827\n\nOK move subtitles at 60 or 70 % of screen height\nOK remove first dot\nOK make sure ZeroEdit add a watermark\nOK scp veracrypt from linux to mac\nOK create an instagram ac... [20250827.txt | 20250827.txt#chunk-1 | 2025-08-27]\n- 2025-09-15: OK made video about words\nOK aider andreane cv\nOK buy peigne, baguette chinoise, yaourt proteiné, eggs\nOK send the wechat QR code to the chinese email today.\n\n> send freelance C... [20250915.txt | 20250915.txt#chunk-1 | 2025-09-15]\n- 2025-10-09: 20251008\n\nOK create two lead files\nOK build a list of leads for chinese courses.\nOK add freelance mail to lead list.\n\n> go buy toothpaste, and proteins and vitamin related foods... [20251009.txt | 20251009.txt#chunk-1 | 2025-10-09]\n- 2025-10-11: 20251011\n\nOK cp list from phone to mac\nOK create gmail alex.xuefr@gmail.com\nOK add instagram and email as outro on youtube shorts and longs\n\n> check all leads messages\n> record... [20251011.txt | 20251011.txt#chunk-1 | 2025-10-11]\n- 2025-10-13: 20251011\n\n> check all leads messages\n> record a short that provide a few audio test or questions. Prompt people to answer in comments.\n> react in chinese and teach a few french... [20251013.txt | 20251013.txt#chunk-1 | 2025-10-13]\n- 2025-10-15: 20251011\n\n> check all leads messages\n> record a short that provide a few audio test or questions. Prompt people to answer in comments.\n> react in chinese and teach a few french... [20251015.txt | 20251015.txt#chunk-1 | 2025-10-15]",
+      "citations": [
+        "[20250827.txt | 20250827.txt#chunk-1 | 2025-08-27]",
+        "[20250915.txt | 20250915.txt#chunk-1 | 2025-09-15]",
+        "[20251009.txt | 20251009.txt#chunk-1 | 2025-10-09]",
+        "[20251011.txt | 20251011.txt#chunk-1 | 2025-10-11]",
+        "[20251013.txt | 20251013.txt#chunk-1 | 2025-10-13]",
+        "[20251015.txt | 20251015.txt#chunk-1 | 2025-10-15]"
+      ]
+    },
+    "retrieved_chunks": [
+      {
+        "citation": "20250827.txt | 20250827.txt#chunk-1 | 2025-08-27",
+        "source_path": "docs/daily/august/20250827.txt",
+        "title": "OK move subtitles at 60 or 70 % of screen height",
+        "doc_type": "daily note",
+        "date": "2025-08-27",
+        "score": 69,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "metadata overlap (chinese)",
+          "phrase overlap (chinese)"
+        ],
+        "content_preview": "20250827\n\nOK move subtitles at 60 or 70 % of screen height\nOK remove first dot\nOK make sure ZeroEdit add a watermark\nOK scp veracrypt from linux to mac\nOK create an instagram account for chinese french teaching\nOK OAP x10 +10 +10 \nOK wash\nO"
+      },
+      {
+        "citation": "20250827.txt | 20250827.txt#chunk-5 | 2025-08-27",
+        "source_path": "docs/daily/august/20250827.txt",
+        "title": "OK move subtitles at 60 or 70 % of screen height",
+        "doc_type": "daily note",
+        "date": "2025-08-27",
+        "score": 51,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "metadata overlap (chinese)",
+          "phrase overlap (chinese)"
+        ],
+        "content_preview": "ZeroEdit : create once sells millions of copies ( app store )\nsocial media : make one video get it viewed a million times\nnormal insta account.\ninstaccount in chinese\ncourses of french for chinese : scale to many people, sell to classes.\n\nZ"
+      },
+      {
+        "citation": "20250915.txt | 20250915.txt#chunk-1 | 2025-09-15",
+        "source_path": "docs/daily/september/20250915.txt",
+        "title": "OK made video about words",
+        "doc_type": "daily note",
+        "date": "2025-09-15",
+        "score": 51,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "metadata overlap (chinese)",
+          "phrase overlap (chinese)"
+        ],
+        "content_preview": "OK made video about words\nOK aider andreane cv\nOK buy peigne, baguette chinoise, yaourt proteiné, eggs\nOK send the wechat QR code to the chinese email today.\n\n> send freelance CV on monster, upwork and so on\nacheter pantoufle, cuiseur de ri"
+      },
+      {
+        "citation": "20251009.txt | 20251009.txt#chunk-1 | 2025-10-09",
+        "source_path": "docs/daily/october/20251009.txt",
+        "title": "OK create two lead files",
+        "doc_type": "daily note",
+        "date": "2025-10-09",
+        "score": 51,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "metadata overlap (chinese)",
+          "phrase overlap (chinese)"
+        ],
+        "content_preview": "20251008\n\nOK create two lead files\nOK build a list of leads for chinese courses.\nOK add freelance mail to lead list.\n\n> go buy toothpaste, and proteins and vitamin related foods\n\n===12h\n> eat meal vitamin D3, two steak, two eggs and rice\n=="
+      },
+      {
+        "citation": "20251011.txt | 20251011.txt#chunk-1 | 2025-10-11",
+        "source_path": "docs/daily/october/20251011.txt",
+        "title": "OK cp list from phone to mac",
+        "doc_type": "daily note",
+        "date": "2025-10-11",
+        "score": 60,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "metadata overlap (chinese)",
+          "phrase overlap (chinese)"
+        ],
+        "content_preview": "20251011\n\nOK cp list from phone to mac\nOK create gmail alex.xuefr@gmail.com\nOK add instagram and email as outro on youtube shorts and longs\n\n> check all leads messages\n> record a short that provide a few audio test or questions. Prompt peop"
+      },
+      {
+        "citation": "20251013.txt | 20251013.txt#chunk-1 | 2025-10-13",
+        "source_path": "docs/daily/october/20251013.txt",
+        "title": "> check all leads messages",
+        "doc_type": "daily note",
+        "date": "2025-10-13",
+        "score": 69,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "metadata overlap (chinese)",
+          "phrase overlap (chinese)"
+        ],
+        "content_preview": "20251011\n\n> check all leads messages\n> record a short that provide a few audio test or questions. Prompt people to answer in comments.\n> react in chinese and teach a few french words.\n\n> prepare one file for calendly stuff\n> check freelanci"
+      },
+      {
+        "citation": "20251015.txt | 20251015.txt#chunk-1 | 2025-10-15",
+        "source_path": "docs/daily/october/20251015.txt",
+        "title": "> check all leads messages",
+        "doc_type": "daily note",
+        "date": "2025-10-15",
+        "score": 69,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "metadata overlap (chinese)",
+          "phrase overlap (chinese)"
+        ],
+        "content_preview": "20251011\n\n> check all leads messages\n> record a short that provide a few audio test or questions. Prompt people to answer in comments.\n> react in chinese and teach a few french words.\n\n> prepare one file for calendly stuff\n> check freelanci"
+      },
+      {
+        "citation": "20251024.txt | 20251024.txt#chunk-1 | 2025-10-24",
+        "source_path": "docs/daily/october/20251024.txt",
+        "title": "buy rislan",
+        "doc_type": "daily note",
+        "date": "2025-10-24",
+        "score": 51,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "metadata overlap (chinese)",
+          "phrase overlap (chinese)"
+        ],
+        "content_preview": "buy rislan\nbuy lush soap for bday\n\nrecord chinese french video about space\nrecord chinese french video about radioactivity.\n\nexample medicine vocabulary\n\nle docteur\nl'hopital\nla pharmacie\nj'ai mal a la tete\nj'ai mal au ventre\nj'ai de la fie"
+      }
+    ],
+    "final_answer": "Based solely on the provided daily notes, the focus on Chinese tutoring evolved from initial setup and content creation to lead generation and engagement strategies over time.\n\n- **Late August 2025**: The initial focus was on creating social media accounts (Instagram, YouTube) specifically for \"chinese french teaching\" and producing initial video content (e.g., \"create a chinese french reel,\" \"record second chinese video\") (20250827.txt | 20250827.txt#chunk-1 | 2025-08-27).\n- **Mid-September 2025**: The focus included sending a WeChat QR code to a Chinese email and planning a business pipeline for \"teaching french to chinese,\" including a webpage and payment systems (20250915.txt | 20250915.txt#chunk-1 | 2025-09-15).\n- **Early to Mid-October 2025**: The focus shifted to generating leads (\"build a list of leads for chinese courses\"), creating promotional content with specific pricing (first hour, online, and in-person rates), and engaging with an audience by prompting comments and reactions in Chinese. This period shows repeated tasks for checking leads, recording interactive shorts, and writing Chinese outros for videos (20251009.txt | 20251009.txt#chunk-1 | 2025-10-09; 20251011.txt | 20251011.txt#chunk-1 | 2025-10-11; 20251013.txt | 20251013.txt#chunk-1 | 2025-10-13; 20251015.txt | 20251015.txt#chunk-1 | 2025-10-15).",
+    "citations": [
+      "[20250827.txt | 20250827.txt#chunk-1 | 2025-08-27]",
+      "[20250915.txt | 20250915.txt#chunk-1 | 2025-09-15]",
+      "[20251009.txt | 20251009.txt#chunk-1 | 2025-10-09]",
+      "[20251011.txt | 20251011.txt#chunk-1 | 2025-10-11]",
+      "[20251013.txt | 20251013.txt#chunk-1 | 2025-10-13]",
+      "[20251015.txt | 20251015.txt#chunk-1 | 2025-10-15]"
+    ]
+  },
+  {
+    "difficulty": "hard",
+    "id": "hard-1",
+    "query": "Compare the company billing policy with what appears in the daily notes about billing or payments.",
+    "expected_mode": "comparison",
+    "analysis": {
+      "mode": "comparison",
+      "broadQuery": true,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "doc_type": "daily note",
+        "filename_clues": [],
+        "topic_keywords": [
+          "compare",
+          "company",
+          "billing",
+          "policy",
+          "appears",
+          "about",
+          "payments"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": {
+      "summary": "Comparison evidence from the retrieved documents:\n- 2025-10-05: 20251005\n\nvitamin D3 for depression and because of no sun exposure\n\nOK ask maxime about internship italia sister\nOK ask kiko about internship italia sister\n\n> check on chinese g... [20251005.txt | 20251005.txt#chunk-1 | 2025-10-05]\n- 2025-10-24: buy rislan\nbuy lush soap for bday\n\nrecord chinese french video about space\nrecord chinese french video about radioactivity.\n\nexample medicine vocabulary\n\nle docteur\nl'hopital\nla... [20251024.txt | 20251024.txt#chunk-1 | 2025-10-24]\n- 2025-11-13: OK check website and translate all into english so we know what's going on and which techniques are being used.\n>> check what worked again on youtube and upload next videos if t... [20251113.txt | 20251113.txt#chunk-1 | 2025-11-13]\n- 2026-01-05: 20260105\nJan 5th\n\nOK make list for paris\nOK copy content from linux to mac\nOK do some cardio 30min\n\nOK take a shower\n> make appointment and course about numbers\n\nmake bag\nfilm s... [20260105.txt | 20260105.txt#chunk-1 | 2026-01-05]",
+      "citations": [
+        "[20251005.txt | 20251005.txt#chunk-1 | 2025-10-05]",
+        "[20251024.txt | 20251024.txt#chunk-1 | 2025-10-24]",
+        "[20251113.txt | 20251113.txt#chunk-1 | 2025-11-13]",
+        "[20260105.txt | 20260105.txt#chunk-1 | 2026-01-05]"
+      ]
+    },
+    "retrieved_chunks": [
+      {
+        "citation": "20260114.txt | 20260114.txt#chunk-1 | 2026-01-14",
+        "source_path": "docs/daily/2026/january/20260114.txt",
+        "title": "20260114 16 days left",
+        "doc_type": "daily note",
+        "date": "2026-01-14",
+        "score": 50,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "phrase overlap (about)"
+        ],
+        "content_preview": "20260114 16 days left\n\nmv videos to folder\ngenerate list of questions about senior react native project\n(what is the use of context, how to use it and so on, what are some good practices about loading or resource management)\nreview list of "
+      },
+      {
+        "citation": "20260208.txt | 20260208.txt#chunk-1 | 2026-02-08",
+        "source_path": "docs/daily/2026/february/20260208.txt",
+        "title": "OK take zinc",
+        "doc_type": "daily note",
+        "date": "2026-02-08",
+        "score": 50,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "phrase overlap (about)"
+        ],
+        "content_preview": "20260208\n\nOK take zinc\nOK banana + yogurt\nOK eat two eggs\nOk brush teeth, shave and take a shower\nOK study scrum infra put this into a readme\nOK walked 6000 steps\n\nOK make a short cheatsheet about being a scrum master.\n> when finish try to "
+      },
+      {
+        "citation": "20260116.txt | 20260116.txt#chunk-1 | 2026-01-16",
+        "source_path": "docs/daily/2026/january/20260116.txt",
+        "title": "20260116 15 days left",
+        "doc_type": "daily note",
+        "date": "2026-01-16",
+        "score": 46,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "phrase overlap (company)",
+          "phrase overlap (about)"
+        ],
+        "content_preview": "20260116 15 days left\n\nOK pe\nOK eggs zinc breakfast\nOK create questions for which answers are kubernetes elements\nOK practice until at least 50 % of content in memorized. did 80\nOK edit and upload second part of chinese short.\n\n> find 10 fr"
+      },
+      {
+        "citation": "20260117.txt | 20260117.txt#chunk-1 | 2026-01-17",
+        "source_path": "docs/daily/2026/january/20260117.txt",
+        "title": "20260117 14 days left",
+        "doc_type": "daily note",
+        "date": "2026-01-17",
+        "score": 46,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "phrase overlap (company)",
+          "phrase overlap (about)"
+        ],
+        "content_preview": "20260117 14 days left\n free work ile de france\n\nOK eggs zinc breakfast\n\nOK find 10 freelancing missions containing\n\ncloud ( azure / gcp / aws / kubernetes )\nbackend (python / java / node )\nfront (react/ react-native)\n\nmake set of questions "
+      },
+      {
+        "citation": "20260119.txt | 20260119.txt#chunk-1 | 2026-01-19",
+        "source_path": "docs/daily/2026/january/20260119.txt",
+        "title": "20260119 12 days left",
+        "doc_type": "daily note",
+        "date": "2026-01-19",
+        "score": 46,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "phrase overlap (company)",
+          "phrase overlap (about)"
+        ],
+        "content_preview": "20260119 12 days left\nOK eggs zinc breakfast\n\nOK installed openshift\nOK answer and schedule free lesson for the chinese student.\n\nOK buy metro tickets and tram tickets\n> faire le sac et clean le reste\n>\n\nOK find 10 freelancing missions cont"
+      },
+      {
+        "citation": "20251005.txt | 20251005.txt#chunk-1 | 2025-10-05",
+        "source_path": "docs/daily/october/20251005.txt",
+        "title": "vitamin D3 for depression and because of no sun exposure",
+        "doc_type": "daily note",
+        "date": "2025-10-05",
+        "score": 41,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "phrase overlap (about)"
+        ],
+        "content_preview": "20251005\n\nvitamin D3 for depression and because of no sun exposure\n\nOK ask maxime about internship italia sister\nOK ask kiko about internship italia sister\n\n> check on chinese guy for tuesday course B1 > B2\nGood Morning ! and happy moon fes"
+      },
+      {
+        "citation": "20251024.txt | 20251024.txt#chunk-1 | 2025-10-24",
+        "source_path": "docs/daily/october/20251024.txt",
+        "title": "buy rislan",
+        "doc_type": "daily note",
+        "date": "2025-10-24",
+        "score": 41,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "phrase overlap (about)"
+        ],
+        "content_preview": "buy rislan\nbuy lush soap for bday\n\nrecord chinese french video about space\nrecord chinese french video about radioactivity.\n\nexample medicine vocabulary\n\nle docteur\nl'hopital\nla pharmacie\nj'ai mal a la tete\nj'ai mal au ventre\nj'ai de la fie"
+      },
+      {
+        "citation": "20251113.txt | 20251113.txt#chunk-1 | 2025-11-13",
+        "source_path": "docs/daily/november/20251113.txt",
+        "title": "OK  check website and translate all into english so we know what's going on and which techniques are being used.",
+        "doc_type": "daily note",
+        "date": "2025-11-13",
+        "score": 41,
+        "boost_reasons": [
+          "doc_type match (daily note)",
+          "phrase overlap (about)"
+        ],
+        "content_preview": "OK check website and translate all into english so we know what's going on and which techniques are being used.\n>> check what worked again on youtube and upload next videos if there are some left\nupload next vid on youtube, and old ones \non"
+      }
+    ],
+    "final_answer": "Based solely on the provided context, there is insufficient evidence to compare the company billing policy with what appears in the daily notes about billing or payments. The retrieved daily notes contain personal tasks, study plans, and freelance job search activities, but no information about a specific company's billing policy or any billing/payment entries to compare it with.\n\n**Citations:**\n- 20251005.txt | 20251005.txt#chunk-1 | 2025-10-05\n- 20251024.txt | 20251024.txt#chunk-1 | 2025-10-24\n- 20251113.txt | 20251113.txt#chunk-1 | 2025-11-13\n- 20260105.txt | 20260105.txt#chunk-1 | 2026-01-05",
+    "citations": [
+      "[20251005.txt | 20251005.txt#chunk-1 | 2025-10-05]",
+      "[20251024.txt | 20251024.txt#chunk-1 | 2025-10-24]",
+      "[20251113.txt | 20251113.txt#chunk-1 | 2025-11-13]",
+      "[20260105.txt | 20260105.txt#chunk-1 | 2026-01-05]"
+    ]
+  },
+  {
+    "difficulty": "hard",
+    "id": "hard-2",
+    "query": "What recurring themes appear in the November 2025 daily notes around freelance work and interviews?",
+    "expected_mode": "recurring_themes",
+    "analysis": {
+      "mode": "recurring_themes",
+      "broadQuery": true,
+      "filters": {
+        "dateRange": {
+          "start": "2025-11-01",
+          "end": "2025-11-30"
+        },
+        "explicitDate": null,
+        "month": "2025-11",
+        "doc_type": "daily note",
+        "filename_clues": [],
+        "topic_keywords": [
+          "recurring",
+          "appear",
+          "november",
+          "2025",
+          "freelance",
+          "work",
+          "interviews"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": {
+      "summary": "Recurring themes observed across the retrieved notes:\n- both: appears across 8 files ([20251103.txt | 20251103.txt#chunk-1 | 2025-11-03], [20251114.txt | 20251114.txt#chunk-1 | 2025-11-14])\n- chinese: appears across 8 files ([20251103.txt | 20251103.txt#chunk-1 | 2025-11-03], [20251123.txt | 20251123.txt#chunk-1 | 2025-11-23])\n- french: appears across 6 files ([20251103.txt | 20251103.txt#chunk-1 | 2025-11-03], [20251124.txt | 20251124.txt#chunk-1 | 2025-11-24])\n- certification: appears across 5 files ([20251125.txt | 20251125.txt#chunk-1 | 2025-11-25], [20251126.txt | 20251126.txt#chunk-1 | 2025-11-26])\n- clean: appears across 5 files ([20251103.txt | 20251103.txt#chunk-1 | 2025-11-03], [20251106.txt | 20251106.txt#chunk-1 | 2025-11-06])",
+      "citations": [
+        "[20251103.txt | 20251103.txt#chunk-1 | 2025-11-03]",
+        "[20251114.txt | 20251114.txt#chunk-1 | 2025-11-14]",
+        "[20251123.txt | 20251123.txt#chunk-1 | 2025-11-23]",
+        "[20251124.txt | 20251124.txt#chunk-1 | 2025-11-24]",
+        "[20251125.txt | 20251125.txt#chunk-1 | 2025-11-25]",
+        "[20251126.txt | 20251126.txt#chunk-1 | 2025-11-26]",
+        "[20251106.txt | 20251106.txt#chunk-1 | 2025-11-06]"
+      ]
+    },
+    "retrieved_chunks": [
+      {
+        "citation": "20251127.txt | 20251127.txt#chunk-1 | 2025-11-27",
+        "source_path": "docs/daily/november/20251127.txt",
+        "title": "what is the plan now ?",
+        "doc_type": "daily note",
+        "date": "2025-11-27",
+        "score": 80,
+        "boost_reasons": [
+          "month match (2025-11)",
+          "doc_type match (daily note)",
+          "metadata overlap (november)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)",
+          "metadata overlap (freelance)",
+          "phrase overlap (freelance)"
+        ],
+        "content_preview": "20251126\n\nwhat is the plan now ?\n\nmorning chinese\nOK repeat the s video 10x\n\nafternoon freelance software certifications\n\n- send freelance message to 15 parisian recruiters on linkedin\n- cold send to 10 chinese in paris the offer with both "
+      },
+      {
+        "citation": "20251126.txt | 20251126.txt#chunk-1 | 2025-11-26",
+        "source_path": "docs/daily/november/20251126.txt",
+        "title": "what is the plan now ?",
+        "doc_type": "daily note",
+        "date": "2025-11-26",
+        "score": 66,
+        "boost_reasons": [
+          "month match (2025-11)",
+          "doc_type match (daily note)",
+          "metadata overlap (november)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)",
+          "phrase overlap (freelance)",
+          "phrase overlap (work)"
+        ],
+        "content_preview": "20251126\n\nwhat is the plan now ?\nmorning chinese\nOK repeat the s video 10x\n- add 10 parisian chinese on linkedin that are working in Paris\n- edit the last short video and publish it everywhere\n- focus on the color list scripts\n\nafternoon fr"
+      },
+      {
+        "citation": "20251107.txt | 20251107.txt#chunk-1 | 2025-11-07",
+        "source_path": "docs/daily/november/20251107.txt",
+        "title": "OK cp files then cp to linux anc clean both mac and phone",
+        "doc_type": "daily note",
+        "date": "2025-11-07",
+        "score": 63,
+        "boost_reasons": [
+          "month match (2025-11)",
+          "doc_type match (daily note)",
+          "metadata overlap (november)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)",
+          "phrase overlap (freelance)"
+        ],
+        "content_preview": "20251107\n\nOK cp files then cp to linux anc clean both mac and phone\nOK cp older videos or delete them to empty a bit of phone memory\nOK create link for google meeting at 4PM-4:30\nhttps://meet.google.com/bdm-kdjg-tik\n\nOK create the quick tes"
+      },
+      {
+        "citation": "20251123.txt | 20251123.txt#chunk-1 | 2025-11-23",
+        "source_path": "docs/daily/november/20251123.txt",
+        "title": "OK protein eaten : 20g ( need to cook some boiled eggs )",
+        "doc_type": "daily note",
+        "date": "2025-11-23",
+        "score": 63,
+        "boost_reasons": [
+          "month match (2025-11)",
+          "doc_type match (daily note)",
+          "metadata overlap (november)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)",
+          "phrase overlap (freelance)"
+        ],
+        "content_preview": "20251123\n\nOK protein eaten : 20g ( need to cook some boiled eggs )\nOK clean table\n\nOK record screen of teacher\n\n> edit next short video and upload it on both youtube and tiktok and facebook\n\npractice the script of teacher and record other v"
+      },
+      {
+        "citation": "20251124.txt | 20251124.txt#chunk-1 | 2025-11-24",
+        "source_path": "docs/daily/november/20251124.txt",
+        "title": "OK update the number sheet",
+        "doc_type": "daily note",
+        "date": "2025-11-24",
+        "score": 63,
+        "boost_reasons": [
+          "month match (2025-11)",
+          "doc_type match (daily note)",
+          "metadata overlap (november)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)",
+          "phrase overlap (freelance)"
+        ],
+        "content_preview": "20251123\n\nOK update the number sheet\nOK tell students the week is available.\n\nOK practice the script of teacher and record other videos\nOK edit next short video and upload it on both youtube and tiktok and facebook\n\nwhat is the plan now ?\n\n"
+      },
+      {
+        "citation": "20251125.txt | 20251125.txt#chunk-1 | 2025-11-25",
+        "source_path": "docs/daily/november/20251125.txt",
+        "title": "what is the plan now ?",
+        "doc_type": "daily note",
+        "date": "2025-11-25",
+        "score": 63,
+        "boost_reasons": [
+          "month match (2025-11)",
+          "doc_type match (daily note)",
+          "metadata overlap (november)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)",
+          "phrase overlap (freelance)"
+        ],
+        "content_preview": "20251123\n\nwhat is the plan now ?\nmorning chinese\nafternoon freelance software certifications\n\nmorning :\nOK uploaded latest video \n> train the same video about S \n> and re record it.\n\nnoon \neat and prepare\n\nafternoon\n\n> 1 pm prepare\n> 2pm ge"
+      },
+      {
+        "citation": "20251128.txt | 20251128.txt#chunk-1 | 2025-11-28",
+        "source_path": "docs/daily/november/20251128.txt",
+        "title": "what is the plan now ?",
+        "doc_type": "daily note",
+        "date": "2025-11-28",
+        "score": 63,
+        "boost_reasons": [
+          "month match (2025-11)",
+          "doc_type match (daily note)",
+          "metadata overlap (november)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)",
+          "phrase overlap (freelance)"
+        ],
+        "content_preview": "20251128\n\nwhat is the plan now ?\n\n(morning no chinese today)\n- interview at 11am\nmeet.google.com/unw-gmgp-mtt\n- then go to intermarché check if they have gray curytains\n if not afternoon go to leroy merlin\n\nafternoon freelance software cert"
+      },
+      {
+        "citation": "20251128.txt | 20251128.txt#chunk-3 | 2025-11-28",
+        "source_path": "docs/daily/november/20251128.txt",
+        "title": "what is the plan now ?",
+        "doc_type": "daily note",
+        "date": "2025-11-28",
+        "score": 60,
+        "boost_reasons": [
+          "month match (2025-11)",
+          "doc_type match (daily note)",
+          "metadata overlap (november)",
+          "metadata overlap (2025)",
+          "phrase overlap (freelance)"
+        ],
+        "content_preview": "- send freelance message to 15 parisian recruiters on linkedin\n- cold send to 10 chinese in paris the offer with both french training and freelancing IT/dev/devops\n- pass scrum certification\n- change facebook banner and add 5 people ( who a"
+      }
+    ],
+    "final_answer": "Based solely on the provided retrieved context, the recurring themes in the November 2025 daily notes around freelance work and interviews are:\n\n1.  **Pursuing freelance software certifications:** There are repeated daily plans to \"pass scrum certification\" and to \"pass basic certification with google and gradually rise higher on CV\" or \"identify stupid easy certifications just to get that on the CV\" CITATION: 20251126.txt | 20251126.txt#chunk-1 | 2025-11-26 CITATION: 20251124.txt | 20251124.txt#chunk-1 | 2025-11-24 CITATION: 20251125.txt | 20251125.txt#chunk-1 | 2025-11-25.\n2.  **Active outreach for freelance opportunities:** This includes tasks like \"send freelance message to 15 parisian recruiters on linkedin\" and \"cold send to 10 chinese in paris the offer with both french training and freelancing IT/dev/devops\" CITATION: 20251127.txt | 20251127.txt#chunk-1 | 2025-11-27.\n3.  **Combining freelance software work with teaching French:** The notes repeatedly question or plan to pursue \"freelance software engineer or teaching french to chinese ? or both.\" CITATION: 20251123.txt | 20251123.txt#chunk-1 | 2025-11-23 CITATION: 20251124.txt | 20251124.txt#chunk-1 | 2025-11-24.\n4.  **Scheduling and preparing for interviews:** A specific interview is noted for 11am on November 28th CITATION: 20251128.txt | 20251128.txt#chunk-1 | 2025-11-28, and there is a task to \"start gathering freelance contacts ( search for customers )\" CITATION: 20251107.txt | 20251107.txt#chunk-1 | 2025-11-07.",
+    "citations": [
+      "[20251103.txt | 20251103.txt#chunk-1 | 2025-11-03]",
+      "[20251114.txt | 20251114.txt#chunk-1 | 2025-11-14]",
+      "[20251123.txt | 20251123.txt#chunk-1 | 2025-11-23]",
+      "[20251124.txt | 20251124.txt#chunk-1 | 2025-11-24]",
+      "[20251125.txt | 20251125.txt#chunk-1 | 2025-11-25]",
+      "[20251126.txt | 20251126.txt#chunk-1 | 2025-11-26]",
+      "[20251106.txt | 20251106.txt#chunk-1 | 2025-11-06]"
+    ]
+  },
+  {
+    "difficulty": "hard",
+    "id": "hard-3",
+    "query": "When was DeepSeek first mentioned together with app or product work?",
+    "expected_mode": "first_mention",
+    "analysis": {
+      "mode": "first_mention",
+      "broadQuery": true,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "doc_type": "app/product note",
+        "filename_clues": [],
+        "topic_keywords": [
+          "deepseek",
+          "together",
+          "app",
+          "product",
+          "work"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": {
+      "summary": "Evidence was not found for a grounded first mention in the indexed documents.",
+      "citations": []
+    },
+    "retrieved_chunks": [],
+    "final_answer": "Based on the provided retrieved context, evidence is insufficient to answer the question. The context states that \"Evidence was not found for a grounded first mention in the indexed documents.\"",
+    "citations": []
+  },
+  {
+    "difficulty": "hard",
+    "id": "hard-4",
+    "query": "How did priorities shift from freelancing to product-building over time?",
+    "expected_mode": "evolution_over_time",
+    "analysis": {
+      "mode": "evolution_over_time",
+      "broadQuery": true,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "doc_type": "app/product note",
+        "filename_clues": [],
+        "topic_keywords": [
+          "priorities",
+          "shift",
+          "freelancing",
+          "product-building"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": {
+      "summary": "Evidence is insufficient across time to summarize evolution confidently.",
+      "citations": []
+    },
+    "retrieved_chunks": [],
+    "final_answer": "Based solely on the provided retrieved context, the evidence is insufficient to answer how priorities shifted from freelancing to product-building over time.",
+    "citations": []
+  }
+]

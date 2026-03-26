@@ -10,7 +10,8 @@
   "scripts": {
     "build-index": "node build-index.js",
     "server": "node server.js",
-    "chat": "node chat.js"
+    "chat": "node chat.js",
+    "eval": "node scripts/run-eval.js"
   },
   "repository": {
     "type": "git",
