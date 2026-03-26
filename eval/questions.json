@@ -7,62 +7,122 @@
     },
     {
       "id": "easy-2",
-      "query": "Are Starter customers billed monthly or weekly?",
+      "query": "What is the refund window?",
       "expected_mode": "fact_lookup"
     },
     {
       "id": "easy-3",
-      "query": "What is the refund window?",
+      "query": "What is the failed-payment grace period?",
       "expected_mode": "fact_lookup"
     },
     {
       "id": "easy-4",
       "query": "Who leads the onboarding team?",
       "expected_mode": "fact_lookup"
+    },
+    {
+      "id": "easy-5",
+      "query": "Do support agents receive production access by default?",
+      "expected_mode": "fact_lookup"
+    },
+    {
+      "id": "easy-6",
+      "query": "How long do password reset links remain valid?",
+      "expected_mode": "fact_lookup"
+    },
+    {
+      "id": "easy-7",
+      "query": "What does Enterprise onboarding usually include?",
+      "expected_mode": "fact_lookup"
+    },
+    {
+      "id": "easy-8",
+      "query": "When is weekend support guaranteed?",
+      "expected_mode": "fact_lookup"
     }
   ],
   "medium": [
     {
       "id": "medium-1",
-      "query": "What recurring priorities appear in the December 2025 daily notes?",
-      "expected_mode": "recurring_themes"
-    },
-    {
-      "id": "medium-2",
-      "query": "Summarize the October 2025 daily notes.",
+      "query": "Summarize the December 2025 meeting notes.",
       "expected_mode": "temporal_summary"
     },
     {
+      "id": "medium-2",
+      "query": "What recurring support issues were identified in December 2025?",
+      "expected_mode": "recurring_themes"
+    },
+    {
       "id": "medium-3",
-      "query": "On which date was Alipay first mentioned in the daily notes?",
-      "expected_mode": "first_mention"
+      "query": "What changed between the November 2025 and December 2025 release notes?",
+      "expected_mode": "comparison"
     },
     {
       "id": "medium-4",
-      "query": "How did the focus on Chinese tutoring evolve over time in the daily notes?",
+      "query": "Summarize the November 2025 login outage from incident report to postmortem.",
       "expected_mode": "evolution_over_time"
+    },
+    {
+      "id": "medium-5",
+      "query": "Which documents mention password reset expiry and what do they say?",
+      "expected_mode": "fact_lookup"
+    },
+    {
+      "id": "medium-6",
+      "query": "Compare Ticket 001 and Ticket 002 against the refund policy.",
+      "expected_mode": "comparison"
+    },
+    {
+      "id": "medium-7",
+      "query": "Compare the failed-payments policy with Ticket 003.",
+      "expected_mode": "comparison"
+    },
+    {
+      "id": "medium-8",
+      "query": "Summarize the December 2025 tickets about refunds, payments, and password reset issues.",
+      "expected_mode": "temporal_summary"
     }
   ],
   "hard": [
     {
       "id": "hard-1",
-      "query": "Compare the company billing policy with what appears in the daily notes about billing or payments.",
+      "query": "Compare support hours, the SLA policy, and weekend support expectations in tickets.",
       "expected_mode": "comparison"
     },
     {
       "id": "hard-2",
-      "query": "What recurring themes appear in the November 2025 daily notes around freelance work and interviews?",
-      "expected_mode": "recurring_themes"
+      "query": "Compare company billing policy versus tickets about refunds or payments.",
+      "expected_mode": "comparison"
     },
     {
       "id": "hard-3",
-      "query": "When was DeepSeek first mentioned together with app or product work?",
-      "expected_mode": "first_mention"
+      "query": "What recurring themes appear across support tickets and meeting notes in December 2025?",
+      "expected_mode": "recurring_themes"
     },
     {
       "id": "hard-4",
-      "query": "How did priorities shift from freelancing to product-building over time?",
+      "query": "How did login outage documentation evolve from the incident report to the postmortem?",
       "expected_mode": "evolution_over_time"
+    },
+    {
+      "id": "hard-5",
+      "query": "Which document first mentions refund-risk highlighting for billing tickets?",
+      "expected_mode": "first_mention"
+    },
+    {
+      "id": "hard-6",
+      "query": "Compare the incident report versus the postmortem for the November 2025 login outage.",
+      "expected_mode": "comparison"
+    },
+    {
+      "id": "hard-7",
+      "query": "Summarize the December 2025 enterprise support and billing issues across tickets and meetings.",
+      "expected_mode": "temporal_summary"
+    },
+    {
+      "id": "hard-8",
+      "query": "Compare onboarding ownership and process expectations across the onboarding org and process docs.",
+      "expected_mode": "comparison"
     }
   ]
 }

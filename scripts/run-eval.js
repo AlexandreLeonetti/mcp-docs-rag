@@ -4,6 +4,7 @@ import path from "node:path";
 import OpenAI from "openai";
 import { retrieveCandidates } from "../lib/retrieval.js";
 import { generateGroundedAnswer } from "../lib/answering.js";
+import { makeCitation } from "../lib/text-utils.js";
 
 const EVAL_FILE = "./eval/questions.json";
 const OUTPUT_DIR = "./eval/results";
@@ -71,7 +72,7 @@ async function maybeGenerateModelAnswer(query, retrievalResult, openai) {
     retrievalResult.finalHits
       .map(
         (chunk) =>
-          `${chunk.content}\nCITATION: ${chunk.filename} | ${chunk.chunk_id} | ${chunk.date || "n/a"}`
+          `${chunk.content}\nCITATION: ${makeCitation(chunk)}`
       )
       .join("\n\n---\n\n"),
     "",
@@ -105,7 +106,7 @@ async function maybeGenerateModelAnswer(query, retrievalResult, openai) {
         retrievalResult.broadSummary?.citations ||
         retrievalResult.finalHits
           .slice(0, 4)
-          .map((chunk) => `${chunk.filename} | ${chunk.chunk_id} | ${chunk.date || "n/a"}`),
+          .map((chunk) => makeCitation(chunk)),
     };
   } catch (error) {
     console.warn(
@@ -144,11 +145,13 @@ for (const [difficulty, items] of Object.entries(questions)) {
       retrieval_mode: retrievalResult.retrievalMode,
       broad_summary: retrievalResult.broadSummary,
       retrieved_chunks: retrievalResult.finalHits.map((chunk) => ({
-        citation: `${chunk.filename} | ${chunk.chunk_id} | ${chunk.date || "n/a"}`,
+        citation: makeCitation(chunk),
         source_path: chunk.source_path,
         title: chunk.title,
         doc_type: chunk.doc_type,
+        department: chunk.department,
         date: chunk.date,
+        updated_at: chunk.updated_at,
         score: chunk.finalScore,
         boost_reasons: chunk.rerankBoostReasons,
         content_preview: chunk.content.slice(0, 240),

@@ -1,0 +1,3374 @@
+[
+  {
+    "difficulty": "easy",
+    "id": "easy-1",
+    "query": "Who is the CEO of Northstar Metrics?",
+    "expected_mode": "fact_lookup",
+    "analysis": {
+      "mode": "fact_lookup",
+      "broadQuery": false,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "months": [],
+        "doc_type": "company_overview",
+        "doc_types": [
+          "company_overview",
+          "org_doc"
+        ],
+        "departments": [
+          "company"
+        ],
+        "groups": [
+          "company"
+        ],
+        "comparison": null,
+        "filename_clues": [],
+        "topic_keywords": [
+          "ceo",
+          "northstar",
+          "metrics"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": null,
+    "retrieved_chunks": [
+      {
+        "citation": "[company-overview.md | company-overview.md#chunk-1 | 2025-12-02]",
+        "source_path": "docs/company/company-overview.md",
+        "title": "Company Overview",
+        "doc_type": "company_overview",
+        "department": "company",
+        "date": null,
+        "updated_at": "2025-12-02",
+        "score": 208,
+        "boost_reasons": [
+          "doc_type match (company_overview)",
+          "department match (company)",
+          "phrase overlap (ceo)",
+          "metadata overlap (northstar)",
+          "phrase overlap (northstar)",
+          "metadata overlap (metrics)",
+          "phrase overlap (metrics)"
+        ],
+        "content_preview": "Northstar Metrics\nNorthstar Metrics is a fictional B2B SaaS company providing analytics, workflow automation, and support tooling for logistics teams, e-commerce operators, and internal operations departments.\n\nNorthstar Metrics > Mission\nN"
+      },
+      {
+        "citation": "[product-overview.md | product-overview.md#chunk-1 | 2025-12-01]",
+        "source_path": "docs/product/product-overview.md",
+        "title": "Product Overview",
+        "doc_type": "product_doc",
+        "department": "product",
+        "date": null,
+        "updated_at": "2025-12-01",
+        "score": 76,
+        "boost_reasons": [
+          "metadata overlap (northstar)",
+          "phrase overlap (northstar)",
+          "phrase overlap (metrics)"
+        ],
+        "content_preview": "Product Overview\nNorthstar Metrics offers three main product surfaces:\n- Northstar Core: operational analytics dashboards\n- Northstar Assist: AI-assisted support summarization and triage\n- Northstar Flow: workflow automation and escalations"
+      },
+      {
+        "citation": "[company.md | company.md#chunk-1 | n/a]",
+        "source_path": "docs/company.md",
+        "title": "Company Overview",
+        "doc_type": "company doc",
+        "department": "company.md",
+        "date": null,
+        "updated_at": null,
+        "score": 69,
+        "boost_reasons": [
+          "phrase overlap (ceo)",
+          "phrase overlap (northstar)",
+          "phrase overlap (metrics)"
+        ],
+        "content_preview": "Company Overview\n**Northstar Metrics** is a fictional B2B SaaS company that provides analytics and workflow software for logistics teams, e-commerce operators, and internal support departments.\n\nCompany Overview\nThe company was founded in 2"
+      },
+      {
+        "citation": "[office-locations.md | office-locations.md#chunk-1 | 2025-11-15]",
+        "source_path": "docs/company/office-locations.md",
+        "title": "Office Locations",
+        "doc_type": "org_doc",
+        "department": "company",
+        "date": null,
+        "updated_at": "2025-11-15",
+        "score": 46,
+        "boost_reasons": [
+          "doc_type match (org_doc)",
+          "department match (company)",
+          "phrase overlap (northstar)",
+          "phrase overlap (metrics)"
+        ],
+        "content_preview": "Office Locations\nNorthstar Metrics operates from three main locations:\n- Paris: headquarters, executive leadership, product strategy\n- Lyon: customer support and operations hub\n- Barcelona: sales and partnerships office\n\nOffice Locations\nPa"
+      },
+      {
+        "citation": "[company.md | company.md#chunk-2 | n/a]",
+        "source_path": "docs/company.md",
+        "title": "Company Overview",
+        "doc_type": "company doc",
+        "department": "company.md",
+        "date": null,
+        "updated_at": null,
+        "score": 35,
+        "boost_reasons": [
+          "phrase overlap (northstar)",
+          "phrase overlap (metrics)"
+        ],
+        "content_preview": "Company Overview > Customer Support\nThe support team handles account access issues, billing questions, onboarding guidance, and bug reports.\n\nCompany Overview > Customer Support\nMain support email: **support@northstarmetrics.example**\n\nComp"
+      },
+      {
+        "citation": "[release-notes-2025-11.md | release-notes-2025-11.md#chunk-1 | 2025-11-28]",
+        "source_path": "docs/product/release-notes-2025-11.md",
+        "title": "Release Notes November 2025",
+        "doc_type": "release_notes",
+        "department": "product",
+        "date": null,
+        "updated_at": "2025-11-28",
+        "score": 29,
+        "boost_reasons": [
+          "metadata overlap (northstar)",
+          "phrase overlap (northstar)"
+        ],
+        "content_preview": "Release Notes — November 2025 > Northstar Assist\n- Added ticket summarization in English and French\n- Added internal draft reply suggestions for support agents\n- Added priority flag suggestions for VIP accounts\n\nRelease Notes — November 202"
+      }
+    ],
+    "final_answer": "Northstar Metrics > Leadership - CEO: Claire Moreau - CTO: Julien Caron - VP of Engineering: Sofia Benali - Head of Support: Marc Lefevre - Tech Lead, Onboarding: Nina Petrova - Tech Lead, Billing: Thomas Rigal Northstar Metrics > Headcount As of January 2026, Northstar Metrics has 86 employees. [company-overview.md | company-overview.md#chunk-1 | 2025-12-02]",
+    "citations": [
+      "[company-overview.md | company-overview.md#chunk-1 | 2025-12-02]"
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "id": "easy-2",
+    "query": "What is the refund window?",
+    "expected_mode": "fact_lookup",
+    "analysis": {
+      "mode": "fact_lookup",
+      "broadQuery": false,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "months": [],
+        "doc_type": "policy",
+        "doc_types": [
+          "policy",
+          "billing_doc"
+        ],
+        "departments": [
+          "billing"
+        ],
+        "groups": [
+          "billing"
+        ],
+        "comparison": null,
+        "filename_clues": [],
+        "topic_keywords": [
+          "refund",
+          "window"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": null,
+    "retrieved_chunks": [
+      {
+        "citation": "[ticket-001.md | ticket-001.md#chunk-1 | 2025-12-08]",
+        "source_path": "docs/tickets/ticket-001.md",
+        "title": "Ticket 001 Refund Request",
+        "doc_type": "support_ticket",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-08",
+        "score": 97,
+        "boost_reasons": [
+          "metadata overlap (refund)",
+          "phrase overlap (refund)",
+          "phrase overlap (window)"
+        ],
+        "content_preview": "Ticket 001 — Refund Request\nCustomer on Starter plan requested a refund 6 days after billing.\nSupport confirmed the request was inside the refund window and routed it to billing for review.\n\nTicket 001 — Refund Request\nOutcome: refund appro"
+      },
+      {
+        "citation": "[ticket-002.md | ticket-002.md#chunk-1 | 2025-12-09]",
+        "source_path": "docs/tickets/ticket-002.md",
+        "title": "Ticket 002 Late Refund Request",
+        "doc_type": "support_ticket",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-09",
+        "score": 97,
+        "boost_reasons": [
+          "metadata overlap (refund)",
+          "phrase overlap (refund)",
+          "phrase overlap (window)"
+        ],
+        "content_preview": "Ticket 002 — Late Refund Request\nCustomer requested a refund 21 days after billing.\nSupport explained that the request was outside the standard refund window.\n\nTicket 002 — Late Refund Request\nOutcome: refund denied."
+      },
+      {
+        "citation": "[faq.md | faq.md#chunk-1 | 2025-12-07]",
+        "source_path": "docs/support/faq.md",
+        "title": "Support FAQ",
+        "doc_type": "faq",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-07",
+        "score": 67,
+        "boost_reasons": [
+          "metadata overlap (refund)",
+          "phrase overlap (refund)",
+          "phrase overlap (window)"
+        ],
+        "content_preview": "Support FAQ > Password Reset\nPassword reset links expire after 24 hours.\n\nSupport FAQ > Refund Requests\nRefund requests must follow the billing policy and be submitted within the defined refund window.\n\nSupport FAQ > Weekend Help\nWeekend su"
+      },
+      {
+        "citation": "[refunds.md | refunds.md#chunk-1 | 2025-12-02]",
+        "source_path": "docs/billing/refunds.md",
+        "title": "Refunds Policy",
+        "doc_type": "policy",
+        "department": "billing",
+        "date": null,
+        "updated_at": "2025-12-02",
+        "score": 57,
+        "boost_reasons": [
+          "doc_type match (policy)",
+          "department match (billing)",
+          "metadata overlap (refund)",
+          "phrase overlap (refund)",
+          "phrase overlap (window)"
+        ],
+        "content_preview": "Refunds Policy\nRefund requests must be submitted within 14 days of the billing date.\n\nRefunds Policy\nRequests submitted after the 14-day window are normally rejected unless a billing system error or duplicate charge is confirmed.\n\nRefunds P"
+      },
+      {
+        "citation": "[support-review-2025-12-17.md | support-review-2025-12-17.md#chunk-1 | 2025-12-17]",
+        "source_path": "docs/meetings/support-review-2025-12-17.md",
+        "title": "Support Review 2025-12-17",
+        "doc_type": "meeting_notes",
+        "department": "support",
+        "date": "2025-12-17",
+        "updated_at": "2025-12-17",
+        "score": 42,
+        "boost_reasons": [
+          "phrase overlap (refund)",
+          "phrase overlap (window)"
+        ],
+        "content_preview": "Support Review — 2025-12-17 > Recurring Issues\n- password reset confusion\n- refund window misunderstandings\n- expectations about weekend support on non-Enterprise plans\n- delayed invoice visibility after the December billing incident"
+      },
+      {
+        "citation": "[billing.md | billing.md#chunk-1 | n/a]",
+        "source_path": "docs/billing.md",
+        "title": "Billing Policy",
+        "doc_type": "company doc",
+        "department": "billing.md",
+        "date": null,
+        "updated_at": null,
+        "score": 21,
+        "boost_reasons": [
+          "phrase overlap (refund)"
+        ],
+        "content_preview": "Billing Policy\nCustomers are billed monthly.\n\nBilling Policy > Refunds\nRefund requests must be submitted within 14 days of the billing date.\n\nBilling Policy > Failed payments\nIf a payment fails, the account remains active for a 3-day grace "
+      }
+    ],
+    "final_answer": "Support confirmed the request was inside the refund window and routed it to billing for review. [ticket-001.md | ticket-001.md#chunk-1 | 2025-12-08]",
+    "citations": [
+      "[ticket-001.md | ticket-001.md#chunk-1 | 2025-12-08]"
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "id": "easy-3",
+    "query": "What is the failed-payment grace period?",
+    "expected_mode": "fact_lookup",
+    "analysis": {
+      "mode": "fact_lookup",
+      "broadQuery": false,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "months": [],
+        "doc_type": "policy",
+        "doc_types": [
+          "policy",
+          "billing_doc"
+        ],
+        "departments": [
+          "billing"
+        ],
+        "groups": [
+          "billing"
+        ],
+        "comparison": null,
+        "filename_clues": [],
+        "topic_keywords": [
+          "failed-payment",
+          "grace",
+          "period"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": null,
+    "retrieved_chunks": [
+      {
+        "citation": "[failed-payments.md | failed-payments.md#chunk-1 | 2025-12-02]",
+        "source_path": "docs/billing/failed-payments.md",
+        "title": "Failed Payments",
+        "doc_type": "policy",
+        "department": "billing",
+        "date": null,
+        "updated_at": "2025-12-02",
+        "score": 84,
+        "boost_reasons": [
+          "doc_type match (policy)",
+          "department match (billing)",
+          "metadata overlap (failed-payment)",
+          "metadata overlap (grace)",
+          "phrase overlap (grace)",
+          "metadata overlap (period)",
+          "phrase overlap (period)"
+        ],
+        "content_preview": "Failed Payments\nIf a payment fails, the account remains active for a 3-day grace period before service restrictions begin.\n\nFailed Payments\nBilling retries occur automatically during the grace period.\n\nFailed Payments\nEnterprise accounts ma"
+      },
+      {
+        "citation": "[ops-sync-2025-12-03.md | ops-sync-2025-12-03.md#chunk-1 | 2025-12-03]",
+        "source_path": "docs/meetings/ops-sync-2025-12-03.md",
+        "title": "Ops Sync 2025-12-03",
+        "doc_type": "meeting_notes",
+        "department": "operations",
+        "date": "2025-12-03",
+        "updated_at": "2025-12-03",
+        "score": 53,
+        "boost_reasons": [
+          "phrase overlap (failed-payment)",
+          "phrase overlap (grace)",
+          "phrase overlap (period)"
+        ],
+        "content_preview": "Ops Sync — 2025-12-03 > Notes\n- repeated confusion around refund eligibility wording\n- support asked for clearer macros for failed-payment grace period explanations\n- billing asked support to avoid promising manual exceptions too early"
+      },
+      {
+        "citation": "[billing.md | billing.md#chunk-1 | n/a]",
+        "source_path": "docs/billing.md",
+        "title": "Billing Policy",
+        "doc_type": "company doc",
+        "department": "billing.md",
+        "date": null,
+        "updated_at": null,
+        "score": 35,
+        "boost_reasons": [
+          "phrase overlap (grace)",
+          "phrase overlap (period)"
+        ],
+        "content_preview": "Billing Policy\nCustomers are billed monthly.\n\nBilling Policy > Refunds\nRefund requests must be submitted within 14 days of the billing date.\n\nBilling Policy > Failed payments\nIf a payment fails, the account remains active for a 3-day grace "
+      },
+      {
+        "citation": "[ticket-003.md | ticket-003.md#chunk-1 | 2025-12-11]",
+        "source_path": "docs/tickets/ticket-003.md",
+        "title": "Ticket 003 Failed Payment Concern",
+        "doc_type": "support_ticket",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-11",
+        "score": 35,
+        "boost_reasons": [
+          "phrase overlap (grace)",
+          "phrase overlap (period)"
+        ],
+        "content_preview": "Ticket 003 — Failed Payment Concern\nCustomer reported a failed payment and asked whether service would stop immediately.\n\nTicket 003 — Failed Payment Concern\nSupport explained the 3-day grace period and confirmed that automatic retries woul"
+      }
+    ],
+    "final_answer": "Failed Payments If a payment fails, the account remains active for a 3-day grace period before service restrictions begin. [failed-payments.md | failed-payments.md#chunk-1 | 2025-12-02]",
+    "citations": [
+      "[failed-payments.md | failed-payments.md#chunk-1 | 2025-12-02]"
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "id": "easy-4",
+    "query": "Who leads the onboarding team?",
+    "expected_mode": "fact_lookup",
+    "analysis": {
+      "mode": "fact_lookup",
+      "broadQuery": false,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "months": [],
+        "doc_type": "process",
+        "doc_types": [
+          "process",
+          "checklist",
+          "org_doc"
+        ],
+        "departments": [
+          "onboarding"
+        ],
+        "groups": [
+          "onboarding"
+        ],
+        "comparison": null,
+        "filename_clues": [],
+        "topic_keywords": [
+          "leads",
+          "onboarding",
+          "team"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": null,
+    "retrieved_chunks": [
+      {
+        "citation": "[leadership.md | leadership.md#chunk-1 | 2025-12-04]",
+        "source_path": "docs/company/leadership.md",
+        "title": "Leadership Team",
+        "doc_type": "org_doc",
+        "department": "company",
+        "date": null,
+        "updated_at": "2025-12-04",
+        "score": 187,
+        "boost_reasons": [
+          "doc_type match (org_doc)",
+          "metadata overlap (leads)",
+          "phrase overlap (leads)",
+          "metadata overlap (onboarding)",
+          "phrase overlap (onboarding)",
+          "metadata overlap (team)",
+          "phrase overlap (team)"
+        ],
+        "content_preview": "Leadership Team > Executive Team\nClaire Moreau serves as CEO and is responsible for strategic direction, fundraising, and major customer relationships.\n\nLeadership Team > Executive Team\nJulien Caron serves as CTO and owns platform architect"
+      },
+      {
+        "citation": "[team-responsibilities.md | team-responsibilities.md#chunk-1 | 2025-12-06]",
+        "source_path": "docs/onboarding/team-responsibilities.md",
+        "title": "Onboarding Team Responsibilities",
+        "doc_type": "org_doc",
+        "department": "onboarding",
+        "date": null,
+        "updated_at": "2025-12-06",
+        "score": 144,
+        "boost_reasons": [
+          "doc_type match (org_doc)",
+          "department match (onboarding)",
+          "metadata overlap (onboarding)",
+          "phrase overlap (onboarding)",
+          "metadata overlap (team)",
+          "phrase overlap (team)"
+        ],
+        "content_preview": "Onboarding Team Responsibilities\nNina Petrova is the Tech Lead for the Onboarding team.\n\nOnboarding Team Responsibilities\nThe onboarding team handles:\n- new customer activation\n- access setup coordination\n- launch checklists\n- rollout follo"
+      },
+      {
+        "citation": "[company.md | company.md#chunk-3 | n/a]",
+        "source_path": "docs/company.md",
+        "title": "Company Overview",
+        "doc_type": "company doc",
+        "department": "company.md",
+        "date": null,
+        "updated_at": null,
+        "score": 125,
+        "boost_reasons": [
+          "metadata overlap (onboarding)",
+          "phrase overlap (onboarding)",
+          "metadata overlap (team)",
+          "phrase overlap (team)"
+        ],
+        "content_preview": "Company Overview > Security and Access\n- All employees must use SSO with multi-factor authentication.\n- New hires receive access through the onboarding team.\n- Access reviews are conducted every quarter.\n- Production access is restricted to"
+      },
+      {
+        "citation": "[onboarding-process.md | onboarding-process.md#chunk-1 | 2025-12-06]",
+        "source_path": "docs/onboarding/onboarding-process.md",
+        "title": "Onboarding Process",
+        "doc_type": "process",
+        "department": "onboarding",
+        "date": null,
+        "updated_at": "2025-12-06",
+        "score": 72,
+        "boost_reasons": [
+          "doc_type match (process)",
+          "department match (onboarding)",
+          "metadata overlap (onboarding)",
+          "phrase overlap (onboarding)"
+        ],
+        "content_preview": "Onboarding Process\nEnterprise onboarding usually lasts 2 to 4 weeks depending on data migration and stakeholder availability.\n\nOnboarding Process\nNew Enterprise customers receive:\n- a kickoff session\n- configuration guidance\n- access setup "
+      },
+      {
+        "citation": "[company.md | company.md#chunk-1 | n/a]",
+        "source_path": "docs/company.md",
+        "title": "Company Overview",
+        "doc_type": "company doc",
+        "department": "company.md",
+        "date": null,
+        "updated_at": null,
+        "score": 69,
+        "boost_reasons": [
+          "metadata overlap (onboarding)",
+          "phrase overlap (onboarding)",
+          "metadata overlap (team)",
+          "phrase overlap (team)"
+        ],
+        "content_preview": "Company Overview\n**Northstar Metrics** is a fictional B2B SaaS company that provides analytics and workflow software for logistics teams, e-commerce operators, and internal support departments.\n\nCompany Overview\nThe company was founded in 2"
+      },
+      {
+        "citation": "[onboarding-checklist.md | onboarding-checklist.md#chunk-1 | 2025-12-06]",
+        "source_path": "docs/onboarding/onboarding-checklist.md",
+        "title": "Onboarding Checklist",
+        "doc_type": "checklist",
+        "department": "onboarding",
+        "date": null,
+        "updated_at": "2025-12-06",
+        "score": 56,
+        "boost_reasons": [
+          "doc_type match (checklist)",
+          "department match (onboarding)",
+          "metadata overlap (onboarding)",
+          "phrase overlap (onboarding)"
+        ],
+        "content_preview": "Onboarding Checklist\n- Confirm customer stakeholders\n- Validate SSO requirements\n- Configure environments\n- Import baseline data\n- Schedule training\n- Confirm support routing"
+      }
+    ],
+    "final_answer": "Nina Petrova leads the Onboarding team. [leadership.md | leadership.md#chunk-1 | 2025-12-04]",
+    "citations": [
+      "[leadership.md | leadership.md#chunk-1 | 2025-12-04]"
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "id": "easy-5",
+    "query": "Do support agents receive production access by default?",
+    "expected_mode": "fact_lookup",
+    "analysis": {
+      "mode": "unsupported / unknown",
+      "broadQuery": false,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "months": [],
+        "doc_type": "policy",
+        "doc_types": [
+          "policy",
+          "security_doc",
+          "faq",
+          "meeting_notes",
+          "support_ticket"
+        ],
+        "departments": [
+          "security",
+          "support"
+        ],
+        "groups": [
+          "security",
+          "support"
+        ],
+        "comparison": null,
+        "filename_clues": [],
+        "topic_keywords": [
+          "support",
+          "agents",
+          "receive",
+          "production",
+          "access",
+          "default"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": null,
+    "retrieved_chunks": [
+      {
+        "citation": "[production-access.md | production-access.md#chunk-1 | 2025-12-04]",
+        "source_path": "docs/security/production-access.md",
+        "title": "Production Access",
+        "doc_type": "policy",
+        "department": "security",
+        "date": null,
+        "updated_at": "2025-12-04",
+        "score": 225,
+        "boost_reasons": [
+          "doc_type match (policy)",
+          "department match (security)",
+          "phrase overlap (support)",
+          "metadata overlap (agents)",
+          "phrase overlap (agents)",
+          "phrase overlap (receive)",
+          "metadata overlap (production)",
+          "phrase overlap (production)",
+          "metadata overlap (access)",
+          "phrase overlap (access)",
+          "metadata overlap (default)",
+          "phrase overlap (default)"
+        ],
+        "content_preview": "Production Access\nProduction access is restricted to approved engineering and operations personnel.\n\nProduction Access\nSupport agents do not receive production access by default.\n\nProduction Access\nTemporary exceptions must be approved and "
+      },
+      {
+        "citation": "[access-review.md | access-review.md#chunk-1 | 2025-12-04]",
+        "source_path": "docs/security/access-review.md",
+        "title": "Access Reviews",
+        "doc_type": "policy",
+        "department": "security",
+        "date": null,
+        "updated_at": "2025-12-04",
+        "score": 103,
+        "boost_reasons": [
+          "doc_type match (policy)",
+          "department match (security)",
+          "phrase overlap (production)",
+          "metadata overlap (access)",
+          "phrase overlap (access)"
+        ],
+        "content_preview": "Access Reviews\nAccess reviews are conducted every quarter.\n\nAccess Reviews\nProduction access is restricted to approved engineering and operations staff.\n\nAccess Reviews\nManagers must review access grants for departing employees within 24 ho"
+      },
+      {
+        "citation": "[support-hours.md | support-hours.md#chunk-1 | 2025-12-02]",
+        "source_path": "docs/support/support-hours.md",
+        "title": "Support Hours",
+        "doc_type": "policy",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-02",
+        "score": 92,
+        "boost_reasons": [
+          "doc_type match (policy)",
+          "department match (support)",
+          "metadata overlap (support)",
+          "phrase overlap (support)"
+        ],
+        "content_preview": "Support Hours\nStandard support is available Monday to Friday, 09:00 to 18:00 CET.\n\nSupport Hours\nPriority support for Growth customers is available Monday to Friday, 08:00 to 20:00 CET.\n\nSupport Hours\nWeekend support is only guaranteed for "
+      },
+      {
+        "citation": "[escalation-policy.md | escalation-policy.md#chunk-1 | 2025-12-05]",
+        "source_path": "docs/support/escalation-policy.md",
+        "title": "Escalation Policy",
+        "doc_type": "policy",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-05",
+        "score": 90,
+        "boost_reasons": [
+          "doc_type match (policy)",
+          "department match (support)",
+          "metadata overlap (support)",
+          "phrase overlap (support)",
+          "phrase overlap (agents)",
+          "phrase overlap (production)",
+          "metadata overlap (access)",
+          "phrase overlap (access)"
+        ],
+        "content_preview": "Escalation Policy\nSupport agents escalate issues when:\n- production access is blocked for approved staff\n- billing failures affect multiple customers\n- authentication incidents affect more than one tenant\n- a VIP customer reports repeated o"
+      },
+      {
+        "citation": "[ticket-004.md | ticket-004.md#chunk-1 | 2025-12-14]",
+        "source_path": "docs/tickets/ticket-004.md",
+        "title": "Ticket 004 Weekend Support Request",
+        "doc_type": "support_ticket",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-14",
+        "score": 84,
+        "boost_reasons": [
+          "doc_type match (support_ticket)",
+          "department match (support)",
+          "metadata overlap (support)",
+          "phrase overlap (support)"
+        ],
+        "content_preview": "Ticket 004 — Weekend Support Request\nGrowth customer requested guaranteed weekend support for a migration weekend.\n\nTicket 004 — Weekend Support Request\nSupport clarified that guaranteed weekend support is only included for eligible Enterpr"
+      },
+      {
+        "citation": "[faq.md | faq.md#chunk-1 | 2025-12-07]",
+        "source_path": "docs/support/faq.md",
+        "title": "Support FAQ",
+        "doc_type": "faq",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-07",
+        "score": 76,
+        "boost_reasons": [
+          "doc_type match (faq)",
+          "department match (support)",
+          "metadata overlap (support)",
+          "phrase overlap (support)"
+        ],
+        "content_preview": "Support FAQ > Password Reset\nPassword reset links expire after 24 hours.\n\nSupport FAQ > Refund Requests\nRefund requests must follow the billing policy and be submitted within the defined refund window.\n\nSupport FAQ > Weekend Help\nWeekend su"
+      }
+    ],
+    "final_answer": "Production Access Support agents do not receive production access by default. [production-access.md | production-access.md#chunk-1 | 2025-12-04]",
+    "citations": [
+      "[production-access.md | production-access.md#chunk-1 | 2025-12-04]"
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "id": "easy-6",
+    "query": "How long do password reset links remain valid?",
+    "expected_mode": "fact_lookup",
+    "analysis": {
+      "mode": "unsupported / unknown",
+      "broadQuery": false,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "months": [],
+        "doc_type": "policy",
+        "doc_types": [
+          "policy",
+          "security_doc"
+        ],
+        "departments": [
+          "security"
+        ],
+        "groups": [
+          "security"
+        ],
+        "comparison": null,
+        "filename_clues": [],
+        "topic_keywords": [
+          "long",
+          "password",
+          "reset",
+          "links",
+          "remain",
+          "valid"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": null,
+    "retrieved_chunks": [
+      {
+        "citation": "[auth.md | auth.md#chunk-1 | 2025-12-03]",
+        "source_path": "docs/security/auth.md",
+        "title": "Authentication Rules",
+        "doc_type": "policy",
+        "department": "security",
+        "date": null,
+        "updated_at": "2025-12-03",
+        "score": 62,
+        "boost_reasons": [
+          "doc_type match (policy)",
+          "department match (security)",
+          "metadata overlap (password)",
+          "phrase overlap (password)",
+          "metadata overlap (reset)",
+          "phrase overlap (reset)",
+          "phrase overlap (links)"
+        ],
+        "content_preview": "Authentication Rules\nAll employees must use SSO with multi-factor authentication.\n\nAuthentication Rules\nCustomers can authenticate with email/password or SSO depending on plan and configuration.\n\nAuthentication Rules\nPassword reset links ex"
+      }
+    ],
+    "final_answer": "Authentication Rules Password reset links expire after 24 hours. [auth.md | auth.md#chunk-1 | 2025-12-03]",
+    "citations": [
+      "[auth.md | auth.md#chunk-1 | 2025-12-03]"
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "id": "easy-7",
+    "query": "What does Enterprise onboarding usually include?",
+    "expected_mode": "fact_lookup",
+    "analysis": {
+      "mode": "fact_lookup",
+      "broadQuery": false,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "months": [],
+        "doc_type": "process",
+        "doc_types": [
+          "process",
+          "checklist",
+          "org_doc"
+        ],
+        "departments": [
+          "onboarding"
+        ],
+        "groups": [
+          "onboarding"
+        ],
+        "comparison": null,
+        "filename_clues": [],
+        "topic_keywords": [
+          "enterprise",
+          "onboarding",
+          "usually",
+          "include"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": null,
+    "retrieved_chunks": [
+      {
+        "citation": "[onboarding-process.md | onboarding-process.md#chunk-1 | 2025-12-06]",
+        "source_path": "docs/onboarding/onboarding-process.md",
+        "title": "Onboarding Process",
+        "doc_type": "process",
+        "department": "onboarding",
+        "date": null,
+        "updated_at": "2025-12-06",
+        "score": 119,
+        "boost_reasons": [
+          "doc_type match (process)",
+          "department match (onboarding)",
+          "metadata overlap (enterprise)",
+          "phrase overlap (enterprise)",
+          "metadata overlap (onboarding)",
+          "phrase overlap (onboarding)",
+          "phrase overlap (usually)"
+        ],
+        "content_preview": "Onboarding Process\nEnterprise onboarding usually lasts 2 to 4 weeks depending on data migration and stakeholder availability.\n\nOnboarding Process\nNew Enterprise customers receive:\n- a kickoff session\n- configuration guidance\n- access setup "
+      },
+      {
+        "citation": "[company.md | company.md#chunk-3 | n/a]",
+        "source_path": "docs/company.md",
+        "title": "Company Overview",
+        "doc_type": "company doc",
+        "department": "company.md",
+        "date": null,
+        "updated_at": null,
+        "score": 81,
+        "boost_reasons": [
+          "metadata overlap (onboarding)",
+          "phrase overlap (onboarding)"
+        ],
+        "content_preview": "Company Overview > Security and Access\n- All employees must use SSO with multi-factor authentication.\n- New hires receive access through the onboarding team.\n- Access reviews are conducted every quarter.\n- Production access is restricted to"
+      },
+      {
+        "citation": "[team-responsibilities.md | team-responsibilities.md#chunk-1 | 2025-12-06]",
+        "source_path": "docs/onboarding/team-responsibilities.md",
+        "title": "Onboarding Team Responsibilities",
+        "doc_type": "org_doc",
+        "department": "onboarding",
+        "date": null,
+        "updated_at": "2025-12-06",
+        "score": 78,
+        "boost_reasons": [
+          "doc_type match (org_doc)",
+          "department match (onboarding)",
+          "metadata overlap (onboarding)",
+          "phrase overlap (onboarding)"
+        ],
+        "content_preview": "Onboarding Team Responsibilities\nNina Petrova is the Tech Lead for the Onboarding team.\n\nOnboarding Team Responsibilities\nThe onboarding team handles:\n- new customer activation\n- access setup coordination\n- launch checklists\n- rollout follo"
+      },
+      {
+        "citation": "[pricing.md | pricing.md#chunk-1 | 2025-12-02]",
+        "source_path": "docs/product/pricing.md",
+        "title": "Pricing and Plans",
+        "doc_type": "pricing_doc",
+        "department": "product",
+        "date": null,
+        "updated_at": "2025-12-02",
+        "score": 68,
+        "boost_reasons": [
+          "metadata overlap (enterprise)",
+          "phrase overlap (enterprise)",
+          "phrase overlap (onboarding)",
+          "phrase overlap (include)"
+        ],
+        "content_preview": "Pricing and Plans > Starter\nStarter customers are billed monthly by default.\nStarter includes email support during standard support hours.\n\nPricing and Plans > Growth\nGrowth customers are billed monthly by default.\nGrowth includes priority "
+      },
+      {
+        "citation": "[company.md | company.md#chunk-2 | n/a]",
+        "source_path": "docs/company.md",
+        "title": "Company Overview",
+        "doc_type": "company doc",
+        "department": "company.md",
+        "date": null,
+        "updated_at": null,
+        "score": 57,
+        "boost_reasons": [
+          "phrase overlap (enterprise)",
+          "metadata overlap (onboarding)",
+          "phrase overlap (onboarding)"
+        ],
+        "content_preview": "Company Overview > Customer Support\nThe support team handles account access issues, billing questions, onboarding guidance, and bug reports.\n\nCompany Overview > Customer Support\nMain support email: **support@northstarmetrics.example**\n\nComp"
+      },
+      {
+        "citation": "[onboarding-checklist.md | onboarding-checklist.md#chunk-1 | 2025-12-06]",
+        "source_path": "docs/onboarding/onboarding-checklist.md",
+        "title": "Onboarding Checklist",
+        "doc_type": "checklist",
+        "department": "onboarding",
+        "date": null,
+        "updated_at": "2025-12-06",
+        "score": 54,
+        "boost_reasons": [
+          "doc_type match (checklist)",
+          "department match (onboarding)",
+          "metadata overlap (onboarding)",
+          "phrase overlap (onboarding)"
+        ],
+        "content_preview": "Onboarding Checklist\n- Confirm customer stakeholders\n- Validate SSO requirements\n- Configure environments\n- Import baseline data\n- Schedule training\n- Confirm support routing"
+      }
+    ],
+    "final_answer": "Onboarding Process Enterprise onboarding usually lasts 2 to 4 weeks depending on data migration and stakeholder availability. [onboarding-process.md | onboarding-process.md#chunk-1 | 2025-12-06]",
+    "citations": [
+      "[onboarding-process.md | onboarding-process.md#chunk-1 | 2025-12-06]"
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "id": "easy-8",
+    "query": "When is weekend support guaranteed?",
+    "expected_mode": "fact_lookup",
+    "analysis": {
+      "mode": "fact_lookup",
+      "broadQuery": false,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "months": [],
+        "doc_type": "policy",
+        "doc_types": [
+          "policy",
+          "faq",
+          "meeting_notes",
+          "support_ticket"
+        ],
+        "departments": [
+          "support"
+        ],
+        "groups": [
+          "support"
+        ],
+        "comparison": null,
+        "filename_clues": [],
+        "topic_keywords": [
+          "weekend",
+          "support",
+          "guaranteed"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": null,
+    "retrieved_chunks": [
+      {
+        "citation": "[ticket-004.md | ticket-004.md#chunk-1 | 2025-12-14]",
+        "source_path": "docs/tickets/ticket-004.md",
+        "title": "Ticket 004 Weekend Support Request",
+        "doc_type": "support_ticket",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-14",
+        "score": 195,
+        "boost_reasons": [
+          "doc_type match (support_ticket)",
+          "department match (support)",
+          "metadata overlap (weekend)",
+          "phrase overlap (weekend)",
+          "metadata overlap (support)",
+          "phrase overlap (support)",
+          "metadata overlap (guaranteed)",
+          "phrase overlap (guaranteed)"
+        ],
+        "content_preview": "Ticket 004 — Weekend Support Request\nGrowth customer requested guaranteed weekend support for a migration weekend.\n\nTicket 004 — Weekend Support Request\nSupport clarified that guaranteed weekend support is only included for eligible Enterpr"
+      },
+      {
+        "citation": "[support-hours.md | support-hours.md#chunk-1 | 2025-12-02]",
+        "source_path": "docs/support/support-hours.md",
+        "title": "Support Hours",
+        "doc_type": "policy",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-02",
+        "score": 131,
+        "boost_reasons": [
+          "doc_type match (policy)",
+          "department match (support)",
+          "phrase overlap (weekend)",
+          "metadata overlap (support)",
+          "phrase overlap (support)",
+          "phrase overlap (guaranteed)"
+        ],
+        "content_preview": "Support Hours\nStandard support is available Monday to Friday, 09:00 to 18:00 CET.\n\nSupport Hours\nPriority support for Growth customers is available Monday to Friday, 08:00 to 20:00 CET.\n\nSupport Hours\nWeekend support is only guaranteed for "
+      },
+      {
+        "citation": "[faq.md | faq.md#chunk-1 | 2025-12-07]",
+        "source_path": "docs/support/faq.md",
+        "title": "Support FAQ",
+        "doc_type": "faq",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-07",
+        "score": 105,
+        "boost_reasons": [
+          "doc_type match (faq)",
+          "department match (support)",
+          "phrase overlap (weekend)",
+          "metadata overlap (support)",
+          "phrase overlap (support)"
+        ],
+        "content_preview": "Support FAQ > Password Reset\nPassword reset links expire after 24 hours.\n\nSupport FAQ > Refund Requests\nRefund requests must follow the billing policy and be submitted within the defined refund window.\n\nSupport FAQ > Weekend Help\nWeekend su"
+      },
+      {
+        "citation": "[company.md | company.md#chunk-2 | n/a]",
+        "source_path": "docs/company.md",
+        "title": "Company Overview",
+        "doc_type": "company doc",
+        "department": "company.md",
+        "date": null,
+        "updated_at": null,
+        "score": 98,
+        "boost_reasons": [
+          "metadata overlap (support)",
+          "phrase overlap (support)"
+        ],
+        "content_preview": "Company Overview > Customer Support\nThe support team handles account access issues, billing questions, onboarding guidance, and bug reports.\n\nCompany Overview > Customer Support\nMain support email: **support@northstarmetrics.example**\n\nComp"
+      },
+      {
+        "citation": "[support-review-2025-12-17.md | support-review-2025-12-17.md#chunk-1 | 2025-12-17]",
+        "source_path": "docs/meetings/support-review-2025-12-17.md",
+        "title": "Support Review 2025-12-17",
+        "doc_type": "meeting_notes",
+        "department": "support",
+        "date": "2025-12-17",
+        "updated_at": "2025-12-17",
+        "score": 81,
+        "boost_reasons": [
+          "doc_type match (meeting_notes)",
+          "department match (support)",
+          "phrase overlap (weekend)",
+          "metadata overlap (support)",
+          "phrase overlap (support)"
+        ],
+        "content_preview": "Support Review — 2025-12-17 > Recurring Issues\n- password reset confusion\n- refund window misunderstandings\n- expectations about weekend support on non-Enterprise plans\n- delayed invoice visibility after the December billing incident"
+      },
+      {
+        "citation": "[support.txt | support.txt#chunk-1 | n/a]",
+        "source_path": "docs/support.txt",
+        "title": "Support Playbook",
+        "doc_type": "company doc",
+        "department": "support.txt",
+        "date": null,
+        "updated_at": null,
+        "score": 69,
+        "boost_reasons": [
+          "metadata overlap (support)",
+          "phrase overlap (support)"
+        ],
+        "content_preview": "Support Playbook\n\nSLA:\n- Critical issues: respond within 1 hour\n- Normal issues: respond within 24 hours\n\nEscalation:\n- Billing issues go to finance support\n- Login/auth issues go to technical support\n- Security issues should be escalated i"
+      }
+    ],
+    "final_answer": "Ticket 004 — Weekend Support Request Support clarified that guaranteed weekend support is only included for eligible Enterprise contracts with premium coverage. [ticket-004.md | ticket-004.md#chunk-1 | 2025-12-14]",
+    "citations": [
+      "[ticket-004.md | ticket-004.md#chunk-1 | 2025-12-14]"
+    ]
+  },
+  {
+    "difficulty": "medium",
+    "id": "medium-1",
+    "query": "Summarize the December 2025 meeting notes.",
+    "expected_mode": "temporal_summary",
+    "analysis": {
+      "mode": "temporal_summary",
+      "broadQuery": true,
+      "filters": {
+        "dateRange": {
+          "start": "2025-12-01",
+          "end": "2025-12-31"
+        },
+        "explicitDate": null,
+        "month": "2025-12",
+        "months": [
+          "2025-12"
+        ],
+        "doc_type": "meeting_notes",
+        "doc_types": [
+          "meeting_notes"
+        ],
+        "departments": [],
+        "groups": [
+          "meetings"
+        ],
+        "comparison": null,
+        "filename_clues": [],
+        "topic_keywords": [
+          "december",
+          "2025",
+          "meeting"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": {
+      "summary": "Grounded period summary from the retrieved documents:\n- 2025-12-03 | Ops Sync 2025-12-03: Ops Sync — 2025-12-03 > Notes - repeated confusion around refund eligibility wording - support asked for clearer macros for failed-payment grace period explanations - billing asked suppor... [ops-sync-2025-12-03.md | ops-sync-2025-12-03.md#chunk-1 | 2025-12-03]\n- 2025-12-10 | Product Sync 2025-12-10: Product Sync — 2025-12-10 > Notes - product wants Northstar Assist to summarize ticket timelines - support wants better billing-risk highlighting - roadmap includes role-aware retrieval a... [product-sync-2025-12-10.md | product-sync-2025-12-10.md#chunk-1 | 2025-12-10]\n- 2025-12-17 | Support Review 2025-12-17: Support Review — 2025-12-17 > Recurring Issues - password reset confusion - refund window misunderstandings - expectations about weekend support on non-Enterprise plans - delayed invoice... [support-review-2025-12-17.md | support-review-2025-12-17.md#chunk-1 | 2025-12-17]",
+      "citations": [
+        "[ops-sync-2025-12-03.md | ops-sync-2025-12-03.md#chunk-1 | 2025-12-03]",
+        "[product-sync-2025-12-10.md | product-sync-2025-12-10.md#chunk-1 | 2025-12-10]",
+        "[support-review-2025-12-17.md | support-review-2025-12-17.md#chunk-1 | 2025-12-17]"
+      ]
+    },
+    "retrieved_chunks": [
+      {
+        "citation": "[ops-sync-2025-12-03.md | ops-sync-2025-12-03.md#chunk-1 | 2025-12-03]",
+        "source_path": "docs/meetings/ops-sync-2025-12-03.md",
+        "title": "Ops Sync 2025-12-03",
+        "doc_type": "meeting_notes",
+        "department": "operations",
+        "date": "2025-12-03",
+        "updated_at": "2025-12-03",
+        "score": 47,
+        "boost_reasons": [
+          "month match (2025-12)",
+          "doc_type match (meeting_notes)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)",
+          "metadata overlap (meeting)"
+        ],
+        "content_preview": "Ops Sync — 2025-12-03 > Notes\n- repeated confusion around refund eligibility wording\n- support asked for clearer macros for failed-payment grace period explanations\n- billing asked support to avoid promising manual exceptions too early"
+      },
+      {
+        "citation": "[product-sync-2025-12-10.md | product-sync-2025-12-10.md#chunk-1 | 2025-12-10]",
+        "source_path": "docs/meetings/product-sync-2025-12-10.md",
+        "title": "Product Sync 2025-12-10",
+        "doc_type": "meeting_notes",
+        "department": "product",
+        "date": "2025-12-10",
+        "updated_at": "2025-12-10",
+        "score": 47,
+        "boost_reasons": [
+          "month match (2025-12)",
+          "doc_type match (meeting_notes)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)",
+          "metadata overlap (meeting)"
+        ],
+        "content_preview": "Product Sync — 2025-12-10 > Notes\n- product wants Northstar Assist to summarize ticket timelines\n- support wants better billing-risk highlighting\n- roadmap includes role-aware retrieval and multilingual support"
+      },
+      {
+        "citation": "[support-review-2025-12-17.md | support-review-2025-12-17.md#chunk-1 | 2025-12-17]",
+        "source_path": "docs/meetings/support-review-2025-12-17.md",
+        "title": "Support Review 2025-12-17",
+        "doc_type": "meeting_notes",
+        "department": "support",
+        "date": "2025-12-17",
+        "updated_at": "2025-12-17",
+        "score": 64,
+        "boost_reasons": [
+          "month match (2025-12)",
+          "doc_type match (meeting_notes)",
+          "phrase overlap (december)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)",
+          "metadata overlap (meeting)"
+        ],
+        "content_preview": "Support Review — 2025-12-17 > Recurring Issues\n- password reset confusion\n- refund window misunderstandings\n- expectations about weekend support on non-Enterprise plans\n- delayed invoice visibility after the December billing incident"
+      }
+    ],
+    "final_answer": "Grounded period summary from the retrieved documents:\n- 2025-12-03 | Ops Sync 2025-12-03: Ops Sync — 2025-12-03 > Notes - repeated confusion around refund eligibility wording - support asked for clearer macros for failed-payment grace period explanations - billing asked suppor... [ops-sync-2025-12-03.md | ops-sync-2025-12-03.md#chunk-1 | 2025-12-03]\n- 2025-12-10 | Product Sync 2025-12-10: Product Sync — 2025-12-10 > Notes - product wants Northstar Assist to summarize ticket timelines - support wants better billing-risk highlighting - roadmap includes role-aware retrieval a... [product-sync-2025-12-10.md | product-sync-2025-12-10.md#chunk-1 | 2025-12-10]\n- 2025-12-17 | Support Review 2025-12-17: Support Review — 2025-12-17 > Recurring Issues - password reset confusion - refund window misunderstandings - expectations about weekend support on non-Enterprise plans - delayed invoice... [support-review-2025-12-17.md | support-review-2025-12-17.md#chunk-1 | 2025-12-17]",
+    "citations": [
+      "[ops-sync-2025-12-03.md | ops-sync-2025-12-03.md#chunk-1 | 2025-12-03]",
+      "[product-sync-2025-12-10.md | product-sync-2025-12-10.md#chunk-1 | 2025-12-10]",
+      "[support-review-2025-12-17.md | support-review-2025-12-17.md#chunk-1 | 2025-12-17]"
+    ]
+  },
+  {
+    "difficulty": "medium",
+    "id": "medium-2",
+    "query": "What recurring support issues were identified in December 2025?",
+    "expected_mode": "recurring_themes",
+    "analysis": {
+      "mode": "recurring_themes",
+      "broadQuery": true,
+      "filters": {
+        "dateRange": {
+          "start": "2025-12-01",
+          "end": "2025-12-31"
+        },
+        "explicitDate": null,
+        "month": "2025-12",
+        "months": [
+          "2025-12"
+        ],
+        "doc_type": "policy",
+        "doc_types": [
+          "policy",
+          "faq",
+          "meeting_notes",
+          "support_ticket"
+        ],
+        "departments": [
+          "support"
+        ],
+        "groups": [
+          "support"
+        ],
+        "comparison": null,
+        "filename_clues": [],
+        "topic_keywords": [
+          "recurring",
+          "support",
+          "issues",
+          "were",
+          "identified",
+          "december",
+          "2025"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": {
+      "summary": "Evidence is insufficient across multiple documents to identify recurring themes confidently.",
+      "citations": []
+    },
+    "retrieved_chunks": [
+      {
+        "citation": "[support-review-2025-12-17.md | support-review-2025-12-17.md#chunk-1 | 2025-12-17]",
+        "source_path": "docs/meetings/support-review-2025-12-17.md",
+        "title": "Support Review 2025-12-17",
+        "doc_type": "meeting_notes",
+        "department": "support",
+        "date": "2025-12-17",
+        "updated_at": "2025-12-17",
+        "score": 148,
+        "boost_reasons": [
+          "month match (2025-12)",
+          "doc_type match (meeting_notes)",
+          "department match (support)",
+          "metadata overlap (recurring)",
+          "phrase overlap (recurring)",
+          "metadata overlap (support)",
+          "phrase overlap (support)",
+          "metadata overlap (issues)",
+          "phrase overlap (issues)",
+          "phrase overlap (december)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)"
+        ],
+        "content_preview": "Support Review — 2025-12-17 > Recurring Issues\n- password reset confusion\n- refund window misunderstandings\n- expectations about weekend support on non-Enterprise plans\n- delayed invoice visibility after the December billing incident"
+      }
+    ],
+    "final_answer": "Evidence is insufficient across multiple documents to identify recurring themes confidently.",
+    "citations": []
+  },
+  {
+    "difficulty": "medium",
+    "id": "medium-3",
+    "query": "What changed between the November 2025 and December 2025 release notes?",
+    "expected_mode": "comparison",
+    "analysis": {
+      "mode": "comparison",
+      "broadQuery": true,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "months": [
+          "2025-11",
+          "2025-12"
+        ],
+        "doc_type": "release_notes",
+        "doc_types": [
+          "release_notes"
+        ],
+        "departments": [
+          "product"
+        ],
+        "groups": [
+          "release_notes"
+        ],
+        "comparison": {
+          "sides": [
+            {
+              "label": "release notes 2025-11",
+              "months": [
+                "2025-11"
+              ],
+              "docTypes": [
+                "release_notes"
+              ],
+              "departments": [
+                "product"
+              ],
+              "groups": [
+                "release_notes"
+              ],
+              "keywords": [
+                "2025-11",
+                "release notes"
+              ]
+            },
+            {
+              "label": "release notes 2025-12",
+              "months": [
+                "2025-12"
+              ],
+              "docTypes": [
+                "release_notes"
+              ],
+              "departments": [
+                "product"
+              ],
+              "groups": [
+                "release_notes"
+              ],
+              "keywords": [
+                "2025-12",
+                "release notes"
+              ]
+            }
+          ]
+        },
+        "filename_clues": [],
+        "topic_keywords": [
+          "changed",
+          "november",
+          "2025",
+          "december",
+          "release"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": {
+      "summary": "Side-by-side comparison evidence:\n- release notes 2025-11: Release Notes — November 2025 > Northstar Assist - Added ticket summarization in English and French - Added internal draft reply suggesti... [release-notes-2025-11.md | release-notes-2025-11.md#chunk-1 | 2025-11-28]\n- release notes 2025-12: Release Notes — December 2025 > Northstar Assist - Added ticket summarization in Spanish - Added refund-risk highlighting for billing tic... [release-notes-2025-12.md | release-notes-2025-12.md#chunk-1 | 2025-12-19]",
+      "citations": [
+        "[release-notes-2025-11.md | release-notes-2025-11.md#chunk-1 | 2025-11-28]",
+        "[release-notes-2025-12.md | release-notes-2025-12.md#chunk-1 | 2025-12-19]"
+      ]
+    },
+    "retrieved_chunks": [
+      {
+        "citation": "[release-notes-2025-11.md | release-notes-2025-11.md#chunk-1 | 2025-11-28]",
+        "source_path": "docs/product/release-notes-2025-11.md",
+        "title": "Release Notes November 2025",
+        "doc_type": "release_notes",
+        "department": "product",
+        "date": null,
+        "updated_at": "2025-11-28",
+        "score": 195,
+        "boost_reasons": [
+          "comparison month (2025-11)",
+          "doc_type match (release_notes)",
+          "department match (product)",
+          "metadata overlap (november)",
+          "phrase overlap (november)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)",
+          "metadata overlap (release)",
+          "phrase overlap (release)",
+          "comparison side (release notes 2025-11)"
+        ],
+        "content_preview": "Release Notes — November 2025 > Northstar Assist\n- Added ticket summarization in English and French\n- Added internal draft reply suggestions for support agents\n- Added priority flag suggestions for VIP accounts\n\nRelease Notes — November 202"
+      },
+      {
+        "citation": "[release-notes-2025-12.md | release-notes-2025-12.md#chunk-1 | 2025-12-19]",
+        "source_path": "docs/product/release-notes-2025-12.md",
+        "title": "Release Notes December 2025",
+        "doc_type": "release_notes",
+        "department": "product",
+        "date": null,
+        "updated_at": "2025-12-19",
+        "score": 195,
+        "boost_reasons": [
+          "comparison month (2025-12)",
+          "doc_type match (release_notes)",
+          "department match (product)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)",
+          "metadata overlap (december)",
+          "phrase overlap (december)",
+          "metadata overlap (release)",
+          "phrase overlap (release)",
+          "comparison side (release notes 2025-12)"
+        ],
+        "content_preview": "Release Notes — December 2025 > Northstar Assist\n- Added ticket summarization in Spanish\n- Added refund-risk highlighting for billing tickets\n- Added side-by-side incident timeline summaries\n- Improved confidence labeling for generated repl"
+      }
+    ],
+    "final_answer": "Side-by-side comparison evidence:\n- release notes 2025-11: Release Notes — November 2025 > Northstar Assist - Added ticket summarization in English and French - Added internal draft reply suggesti... [release-notes-2025-11.md | release-notes-2025-11.md#chunk-1 | 2025-11-28]\n- release notes 2025-12: Release Notes — December 2025 > Northstar Assist - Added ticket summarization in Spanish - Added refund-risk highlighting for billing tic... [release-notes-2025-12.md | release-notes-2025-12.md#chunk-1 | 2025-12-19]",
+    "citations": [
+      "[release-notes-2025-11.md | release-notes-2025-11.md#chunk-1 | 2025-11-28]",
+      "[release-notes-2025-12.md | release-notes-2025-12.md#chunk-1 | 2025-12-19]"
+    ]
+  },
+  {
+    "difficulty": "medium",
+    "id": "medium-4",
+    "query": "Summarize the November 2025 login outage from incident report to postmortem.",
+    "expected_mode": "evolution_over_time",
+    "analysis": {
+      "mode": "evolution_over_time",
+      "broadQuery": true,
+      "filters": {
+        "dateRange": {
+          "start": "2025-11-01",
+          "end": "2025-11-30"
+        },
+        "explicitDate": null,
+        "month": "2025-11",
+        "months": [
+          "2025-11"
+        ],
+        "doc_type": "incident_report",
+        "doc_types": [
+          "incident_report",
+          "postmortem"
+        ],
+        "departments": [
+          "incidents"
+        ],
+        "groups": [
+          "incident",
+          "postmortem"
+        ],
+        "comparison": null,
+        "filename_clues": [],
+        "topic_keywords": [
+          "november",
+          "2025",
+          "login",
+          "outage",
+          "incident",
+          "report",
+          "postmortem"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": {
+      "summary": "Observed progression across the retrieved documents:\n- 2025-11-18 | Incident 2025-11 Login Outage: Incident — Login Outage, November 2025 > Summary Between 08:42 and 10:16 CET, some customers experienced login failures caused by an SSO redirect loop. Incident — Login Outage, November 2... [incident-2025-11-login-outage.md | incident-2025-11-login-outage.md#chunk-1 | 2025-11-18]\n- 2025-11-21 | Postmortem 2025-11 Login Outage: Postmortem — Login Outage, November 2025 > Root Cause A recently deployed redirect rule introduced a loop for a subset of SSO configurations. Postmortem — Login Outage, November 2025 > Co... [postmortem-2025-11-login-outage.md | postmortem-2025-11-login-outage.md#chunk-1 | 2025-11-21]",
+      "citations": [
+        "[incident-2025-11-login-outage.md | incident-2025-11-login-outage.md#chunk-1 | 2025-11-18]",
+        "[postmortem-2025-11-login-outage.md | postmortem-2025-11-login-outage.md#chunk-1 | 2025-11-21]"
+      ]
+    },
+    "retrieved_chunks": [
+      {
+        "citation": "[incident-2025-11-login-outage.md | incident-2025-11-login-outage.md#chunk-1 | 2025-11-18]",
+        "source_path": "docs/incidents/incident-2025-11-login-outage.md",
+        "title": "Incident 2025-11 Login Outage",
+        "doc_type": "incident_report",
+        "department": "incidents",
+        "date": null,
+        "updated_at": "2025-11-18",
+        "score": 292,
+        "boost_reasons": [
+          "month match (2025-11)",
+          "doc_type match (incident_report)",
+          "department match (incidents)",
+          "metadata overlap (november)",
+          "phrase overlap (november)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)",
+          "metadata overlap (login)",
+          "phrase overlap (login)",
+          "metadata overlap (outage)",
+          "phrase overlap (outage)",
+          "metadata overlap (incident)",
+          "phrase overlap (incident)",
+          "metadata overlap (report)",
+          "phrase overlap (report)"
+        ],
+        "content_preview": "Incident — Login Outage, November 2025 > Summary\nBetween 08:42 and 10:16 CET, some customers experienced login failures caused by an SSO redirect loop.\n\nIncident — Login Outage, November 2025 > Impact\nAffected tenants could not complete log"
+      },
+      {
+        "citation": "[postmortem-2025-11-login-outage.md | postmortem-2025-11-login-outage.md#chunk-1 | 2025-11-21]",
+        "source_path": "docs/incidents/postmortem-2025-11-login-outage.md",
+        "title": "Postmortem 2025-11 Login Outage",
+        "doc_type": "postmortem",
+        "department": "incidents",
+        "date": null,
+        "updated_at": "2025-11-21",
+        "score": 307,
+        "boost_reasons": [
+          "month match (2025-11)",
+          "doc_type match (postmortem)",
+          "department match (incidents)",
+          "metadata overlap (november)",
+          "phrase overlap (november)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)",
+          "metadata overlap (login)",
+          "phrase overlap (login)",
+          "metadata overlap (outage)",
+          "phrase overlap (outage)",
+          "metadata overlap (incident)",
+          "phrase overlap (incident)",
+          "metadata overlap (postmortem)",
+          "phrase overlap (postmortem)"
+        ],
+        "content_preview": "Postmortem — Login Outage, November 2025 > Root Cause\nA recently deployed redirect rule introduced a loop for a subset of SSO configurations.\n\nPostmortem — Login Outage, November 2025 > Contributing Factors\n- insufficient tenant-specific re"
+      }
+    ],
+    "final_answer": "Observed progression across the retrieved documents:\n- 2025-11-18 | Incident 2025-11 Login Outage: Incident — Login Outage, November 2025 > Summary Between 08:42 and 10:16 CET, some customers experienced login failures caused by an SSO redirect loop. Incident — Login Outage, November 2... [incident-2025-11-login-outage.md | incident-2025-11-login-outage.md#chunk-1 | 2025-11-18]\n- 2025-11-21 | Postmortem 2025-11 Login Outage: Postmortem — Login Outage, November 2025 > Root Cause A recently deployed redirect rule introduced a loop for a subset of SSO configurations. Postmortem — Login Outage, November 2025 > Co... [postmortem-2025-11-login-outage.md | postmortem-2025-11-login-outage.md#chunk-1 | 2025-11-21]",
+    "citations": [
+      "[incident-2025-11-login-outage.md | incident-2025-11-login-outage.md#chunk-1 | 2025-11-18]",
+      "[postmortem-2025-11-login-outage.md | postmortem-2025-11-login-outage.md#chunk-1 | 2025-11-21]"
+    ]
+  },
+  {
+    "difficulty": "medium",
+    "id": "medium-5",
+    "query": "Which documents mention password reset expiry and what do they say?",
+    "expected_mode": "fact_lookup",
+    "analysis": {
+      "mode": "fact_lookup",
+      "broadQuery": false,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "months": [],
+        "doc_type": "policy",
+        "doc_types": [
+          "policy",
+          "security_doc"
+        ],
+        "departments": [
+          "security"
+        ],
+        "groups": [
+          "security"
+        ],
+        "comparison": null,
+        "filename_clues": [],
+        "topic_keywords": [
+          "password",
+          "reset",
+          "expiry",
+          "they"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": null,
+    "retrieved_chunks": [
+      {
+        "citation": "[ticket-005.md | ticket-005.md#chunk-1 | 2025-12-15]",
+        "source_path": "docs/tickets/ticket-005.md",
+        "title": "Ticket 005 Password Reset Issue",
+        "doc_type": "support_ticket",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-15",
+        "score": 134,
+        "boost_reasons": [
+          "metadata overlap (password)",
+          "phrase overlap (password)",
+          "metadata overlap (reset)",
+          "phrase overlap (reset)"
+        ],
+        "content_preview": "Ticket 005 — Password Reset Issue\nCustomer reported that a password reset link no longer worked the next day.\n\nTicket 005 — Password Reset Issue\nSupport confirmed that password reset links expire after 24 hours and issued a new reset flow."
+      },
+      {
+        "citation": "[auth.md | auth.md#chunk-1 | n/a]",
+        "source_path": "docs/auth.md",
+        "title": "Authentication",
+        "doc_type": "company doc",
+        "department": "auth.md",
+        "date": null,
+        "updated_at": null,
+        "score": 90,
+        "boost_reasons": [
+          "metadata overlap (password)",
+          "phrase overlap (password)",
+          "metadata overlap (reset)",
+          "phrase overlap (reset)"
+        ],
+        "content_preview": "Authentication\nWe use JWT-based authentication for the web app.\n\nAuthentication > Login\nUsers log in with email and password. On success, the backend returns an access token and a refresh token.\n\nAuthentication > Password reset\nPassword res"
+      },
+      {
+        "citation": "[faq.md | faq.md#chunk-1 | 2025-12-07]",
+        "source_path": "docs/support/faq.md",
+        "title": "Support FAQ",
+        "doc_type": "faq",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-07",
+        "score": 80,
+        "boost_reasons": [
+          "metadata overlap (password)",
+          "phrase overlap (password)",
+          "metadata overlap (reset)",
+          "phrase overlap (reset)"
+        ],
+        "content_preview": "Support FAQ > Password Reset\nPassword reset links expire after 24 hours.\n\nSupport FAQ > Refund Requests\nRefund requests must follow the billing policy and be submitted within the defined refund window.\n\nSupport FAQ > Weekend Help\nWeekend su"
+      },
+      {
+        "citation": "[support.txt | support.txt#chunk-1 | n/a]",
+        "source_path": "docs/support.txt",
+        "title": "Support Playbook",
+        "doc_type": "company doc",
+        "department": "support.txt",
+        "date": null,
+        "updated_at": null,
+        "score": 49,
+        "boost_reasons": [
+          "phrase overlap (password)",
+          "metadata overlap (reset)",
+          "phrase overlap (reset)"
+        ],
+        "content_preview": "Support Playbook\n\nSLA:\n- Critical issues: respond within 1 hour\n- Normal issues: respond within 24 hours\n\nEscalation:\n- Billing issues go to finance support\n- Login/auth issues go to technical support\n- Security issues should be escalated i"
+      },
+      {
+        "citation": "[support-review-2025-12-17.md | support-review-2025-12-17.md#chunk-1 | 2025-12-17]",
+        "source_path": "docs/meetings/support-review-2025-12-17.md",
+        "title": "Support Review 2025-12-17",
+        "doc_type": "meeting_notes",
+        "department": "support",
+        "date": "2025-12-17",
+        "updated_at": "2025-12-17",
+        "score": 32,
+        "boost_reasons": [
+          "phrase overlap (password)",
+          "phrase overlap (reset)"
+        ],
+        "content_preview": "Support Review — 2025-12-17 > Recurring Issues\n- password reset confusion\n- refund window misunderstandings\n- expectations about weekend support on non-Enterprise plans\n- delayed invoice visibility after the December billing incident"
+      }
+    ],
+    "final_answer": "Ticket 005 — Password Reset Issue Support confirmed that password reset links expire after 24 hours and issued a new reset flow. [ticket-005.md | ticket-005.md#chunk-1 | 2025-12-15]",
+    "citations": [
+      "[ticket-005.md | ticket-005.md#chunk-1 | 2025-12-15]"
+    ]
+  },
+  {
+    "difficulty": "medium",
+    "id": "medium-6",
+    "query": "Compare Ticket 001 and Ticket 002 against the refund policy.",
+    "expected_mode": "comparison",
+    "analysis": {
+      "mode": "comparison",
+      "broadQuery": true,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "months": [],
+        "doc_type": "policy",
+        "doc_types": [
+          "policy",
+          "support_ticket",
+          "billing_doc"
+        ],
+        "departments": [
+          "support",
+          "billing"
+        ],
+        "groups": [
+          "policy",
+          "tickets",
+          "billing"
+        ],
+        "comparison": {
+          "sides": [
+            {
+              "label": "ticket 001 and ticket 002",
+              "months": [],
+              "docTypes": [
+                "support_ticket"
+              ],
+              "departments": [
+                "support"
+              ],
+              "groups": [
+                "tickets"
+              ],
+              "keywords": [
+                "ticket",
+                "001",
+                "002"
+              ]
+            },
+            {
+              "label": "the refund policy.",
+              "months": [],
+              "docTypes": [
+                "policy",
+                "billing_doc"
+              ],
+              "departments": [
+                "billing"
+              ],
+              "groups": [
+                "policy",
+                "billing"
+              ],
+              "keywords": [
+                "refund",
+                "policy"
+              ]
+            }
+          ]
+        },
+        "filename_clues": [],
+        "topic_keywords": [
+          "compare",
+          "ticket",
+          "001",
+          "002",
+          "against",
+          "refund",
+          "policy"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": {
+      "summary": "Side-by-side comparison evidence:\n- ticket 001 and ticket 002: Ticket 001 — Refund Request Customer on Starter plan requested a refund 6 days after billing. Support confirmed the request was inside th... [ticket-001.md | ticket-001.md#chunk-1 | 2025-12-08] Ticket 002 — Late Refund Request Customer requested a refund 21 days after billing. Support explained that the request was outside the st... [ticket-002.md | ticket-002.md#chunk-1 | 2025-12-09]\n- the refund policy.: Refunds Policy Refund requests must be submitted within 14 days of the billing date. Refunds Policy Requests submitted after the 14-day w... [refunds.md | refunds.md#chunk-1 | 2025-12-02] Billing Policy Customers are billed monthly unless their contract explicitly states annual invoicing. Billing Policy Starter and Growth p... [billing-policy.md | billing-policy.md#chunk-1 | 2025-12-02]\n- Comparison note: The refund evidence shows one request inside the 14-day window and another outside it.",
+      "citations": [
+        "[ticket-001.md | ticket-001.md#chunk-1 | 2025-12-08]",
+        "[ticket-002.md | ticket-002.md#chunk-1 | 2025-12-09]",
+        "[refunds.md | refunds.md#chunk-1 | 2025-12-02]",
+        "[billing-policy.md | billing-policy.md#chunk-1 | 2025-12-02]"
+      ]
+    },
+    "retrieved_chunks": [
+      {
+        "citation": "[ticket-001.md | ticket-001.md#chunk-1 | 2025-12-08]",
+        "source_path": "docs/tickets/ticket-001.md",
+        "title": "Ticket 001 Refund Request",
+        "doc_type": "support_ticket",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-08",
+        "score": 173,
+        "boost_reasons": [
+          "doc_type match (support_ticket)",
+          "department match (support)",
+          "metadata overlap (ticket)",
+          "phrase overlap (ticket)",
+          "metadata overlap (001)",
+          "phrase overlap (001)",
+          "metadata overlap (refund)",
+          "phrase overlap (refund)",
+          "comparison side (ticket 001 and ticket 002)"
+        ],
+        "content_preview": "Ticket 001 — Refund Request\nCustomer on Starter plan requested a refund 6 days after billing.\nSupport confirmed the request was inside the refund window and routed it to billing for review.\n\nTicket 001 — Refund Request\nOutcome: refund appro"
+      },
+      {
+        "citation": "[ticket-002.md | ticket-002.md#chunk-1 | 2025-12-09]",
+        "source_path": "docs/tickets/ticket-002.md",
+        "title": "Ticket 002 Late Refund Request",
+        "doc_type": "support_ticket",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-09",
+        "score": 173,
+        "boost_reasons": [
+          "doc_type match (support_ticket)",
+          "department match (support)",
+          "metadata overlap (ticket)",
+          "phrase overlap (ticket)",
+          "metadata overlap (002)",
+          "phrase overlap (002)",
+          "metadata overlap (refund)",
+          "phrase overlap (refund)",
+          "comparison side (ticket 001 and ticket 002)"
+        ],
+        "content_preview": "Ticket 002 — Late Refund Request\nCustomer requested a refund 21 days after billing.\nSupport explained that the request was outside the standard refund window.\n\nTicket 002 — Late Refund Request\nOutcome: refund denied."
+      },
+      {
+        "citation": "[ticket-003.md | ticket-003.md#chunk-1 | 2025-12-11]",
+        "source_path": "docs/tickets/ticket-003.md",
+        "title": "Ticket 003 Failed Payment Concern",
+        "doc_type": "support_ticket",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-11",
+        "score": 64,
+        "boost_reasons": [
+          "doc_type match (support_ticket)",
+          "department match (support)",
+          "metadata overlap (ticket)",
+          "phrase overlap (ticket)",
+          "comparison side (ticket 001 and ticket 002)"
+        ],
+        "content_preview": "Ticket 003 — Failed Payment Concern\nCustomer reported a failed payment and asked whether service would stop immediately.\n\nTicket 003 — Failed Payment Concern\nSupport explained the 3-day grace period and confirmed that automatic retries woul"
+      },
+      {
+        "citation": "[refunds.md | refunds.md#chunk-1 | 2025-12-02]",
+        "source_path": "docs/billing/refunds.md",
+        "title": "Refunds Policy",
+        "doc_type": "policy",
+        "department": "billing",
+        "date": null,
+        "updated_at": "2025-12-02",
+        "score": 94,
+        "boost_reasons": [
+          "doc_type match (policy)",
+          "department match (billing)",
+          "metadata overlap (refund)",
+          "phrase overlap (refund)",
+          "metadata overlap (policy)",
+          "phrase overlap (policy)",
+          "comparison side (the refund policy.)"
+        ],
+        "content_preview": "Refunds Policy\nRefund requests must be submitted within 14 days of the billing date.\n\nRefunds Policy\nRequests submitted after the 14-day window are normally rejected unless a billing system error or duplicate charge is confirmed.\n\nRefunds P"
+      },
+      {
+        "citation": "[billing-policy.md | billing-policy.md#chunk-1 | 2025-12-02]",
+        "source_path": "docs/billing/billing-policy.md",
+        "title": "Billing Policy",
+        "doc_type": "policy",
+        "department": "billing",
+        "date": null,
+        "updated_at": "2025-12-02",
+        "score": 76,
+        "boost_reasons": [
+          "doc_type match (policy)",
+          "department match (billing)",
+          "metadata overlap (policy)",
+          "phrase overlap (policy)",
+          "comparison side (the refund policy.)"
+        ],
+        "content_preview": "Billing Policy\nCustomers are billed monthly unless their contract explicitly states annual invoicing.\n\nBilling Policy\nStarter and Growth plans are billed monthly by default.\nEnterprise billing cadence depends on contract terms.\n\nBilling Pol"
+      },
+      {
+        "citation": "[failed-payments.md | failed-payments.md#chunk-1 | 2025-12-02]",
+        "source_path": "docs/billing/failed-payments.md",
+        "title": "Failed Payments",
+        "doc_type": "policy",
+        "department": "billing",
+        "date": null,
+        "updated_at": "2025-12-02",
+        "score": 30,
+        "boost_reasons": [
+          "doc_type match (policy)",
+          "department match (billing)",
+          "metadata overlap (policy)",
+          "comparison side (the refund policy.)"
+        ],
+        "content_preview": "Failed Payments\nIf a payment fails, the account remains active for a 3-day grace period before service restrictions begin.\n\nFailed Payments\nBilling retries occur automatically during the grace period.\n\nFailed Payments\nEnterprise accounts ma"
+      },
+      {
+        "citation": "[ticket-004.md | ticket-004.md#chunk-1 | 2025-12-14]",
+        "source_path": "docs/tickets/ticket-004.md",
+        "title": "Ticket 004 Weekend Support Request",
+        "doc_type": "support_ticket",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-14",
+        "score": 64,
+        "boost_reasons": [
+          "doc_type match (support_ticket)",
+          "department match (support)",
+          "metadata overlap (ticket)",
+          "phrase overlap (ticket)",
+          "comparison side (ticket 001 and ticket 002)"
+        ],
+        "content_preview": "Ticket 004 — Weekend Support Request\nGrowth customer requested guaranteed weekend support for a migration weekend.\n\nTicket 004 — Weekend Support Request\nSupport clarified that guaranteed weekend support is only included for eligible Enterpr"
+      },
+      {
+        "citation": "[ticket-005.md | ticket-005.md#chunk-1 | 2025-12-15]",
+        "source_path": "docs/tickets/ticket-005.md",
+        "title": "Ticket 005 Password Reset Issue",
+        "doc_type": "support_ticket",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-15",
+        "score": 64,
+        "boost_reasons": [
+          "doc_type match (support_ticket)",
+          "department match (support)",
+          "metadata overlap (ticket)",
+          "phrase overlap (ticket)",
+          "comparison side (ticket 001 and ticket 002)"
+        ],
+        "content_preview": "Ticket 005 — Password Reset Issue\nCustomer reported that a password reset link no longer worked the next day.\n\nTicket 005 — Password Reset Issue\nSupport confirmed that password reset links expire after 24 hours and issued a new reset flow."
+      }
+    ],
+    "final_answer": "Side-by-side comparison evidence:\n- ticket 001 and ticket 002: Ticket 001 — Refund Request Customer on Starter plan requested a refund 6 days after billing. Support confirmed the request was inside th... [ticket-001.md | ticket-001.md#chunk-1 | 2025-12-08] Ticket 002 — Late Refund Request Customer requested a refund 21 days after billing. Support explained that the request was outside the st... [ticket-002.md | ticket-002.md#chunk-1 | 2025-12-09]\n- the refund policy.: Refunds Policy Refund requests must be submitted within 14 days of the billing date. Refunds Policy Requests submitted after the 14-day w... [refunds.md | refunds.md#chunk-1 | 2025-12-02] Billing Policy Customers are billed monthly unless their contract explicitly states annual invoicing. Billing Policy Starter and Growth p... [billing-policy.md | billing-policy.md#chunk-1 | 2025-12-02]\n- Comparison note: The refund evidence shows one request inside the 14-day window and another outside it.",
+    "citations": [
+      "[ticket-001.md | ticket-001.md#chunk-1 | 2025-12-08]",
+      "[ticket-002.md | ticket-002.md#chunk-1 | 2025-12-09]",
+      "[refunds.md | refunds.md#chunk-1 | 2025-12-02]",
+      "[billing-policy.md | billing-policy.md#chunk-1 | 2025-12-02]"
+    ]
+  },
+  {
+    "difficulty": "medium",
+    "id": "medium-7",
+    "query": "Compare the failed-payments policy with Ticket 003.",
+    "expected_mode": "comparison",
+    "analysis": {
+      "mode": "comparison",
+      "broadQuery": true,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "months": [],
+        "doc_type": "policy",
+        "doc_types": [
+          "policy",
+          "support_ticket"
+        ],
+        "departments": [
+          "support"
+        ],
+        "groups": [
+          "policy",
+          "tickets"
+        ],
+        "comparison": null,
+        "filename_clues": [],
+        "topic_keywords": [
+          "compare",
+          "failed-payments",
+          "policy",
+          "ticket",
+          "003"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": null,
+    "retrieved_chunks": [
+      {
+        "citation": "[ticket-003.md | ticket-003.md#chunk-1 | 2025-12-11]",
+        "source_path": "docs/tickets/ticket-003.md",
+        "title": "Ticket 003 Failed Payment Concern",
+        "doc_type": "support_ticket",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-11",
+        "score": 98,
+        "boost_reasons": [
+          "doc_type match (support_ticket)",
+          "department match (support)",
+          "metadata overlap (ticket)",
+          "phrase overlap (ticket)",
+          "metadata overlap (003)",
+          "phrase overlap (003)"
+        ],
+        "content_preview": "Ticket 003 — Failed Payment Concern\nCustomer reported a failed payment and asked whether service would stop immediately.\n\nTicket 003 — Failed Payment Concern\nSupport explained the 3-day grace period and confirmed that automatic retries woul"
+      },
+      {
+        "citation": "[escalation-policy.md | escalation-policy.md#chunk-1 | 2025-12-05]",
+        "source_path": "docs/support/escalation-policy.md",
+        "title": "Escalation Policy",
+        "doc_type": "policy",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-05",
+        "score": 61,
+        "boost_reasons": [
+          "doc_type match (policy)",
+          "department match (support)",
+          "metadata overlap (policy)",
+          "phrase overlap (policy)"
+        ],
+        "content_preview": "Escalation Policy\nSupport agents escalate issues when:\n- production access is blocked for approved staff\n- billing failures affect multiple customers\n- authentication incidents affect more than one tenant\n- a VIP customer reports repeated o"
+      },
+      {
+        "citation": "[sla-policy.md | sla-policy.md#chunk-1 | 2025-12-05]",
+        "source_path": "docs/support/sla-policy.md",
+        "title": "SLA Policy",
+        "doc_type": "policy",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-05",
+        "score": 61,
+        "boost_reasons": [
+          "doc_type match (policy)",
+          "department match (support)",
+          "metadata overlap (policy)",
+          "phrase overlap (policy)"
+        ],
+        "content_preview": "SLA Policy > First Response Targets\n- Starter: within 1 business day\n- Growth: within 4 business hours\n- Enterprise: within 1 business hour\n\nSLA Policy > Resolution Expectations\nResolution times vary by issue severity and dependency on engi"
+      },
+      {
+        "citation": "[ticket-001.md | ticket-001.md#chunk-1 | 2025-12-08]",
+        "source_path": "docs/tickets/ticket-001.md",
+        "title": "Ticket 001 Refund Request",
+        "doc_type": "support_ticket",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-08",
+        "score": 57,
+        "boost_reasons": [
+          "doc_type match (support_ticket)",
+          "department match (support)",
+          "metadata overlap (ticket)",
+          "phrase overlap (ticket)"
+        ],
+        "content_preview": "Ticket 001 — Refund Request\nCustomer on Starter plan requested a refund 6 days after billing.\nSupport confirmed the request was inside the refund window and routed it to billing for review.\n\nTicket 001 — Refund Request\nOutcome: refund appro"
+      },
+      {
+        "citation": "[ticket-002.md | ticket-002.md#chunk-1 | 2025-12-09]",
+        "source_path": "docs/tickets/ticket-002.md",
+        "title": "Ticket 002 Late Refund Request",
+        "doc_type": "support_ticket",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-09",
+        "score": 57,
+        "boost_reasons": [
+          "doc_type match (support_ticket)",
+          "department match (support)",
+          "metadata overlap (ticket)",
+          "phrase overlap (ticket)"
+        ],
+        "content_preview": "Ticket 002 — Late Refund Request\nCustomer requested a refund 21 days after billing.\nSupport explained that the request was outside the standard refund window.\n\nTicket 002 — Late Refund Request\nOutcome: refund denied."
+      },
+      {
+        "citation": "[ticket-004.md | ticket-004.md#chunk-1 | 2025-12-14]",
+        "source_path": "docs/tickets/ticket-004.md",
+        "title": "Ticket 004 Weekend Support Request",
+        "doc_type": "support_ticket",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-14",
+        "score": 57,
+        "boost_reasons": [
+          "doc_type match (support_ticket)",
+          "department match (support)",
+          "metadata overlap (ticket)",
+          "phrase overlap (ticket)"
+        ],
+        "content_preview": "Ticket 004 — Weekend Support Request\nGrowth customer requested guaranteed weekend support for a migration weekend.\n\nTicket 004 — Weekend Support Request\nSupport clarified that guaranteed weekend support is only included for eligible Enterpr"
+      },
+      {
+        "citation": "[ticket-005.md | ticket-005.md#chunk-1 | 2025-12-15]",
+        "source_path": "docs/tickets/ticket-005.md",
+        "title": "Ticket 005 Password Reset Issue",
+        "doc_type": "support_ticket",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-15",
+        "score": 57,
+        "boost_reasons": [
+          "doc_type match (support_ticket)",
+          "department match (support)",
+          "metadata overlap (ticket)",
+          "phrase overlap (ticket)"
+        ],
+        "content_preview": "Ticket 005 — Password Reset Issue\nCustomer reported that a password reset link no longer worked the next day.\n\nTicket 005 — Password Reset Issue\nSupport confirmed that password reset links expire after 24 hours and issued a new reset flow."
+      },
+      {
+        "citation": "[support-hours.md | support-hours.md#chunk-1 | 2025-12-02]",
+        "source_path": "docs/support/support-hours.md",
+        "title": "Support Hours",
+        "doc_type": "policy",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-02",
+        "score": 23,
+        "boost_reasons": [
+          "doc_type match (policy)",
+          "department match (support)",
+          "metadata overlap (policy)"
+        ],
+        "content_preview": "Support Hours\nStandard support is available Monday to Friday, 09:00 to 18:00 CET.\n\nSupport Hours\nPriority support for Growth customers is available Monday to Friday, 08:00 to 20:00 CET.\n\nSupport Hours\nWeekend support is only guaranteed for "
+      }
+    ],
+    "final_answer": "Evidence is insufficient to produce a grounded broad summary.",
+    "citations": []
+  },
+  {
+    "difficulty": "medium",
+    "id": "medium-8",
+    "query": "Summarize the December 2025 tickets about refunds, payments, and password reset issues.",
+    "expected_mode": "temporal_summary",
+    "analysis": {
+      "mode": "temporal_summary",
+      "broadQuery": true,
+      "filters": {
+        "dateRange": {
+          "start": "2025-12-01",
+          "end": "2025-12-31"
+        },
+        "explicitDate": null,
+        "month": "2025-12",
+        "months": [
+          "2025-12"
+        ],
+        "doc_type": "support_ticket",
+        "doc_types": [
+          "support_ticket",
+          "policy",
+          "security_doc",
+          "billing_doc"
+        ],
+        "departments": [
+          "support",
+          "security",
+          "billing"
+        ],
+        "groups": [
+          "tickets",
+          "security",
+          "billing"
+        ],
+        "comparison": null,
+        "filename_clues": [],
+        "topic_keywords": [
+          "december",
+          "2025",
+          "tickets",
+          "about",
+          "refunds",
+          "payments",
+          "password",
+          "reset",
+          "issues"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": {
+      "summary": "Evidence is insufficient across time to summarize the retrieved documents confidently.",
+      "citations": []
+    },
+    "retrieved_chunks": [],
+    "final_answer": "Evidence is insufficient across time to summarize the retrieved documents confidently.",
+    "citations": []
+  },
+  {
+    "difficulty": "hard",
+    "id": "hard-1",
+    "query": "Compare support hours, the SLA policy, and weekend support expectations in tickets.",
+    "expected_mode": "comparison",
+    "analysis": {
+      "mode": "comparison",
+      "broadQuery": true,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "months": [],
+        "doc_type": "policy",
+        "doc_types": [
+          "policy",
+          "support_ticket",
+          "faq",
+          "meeting_notes"
+        ],
+        "departments": [
+          "support"
+        ],
+        "groups": [
+          "policy",
+          "tickets",
+          "support"
+        ],
+        "comparison": {
+          "sides": [
+            {
+              "label": "support hours, the sla policy,",
+              "months": [],
+              "docTypes": [
+                "policy",
+                "faq",
+                "meeting_notes",
+                "support_ticket"
+              ],
+              "departments": [
+                "support"
+              ],
+              "groups": [
+                "policy",
+                "support"
+              ],
+              "keywords": [
+                "support",
+                "hours",
+                "sla",
+                "policy"
+              ]
+            },
+            {
+              "label": "weekend support expectations in tickets.",
+              "months": [],
+              "docTypes": [
+                "support_ticket",
+                "policy",
+                "faq",
+                "meeting_notes"
+              ],
+              "departments": [
+                "support"
+              ],
+              "groups": [
+                "tickets",
+                "support"
+              ],
+              "keywords": [
+                "weekend",
+                "support",
+                "expectations",
+                "tickets"
+              ]
+            }
+          ]
+        },
+        "filename_clues": [],
+        "topic_keywords": [
+          "compare",
+          "support",
+          "hours",
+          "sla",
+          "policy",
+          "weekend",
+          "expectations",
+          "tickets"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": {
+      "summary": "Side-by-side comparison evidence:\n- support hours, the sla policy,: Support Hours Standard support is available Monday to Friday, 09:00 to 18:00 CET. Support Hours Priority support for Growth customers is... [support-hours.md | support-hours.md#chunk-1 | 2025-12-02] SLA Policy > First Response Targets - Starter: within 1 business day - Growth: within 4 business hours - Enterprise: within 1 business ho... [sla-policy.md | sla-policy.md#chunk-1 | 2025-12-05]\n- weekend support expectations in tickets.: Ticket 004 — Weekend Support Request Growth customer requested guaranteed weekend support for a migration weekend. Ticket 004 — Weekend S... [ticket-004.md | ticket-004.md#chunk-1 | 2025-12-14] Support Review — 2025-12-17 > Recurring Issues - password reset confusion - refund window misunderstandings - expectations about weekend... [support-review-2025-12-17.md | support-review-2025-12-17.md#chunk-1 | 2025-12-17]\n- Comparison note: Weekend support requests should be checked against the Enterprise-only guarantee in policy.",
+      "citations": [
+        "[support-hours.md | support-hours.md#chunk-1 | 2025-12-02]",
+        "[sla-policy.md | sla-policy.md#chunk-1 | 2025-12-05]",
+        "[ticket-004.md | ticket-004.md#chunk-1 | 2025-12-14]",
+        "[support-review-2025-12-17.md | support-review-2025-12-17.md#chunk-1 | 2025-12-17]"
+      ]
+    },
+    "retrieved_chunks": [
+      {
+        "citation": "[support-hours.md | support-hours.md#chunk-1 | 2025-12-02]",
+        "source_path": "docs/support/support-hours.md",
+        "title": "Support Hours",
+        "doc_type": "policy",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-02",
+        "score": 176,
+        "boost_reasons": [
+          "doc_type match (policy)",
+          "department match (support)",
+          "metadata overlap (support)",
+          "phrase overlap (support)",
+          "metadata overlap (hours)",
+          "phrase overlap (hours)",
+          "metadata overlap (policy)",
+          "phrase overlap (weekend)",
+          "comparison side (support hours, the sla policy,)"
+        ],
+        "content_preview": "Support Hours\nStandard support is available Monday to Friday, 09:00 to 18:00 CET.\n\nSupport Hours\nPriority support for Growth customers is available Monday to Friday, 08:00 to 20:00 CET.\n\nSupport Hours\nWeekend support is only guaranteed for "
+      },
+      {
+        "citation": "[ticket-004.md | ticket-004.md#chunk-1 | 2025-12-14]",
+        "source_path": "docs/tickets/ticket-004.md",
+        "title": "Ticket 004 Weekend Support Request",
+        "doc_type": "support_ticket",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-14",
+        "score": 164,
+        "boost_reasons": [
+          "doc_type match (support_ticket)",
+          "department match (support)",
+          "metadata overlap (support)",
+          "phrase overlap (support)",
+          "metadata overlap (weekend)",
+          "phrase overlap (weekend)",
+          "metadata overlap (tickets)",
+          "comparison side (weekend support expectations in tickets.)"
+        ],
+        "content_preview": "Ticket 004 — Weekend Support Request\nGrowth customer requested guaranteed weekend support for a migration weekend.\n\nTicket 004 — Weekend Support Request\nSupport clarified that guaranteed weekend support is only included for eligible Enterpr"
+      },
+      {
+        "citation": "[sla-policy.md | sla-policy.md#chunk-1 | 2025-12-05]",
+        "source_path": "docs/support/sla-policy.md",
+        "title": "SLA Policy",
+        "doc_type": "policy",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-05",
+        "score": 155,
+        "boost_reasons": [
+          "doc_type match (policy)",
+          "department match (support)",
+          "metadata overlap (support)",
+          "phrase overlap (hours)",
+          "metadata overlap (sla)",
+          "phrase overlap (sla)",
+          "metadata overlap (policy)",
+          "phrase overlap (policy)",
+          "phrase overlap (expectations)",
+          "comparison side (support hours, the sla policy,)"
+        ],
+        "content_preview": "SLA Policy > First Response Targets\n- Starter: within 1 business day\n- Growth: within 4 business hours\n- Enterprise: within 1 business hour\n\nSLA Policy > Resolution Expectations\nResolution times vary by issue severity and dependency on engi"
+      },
+      {
+        "citation": "[faq.md | faq.md#chunk-1 | 2025-12-07]",
+        "source_path": "docs/support/faq.md",
+        "title": "Support FAQ",
+        "doc_type": "faq",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-07",
+        "score": 132,
+        "boost_reasons": [
+          "doc_type match (faq)",
+          "department match (support)",
+          "metadata overlap (support)",
+          "phrase overlap (support)",
+          "phrase overlap (hours)",
+          "phrase overlap (policy)",
+          "phrase overlap (weekend)",
+          "comparison side (support hours, the sla policy,)"
+        ],
+        "content_preview": "Support FAQ > Password Reset\nPassword reset links expire after 24 hours.\n\nSupport FAQ > Refund Requests\nRefund requests must follow the billing policy and be submitted within the defined refund window.\n\nSupport FAQ > Weekend Help\nWeekend su"
+      },
+      {
+        "citation": "[escalation-policy.md | escalation-policy.md#chunk-1 | 2025-12-05]",
+        "source_path": "docs/support/escalation-policy.md",
+        "title": "Escalation Policy",
+        "doc_type": "policy",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-05",
+        "score": 108,
+        "boost_reasons": [
+          "doc_type match (policy)",
+          "department match (support)",
+          "metadata overlap (support)",
+          "phrase overlap (support)",
+          "phrase overlap (hours)",
+          "metadata overlap (policy)",
+          "phrase overlap (policy)",
+          "comparison side (support hours, the sla policy,)"
+        ],
+        "content_preview": "Escalation Policy\nSupport agents escalate issues when:\n- production access is blocked for approved staff\n- billing failures affect multiple customers\n- authentication incidents affect more than one tenant\n- a VIP customer reports repeated o"
+      },
+      {
+        "citation": "[support-review-2025-12-17.md | support-review-2025-12-17.md#chunk-1 | 2025-12-17]",
+        "source_path": "docs/meetings/support-review-2025-12-17.md",
+        "title": "Support Review 2025-12-17",
+        "doc_type": "meeting_notes",
+        "department": "support",
+        "date": "2025-12-17",
+        "updated_at": "2025-12-17",
+        "score": 95,
+        "boost_reasons": [
+          "doc_type match (meeting_notes)",
+          "department match (support)",
+          "metadata overlap (support)",
+          "phrase overlap (support)",
+          "phrase overlap (weekend)",
+          "phrase overlap (expectations)",
+          "comparison side (weekend support expectations in tickets.)"
+        ],
+        "content_preview": "Support Review — 2025-12-17 > Recurring Issues\n- password reset confusion\n- refund window misunderstandings\n- expectations about weekend support on non-Enterprise plans\n- delayed invoice visibility after the December billing incident"
+      },
+      {
+        "citation": "[ticket-005.md | ticket-005.md#chunk-1 | 2025-12-15]",
+        "source_path": "docs/tickets/ticket-005.md",
+        "title": "Ticket 005 Password Reset Issue",
+        "doc_type": "support_ticket",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-15",
+        "score": 63,
+        "boost_reasons": [
+          "doc_type match (support_ticket)",
+          "department match (support)",
+          "metadata overlap (support)",
+          "phrase overlap (support)",
+          "phrase overlap (hours)",
+          "metadata overlap (tickets)",
+          "comparison side (weekend support expectations in tickets.)"
+        ],
+        "content_preview": "Ticket 005 — Password Reset Issue\nCustomer reported that a password reset link no longer worked the next day.\n\nTicket 005 — Password Reset Issue\nSupport confirmed that password reset links expire after 24 hours and issued a new reset flow."
+      },
+      {
+        "citation": "[ticket-001.md | ticket-001.md#chunk-1 | 2025-12-08]",
+        "source_path": "docs/tickets/ticket-001.md",
+        "title": "Ticket 001 Refund Request",
+        "doc_type": "support_ticket",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-08",
+        "score": 50,
+        "boost_reasons": [
+          "doc_type match (support_ticket)",
+          "department match (support)",
+          "metadata overlap (support)",
+          "phrase overlap (support)",
+          "metadata overlap (tickets)",
+          "comparison side (weekend support expectations in tickets.)"
+        ],
+        "content_preview": "Ticket 001 — Refund Request\nCustomer on Starter plan requested a refund 6 days after billing.\nSupport confirmed the request was inside the refund window and routed it to billing for review.\n\nTicket 001 — Refund Request\nOutcome: refund appro"
+      }
+    ],
+    "final_answer": "Side-by-side comparison evidence:\n- support hours, the sla policy,: Support Hours Standard support is available Monday to Friday, 09:00 to 18:00 CET. Support Hours Priority support for Growth customers is... [support-hours.md | support-hours.md#chunk-1 | 2025-12-02] SLA Policy > First Response Targets - Starter: within 1 business day - Growth: within 4 business hours - Enterprise: within 1 business ho... [sla-policy.md | sla-policy.md#chunk-1 | 2025-12-05]\n- weekend support expectations in tickets.: Ticket 004 — Weekend Support Request Growth customer requested guaranteed weekend support for a migration weekend. Ticket 004 — Weekend S... [ticket-004.md | ticket-004.md#chunk-1 | 2025-12-14] Support Review — 2025-12-17 > Recurring Issues - password reset confusion - refund window misunderstandings - expectations about weekend... [support-review-2025-12-17.md | support-review-2025-12-17.md#chunk-1 | 2025-12-17]\n- Comparison note: Weekend support requests should be checked against the Enterprise-only guarantee in policy.",
+    "citations": [
+      "[support-hours.md | support-hours.md#chunk-1 | 2025-12-02]",
+      "[sla-policy.md | sla-policy.md#chunk-1 | 2025-12-05]",
+      "[ticket-004.md | ticket-004.md#chunk-1 | 2025-12-14]",
+      "[support-review-2025-12-17.md | support-review-2025-12-17.md#chunk-1 | 2025-12-17]"
+    ]
+  },
+  {
+    "difficulty": "hard",
+    "id": "hard-2",
+    "query": "Compare company billing policy versus tickets about refunds or payments.",
+    "expected_mode": "comparison",
+    "analysis": {
+      "mode": "comparison",
+      "broadQuery": true,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "months": [],
+        "doc_type": "policy",
+        "doc_types": [
+          "policy",
+          "support_ticket",
+          "billing_doc",
+          "company_overview",
+          "org_doc"
+        ],
+        "departments": [
+          "support",
+          "billing",
+          "company"
+        ],
+        "groups": [
+          "policy",
+          "tickets",
+          "billing",
+          "company"
+        ],
+        "comparison": {
+          "sides": [
+            {
+              "label": "company billing policy",
+              "months": [],
+              "docTypes": [
+                "policy",
+                "billing_doc",
+                "company_overview",
+                "org_doc"
+              ],
+              "departments": [
+                "billing",
+                "company"
+              ],
+              "groups": [
+                "policy",
+                "billing",
+                "company"
+              ],
+              "keywords": [
+                "company",
+                "billing",
+                "policy"
+              ]
+            },
+            {
+              "label": "tickets about refunds or payments.",
+              "months": [],
+              "docTypes": [
+                "support_ticket",
+                "policy",
+                "billing_doc"
+              ],
+              "departments": [
+                "support",
+                "billing"
+              ],
+              "groups": [
+                "tickets",
+                "billing"
+              ],
+              "keywords": [
+                "tickets",
+                "about",
+                "refunds",
+                "payments"
+              ]
+            }
+          ]
+        },
+        "filename_clues": [],
+        "topic_keywords": [
+          "compare",
+          "company",
+          "billing",
+          "policy",
+          "versus",
+          "tickets",
+          "about",
+          "refunds",
+          "payments"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": {
+      "summary": "Side-by-side comparison evidence:\n- company billing policy: Refunds Policy Refund requests must be submitted within 14 days of the billing date. Refunds Policy Requests submitted after the 14-day w... [refunds.md | refunds.md#chunk-1 | 2025-12-02] Billing Policy Customers are billed monthly unless their contract explicitly states annual invoicing. Billing Policy Starter and Growth p... [billing-policy.md | billing-policy.md#chunk-1 | 2025-12-02]\n- tickets about refunds or payments.: Escalation Policy Support agents escalate issues when: - production access is blocked for approved staff - billing failures affect multip... [escalation-policy.md | escalation-policy.md#chunk-1 | 2025-12-05] SLA Policy > First Response Targets - Starter: within 1 business day - Growth: within 4 business hours - Enterprise: within 1 business ho... [sla-policy.md | sla-policy.md#chunk-1 | 2025-12-05]\n- Comparison note: The ticket evidence is consistent with the 3-day failed-payment grace period.",
+      "citations": [
+        "[refunds.md | refunds.md#chunk-1 | 2025-12-02]",
+        "[billing-policy.md | billing-policy.md#chunk-1 | 2025-12-02]",
+        "[escalation-policy.md | escalation-policy.md#chunk-1 | 2025-12-05]",
+        "[sla-policy.md | sla-policy.md#chunk-1 | 2025-12-05]"
+      ]
+    },
+    "retrieved_chunks": [
+      {
+        "citation": "[refunds.md | refunds.md#chunk-1 | 2025-12-02]",
+        "source_path": "docs/billing/refunds.md",
+        "title": "Refunds Policy",
+        "doc_type": "policy",
+        "department": "billing",
+        "date": null,
+        "updated_at": "2025-12-02",
+        "score": 180,
+        "boost_reasons": [
+          "doc_type match (policy)",
+          "department match (billing)",
+          "metadata overlap (billing)",
+          "phrase overlap (billing)",
+          "metadata overlap (policy)",
+          "phrase overlap (policy)",
+          "metadata overlap (refunds)",
+          "phrase overlap (refunds)",
+          "comparison side (company billing policy)"
+        ],
+        "content_preview": "Refunds Policy\nRefund requests must be submitted within 14 days of the billing date.\n\nRefunds Policy\nRequests submitted after the 14-day window are normally rejected unless a billing system error or duplicate charge is confirmed.\n\nRefunds P"
+      },
+      {
+        "citation": "[billing-policy.md | billing-policy.md#chunk-1 | 2025-12-02]",
+        "source_path": "docs/billing/billing-policy.md",
+        "title": "Billing Policy",
+        "doc_type": "policy",
+        "department": "billing",
+        "date": null,
+        "updated_at": "2025-12-02",
+        "score": 147,
+        "boost_reasons": [
+          "doc_type match (policy)",
+          "department match (billing)",
+          "metadata overlap (billing)",
+          "phrase overlap (billing)",
+          "metadata overlap (policy)",
+          "phrase overlap (policy)",
+          "comparison side (company billing policy)"
+        ],
+        "content_preview": "Billing Policy\nCustomers are billed monthly unless their contract explicitly states annual invoicing.\n\nBilling Policy\nStarter and Growth plans are billed monthly by default.\nEnterprise billing cadence depends on contract terms.\n\nBilling Pol"
+      },
+      {
+        "citation": "[failed-payments.md | failed-payments.md#chunk-1 | 2025-12-02]",
+        "source_path": "docs/billing/failed-payments.md",
+        "title": "Failed Payments",
+        "doc_type": "policy",
+        "department": "billing",
+        "date": null,
+        "updated_at": "2025-12-02",
+        "score": 116,
+        "boost_reasons": [
+          "doc_type match (policy)",
+          "department match (billing)",
+          "metadata overlap (billing)",
+          "phrase overlap (billing)",
+          "metadata overlap (policy)",
+          "metadata overlap (payments)",
+          "phrase overlap (payments)",
+          "comparison side (company billing policy)"
+        ],
+        "content_preview": "Failed Payments\nIf a payment fails, the account remains active for a 3-day grace period before service restrictions begin.\n\nFailed Payments\nBilling retries occur automatically during the grace period.\n\nFailed Payments\nEnterprise accounts ma"
+      },
+      {
+        "citation": "[escalation-policy.md | escalation-policy.md#chunk-1 | 2025-12-05]",
+        "source_path": "docs/support/escalation-policy.md",
+        "title": "Escalation Policy",
+        "doc_type": "policy",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-05",
+        "score": 80,
+        "boost_reasons": [
+          "doc_type match (policy)",
+          "department match (support)",
+          "phrase overlap (billing)",
+          "metadata overlap (policy)",
+          "phrase overlap (policy)",
+          "comparison side (tickets about refunds or payments.)"
+        ],
+        "content_preview": "Escalation Policy\nSupport agents escalate issues when:\n- production access is blocked for approved staff\n- billing failures affect multiple customers\n- authentication incidents affect more than one tenant\n- a VIP customer reports repeated o"
+      },
+      {
+        "citation": "[sla-policy.md | sla-policy.md#chunk-1 | 2025-12-05]",
+        "source_path": "docs/support/sla-policy.md",
+        "title": "SLA Policy",
+        "doc_type": "policy",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-05",
+        "score": 67,
+        "boost_reasons": [
+          "doc_type match (policy)",
+          "department match (support)",
+          "metadata overlap (policy)",
+          "phrase overlap (policy)",
+          "comparison side (tickets about refunds or payments.)"
+        ],
+        "content_preview": "SLA Policy > First Response Targets\n- Starter: within 1 business day\n- Growth: within 4 business hours\n- Enterprise: within 1 business hour\n\nSLA Policy > Resolution Expectations\nResolution times vary by issue severity and dependency on engi"
+      },
+      {
+        "citation": "[company-overview.md | company-overview.md#chunk-1 | 2025-12-02]",
+        "source_path": "docs/company/company-overview.md",
+        "title": "Company Overview",
+        "doc_type": "company_overview",
+        "department": "company",
+        "date": null,
+        "updated_at": "2025-12-02",
+        "score": 65,
+        "boost_reasons": [
+          "doc_type match (company_overview)",
+          "department match (company)",
+          "metadata overlap (company)",
+          "phrase overlap (company)",
+          "phrase overlap (billing)",
+          "comparison side (company billing policy)"
+        ],
+        "content_preview": "Northstar Metrics\nNorthstar Metrics is a fictional B2B SaaS company providing analytics, workflow automation, and support tooling for logistics teams, e-commerce operators, and internal operations departments.\n\nNorthstar Metrics > Mission\nN"
+      },
+      {
+        "citation": "[invoices.md | invoices.md#chunk-1 | 2025-11-29]",
+        "source_path": "docs/billing/invoices.md",
+        "title": "Invoices",
+        "doc_type": "billing_doc",
+        "department": "billing",
+        "date": null,
+        "updated_at": "2025-11-29",
+        "score": 53,
+        "boost_reasons": [
+          "doc_type match (billing_doc)",
+          "department match (billing)",
+          "metadata overlap (billing)",
+          "phrase overlap (billing)",
+          "comparison side (company billing policy)"
+        ],
+        "content_preview": "Invoices\nInvoices are issued in PDF format and made available in the customer billing portal.\n\nInvoices\nCustomers can request invoice contact updates through support.\n\nInvoices\nInvoice disputes are reviewed jointly by billing operations and"
+      },
+      {
+        "citation": "[ticket-001.md | ticket-001.md#chunk-1 | 2025-12-08]",
+        "source_path": "docs/tickets/ticket-001.md",
+        "title": "Ticket 001 Refund Request",
+        "doc_type": "support_ticket",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-08",
+        "score": 53,
+        "boost_reasons": [
+          "doc_type match (support_ticket)",
+          "department match (support)",
+          "metadata overlap (billing)",
+          "phrase overlap (billing)",
+          "metadata overlap (tickets)",
+          "comparison side (tickets about refunds or payments.)"
+        ],
+        "content_preview": "Ticket 001 — Refund Request\nCustomer on Starter plan requested a refund 6 days after billing.\nSupport confirmed the request was inside the refund window and routed it to billing for review.\n\nTicket 001 — Refund Request\nOutcome: refund appro"
+      }
+    ],
+    "final_answer": "Side-by-side comparison evidence:\n- company billing policy: Refunds Policy Refund requests must be submitted within 14 days of the billing date. Refunds Policy Requests submitted after the 14-day w... [refunds.md | refunds.md#chunk-1 | 2025-12-02] Billing Policy Customers are billed monthly unless their contract explicitly states annual invoicing. Billing Policy Starter and Growth p... [billing-policy.md | billing-policy.md#chunk-1 | 2025-12-02]\n- tickets about refunds or payments.: Escalation Policy Support agents escalate issues when: - production access is blocked for approved staff - billing failures affect multip... [escalation-policy.md | escalation-policy.md#chunk-1 | 2025-12-05] SLA Policy > First Response Targets - Starter: within 1 business day - Growth: within 4 business hours - Enterprise: within 1 business ho... [sla-policy.md | sla-policy.md#chunk-1 | 2025-12-05]\n- Comparison note: The ticket evidence is consistent with the 3-day failed-payment grace period.",
+    "citations": [
+      "[refunds.md | refunds.md#chunk-1 | 2025-12-02]",
+      "[billing-policy.md | billing-policy.md#chunk-1 | 2025-12-02]",
+      "[escalation-policy.md | escalation-policy.md#chunk-1 | 2025-12-05]",
+      "[sla-policy.md | sla-policy.md#chunk-1 | 2025-12-05]"
+    ]
+  },
+  {
+    "difficulty": "hard",
+    "id": "hard-3",
+    "query": "What recurring themes appear across support tickets and meeting notes in December 2025?",
+    "expected_mode": "recurring_themes",
+    "analysis": {
+      "mode": "recurring_themes",
+      "broadQuery": true,
+      "filters": {
+        "dateRange": {
+          "start": "2025-12-01",
+          "end": "2025-12-31"
+        },
+        "explicitDate": null,
+        "month": "2025-12",
+        "months": [
+          "2025-12"
+        ],
+        "doc_type": "support_ticket",
+        "doc_types": [
+          "support_ticket",
+          "meeting_notes",
+          "policy",
+          "faq"
+        ],
+        "departments": [
+          "support"
+        ],
+        "groups": [
+          "tickets",
+          "meetings",
+          "support"
+        ],
+        "comparison": null,
+        "filename_clues": [],
+        "topic_keywords": [
+          "recurring",
+          "appear",
+          "support",
+          "tickets",
+          "meeting",
+          "december",
+          "2025"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": {
+      "summary": "Evidence is insufficient across multiple documents to identify recurring themes confidently.",
+      "citations": []
+    },
+    "retrieved_chunks": [
+      {
+        "citation": "[support-review-2025-12-17.md | support-review-2025-12-17.md#chunk-1 | 2025-12-17]",
+        "source_path": "docs/meetings/support-review-2025-12-17.md",
+        "title": "Support Review 2025-12-17",
+        "doc_type": "meeting_notes",
+        "department": "support",
+        "date": "2025-12-17",
+        "updated_at": "2025-12-17",
+        "score": 135,
+        "boost_reasons": [
+          "month match (2025-12)",
+          "doc_type match (meeting_notes)",
+          "department match (support)",
+          "metadata overlap (recurring)",
+          "phrase overlap (recurring)",
+          "metadata overlap (support)",
+          "phrase overlap (support)",
+          "metadata overlap (meeting)",
+          "phrase overlap (december)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)"
+        ],
+        "content_preview": "Support Review — 2025-12-17 > Recurring Issues\n- password reset confusion\n- refund window misunderstandings\n- expectations about weekend support on non-Enterprise plans\n- delayed invoice visibility after the December billing incident"
+      }
+    ],
+    "final_answer": "Evidence is insufficient across multiple documents to identify recurring themes confidently.",
+    "citations": []
+  },
+  {
+    "difficulty": "hard",
+    "id": "hard-4",
+    "query": "How did login outage documentation evolve from the incident report to the postmortem?",
+    "expected_mode": "evolution_over_time",
+    "analysis": {
+      "mode": "evolution_over_time",
+      "broadQuery": true,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "months": [],
+        "doc_type": "incident_report",
+        "doc_types": [
+          "incident_report",
+          "postmortem"
+        ],
+        "departments": [
+          "incidents"
+        ],
+        "groups": [
+          "incident",
+          "postmortem"
+        ],
+        "comparison": null,
+        "filename_clues": [],
+        "topic_keywords": [
+          "login",
+          "outage",
+          "documentation",
+          "evolve",
+          "incident",
+          "report",
+          "postmortem"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": {
+      "summary": "Observed progression across the retrieved documents:\n- 2025-11-18 | Incident 2025-11 Login Outage: Incident — Login Outage, November 2025 > Summary Between 08:42 and 10:16 CET, some customers experienced login failures caused by an SSO redirect loop. Incident — Login Outage, November 2... [incident-2025-11-login-outage.md | incident-2025-11-login-outage.md#chunk-1 | 2025-11-18]\n- 2025-11-21 | Postmortem 2025-11 Login Outage: Postmortem — Login Outage, November 2025 > Root Cause A recently deployed redirect rule introduced a loop for a subset of SSO configurations. Postmortem — Login Outage, November 2025 > Co... [postmortem-2025-11-login-outage.md | postmortem-2025-11-login-outage.md#chunk-1 | 2025-11-21]",
+      "citations": [
+        "[incident-2025-11-login-outage.md | incident-2025-11-login-outage.md#chunk-1 | 2025-11-18]",
+        "[postmortem-2025-11-login-outage.md | postmortem-2025-11-login-outage.md#chunk-1 | 2025-11-21]"
+      ]
+    },
+    "retrieved_chunks": [
+      {
+        "citation": "[incident-2025-11-login-outage.md | incident-2025-11-login-outage.md#chunk-1 | 2025-11-18]",
+        "source_path": "docs/incidents/incident-2025-11-login-outage.md",
+        "title": "Incident 2025-11 Login Outage",
+        "doc_type": "incident_report",
+        "department": "incidents",
+        "date": null,
+        "updated_at": "2025-11-18",
+        "score": 193,
+        "boost_reasons": [
+          "doc_type match (incident_report)",
+          "department match (incidents)",
+          "metadata overlap (login)",
+          "phrase overlap (login)",
+          "metadata overlap (outage)",
+          "phrase overlap (outage)",
+          "metadata overlap (incident)",
+          "phrase overlap (incident)",
+          "metadata overlap (report)",
+          "phrase overlap (report)"
+        ],
+        "content_preview": "Incident — Login Outage, November 2025 > Summary\nBetween 08:42 and 10:16 CET, some customers experienced login failures caused by an SSO redirect loop.\n\nIncident — Login Outage, November 2025 > Impact\nAffected tenants could not complete log"
+      },
+      {
+        "citation": "[postmortem-2025-11-login-outage.md | postmortem-2025-11-login-outage.md#chunk-1 | 2025-11-21]",
+        "source_path": "docs/incidents/postmortem-2025-11-login-outage.md",
+        "title": "Postmortem 2025-11 Login Outage",
+        "doc_type": "postmortem",
+        "department": "incidents",
+        "date": null,
+        "updated_at": "2025-11-21",
+        "score": 207,
+        "boost_reasons": [
+          "doc_type match (postmortem)",
+          "department match (incidents)",
+          "metadata overlap (login)",
+          "phrase overlap (login)",
+          "metadata overlap (outage)",
+          "phrase overlap (outage)",
+          "metadata overlap (incident)",
+          "phrase overlap (incident)",
+          "metadata overlap (postmortem)",
+          "phrase overlap (postmortem)"
+        ],
+        "content_preview": "Postmortem — Login Outage, November 2025 > Root Cause\nA recently deployed redirect rule introduced a loop for a subset of SSO configurations.\n\nPostmortem — Login Outage, November 2025 > Contributing Factors\n- insufficient tenant-specific re"
+      }
+    ],
+    "final_answer": "Observed progression across the retrieved documents:\n- 2025-11-18 | Incident 2025-11 Login Outage: Incident — Login Outage, November 2025 > Summary Between 08:42 and 10:16 CET, some customers experienced login failures caused by an SSO redirect loop. Incident — Login Outage, November 2... [incident-2025-11-login-outage.md | incident-2025-11-login-outage.md#chunk-1 | 2025-11-18]\n- 2025-11-21 | Postmortem 2025-11 Login Outage: Postmortem — Login Outage, November 2025 > Root Cause A recently deployed redirect rule introduced a loop for a subset of SSO configurations. Postmortem — Login Outage, November 2025 > Co... [postmortem-2025-11-login-outage.md | postmortem-2025-11-login-outage.md#chunk-1 | 2025-11-21]",
+    "citations": [
+      "[incident-2025-11-login-outage.md | incident-2025-11-login-outage.md#chunk-1 | 2025-11-18]",
+      "[postmortem-2025-11-login-outage.md | postmortem-2025-11-login-outage.md#chunk-1 | 2025-11-21]"
+    ]
+  },
+  {
+    "difficulty": "hard",
+    "id": "hard-5",
+    "query": "Which document first mentions refund-risk highlighting for billing tickets?",
+    "expected_mode": "first_mention",
+    "analysis": {
+      "mode": "first_mention",
+      "broadQuery": true,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "months": [],
+        "doc_type": "support_ticket",
+        "doc_types": [
+          "support_ticket",
+          "policy",
+          "billing_doc"
+        ],
+        "departments": [
+          "support",
+          "billing"
+        ],
+        "groups": [
+          "tickets",
+          "billing"
+        ],
+        "comparison": null,
+        "filename_clues": [],
+        "topic_keywords": [
+          "document",
+          "mentions",
+          "refund-risk",
+          "highlighting",
+          "billing",
+          "tickets"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": {
+      "summary": "Evidence was not found for a grounded first mention in the indexed documents.",
+      "citations": []
+    },
+    "retrieved_chunks": [
+      {
+        "citation": "[ticket-001.md | ticket-001.md#chunk-1 | 2025-12-08]",
+        "source_path": "docs/tickets/ticket-001.md",
+        "title": "Ticket 001 Refund Request",
+        "doc_type": "support_ticket",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-08",
+        "score": 46,
+        "boost_reasons": [
+          "doc_type match (support_ticket)",
+          "department match (support)",
+          "metadata overlap (billing)",
+          "phrase overlap (billing)",
+          "metadata overlap (tickets)"
+        ],
+        "content_preview": "Ticket 001 — Refund Request\nCustomer on Starter plan requested a refund 6 days after billing.\nSupport confirmed the request was inside the refund window and routed it to billing for review.\n\nTicket 001 — Refund Request\nOutcome: refund appro"
+      },
+      {
+        "citation": "[ticket-002.md | ticket-002.md#chunk-1 | 2025-12-09]",
+        "source_path": "docs/tickets/ticket-002.md",
+        "title": "Ticket 002 Late Refund Request",
+        "doc_type": "support_ticket",
+        "department": "support",
+        "date": null,
+        "updated_at": "2025-12-09",
+        "score": 38,
+        "boost_reasons": [
+          "doc_type match (support_ticket)",
+          "department match (support)",
+          "metadata overlap (billing)",
+          "phrase overlap (billing)",
+          "metadata overlap (tickets)"
+        ],
+        "content_preview": "Ticket 002 — Late Refund Request\nCustomer requested a refund 21 days after billing.\nSupport explained that the request was outside the standard refund window.\n\nTicket 002 — Late Refund Request\nOutcome: refund denied."
+      }
+    ],
+    "final_answer": "Evidence was not found for a grounded first mention in the indexed documents.",
+    "citations": []
+  },
+  {
+    "difficulty": "hard",
+    "id": "hard-6",
+    "query": "Compare the incident report versus the postmortem for the November 2025 login outage.",
+    "expected_mode": "comparison",
+    "analysis": {
+      "mode": "comparison",
+      "broadQuery": true,
+      "filters": {
+        "dateRange": {
+          "start": "2025-11-01",
+          "end": "2025-11-30"
+        },
+        "explicitDate": null,
+        "month": "2025-11",
+        "months": [
+          "2025-11"
+        ],
+        "doc_type": "incident_report",
+        "doc_types": [
+          "incident_report",
+          "postmortem"
+        ],
+        "departments": [
+          "incidents"
+        ],
+        "groups": [
+          "incident",
+          "postmortem"
+        ],
+        "comparison": {
+          "sides": [
+            {
+              "label": "the incident report",
+              "months": [],
+              "docTypes": [
+                "incident_report"
+              ],
+              "departments": [
+                "incidents"
+              ],
+              "groups": [
+                "incident"
+              ],
+              "keywords": [
+                "incident",
+                "report"
+              ]
+            },
+            {
+              "label": "the postmortem for the november 2025 login outage.",
+              "months": [
+                "2025-11"
+              ],
+              "docTypes": [
+                "postmortem"
+              ],
+              "departments": [
+                "incidents"
+              ],
+              "groups": [
+                "postmortem"
+              ],
+              "keywords": [
+                "postmortem",
+                "november",
+                "2025",
+                "login",
+                "outage"
+              ]
+            }
+          ]
+        },
+        "filename_clues": [],
+        "topic_keywords": [
+          "compare",
+          "incident",
+          "report",
+          "versus",
+          "postmortem",
+          "november",
+          "2025",
+          "login",
+          "outage"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": {
+      "summary": "Side-by-side comparison evidence:\n- the incident report: Incident — Login Outage, November 2025 > Summary Between 08:42 and 10:16 CET, some customers experienced login failures caused by an SSO... [incident-2025-11-login-outage.md | incident-2025-11-login-outage.md#chunk-1 | 2025-11-18] Incident — Billing Delay, December 2025 A delayed billing job caused invoice generation to run several hours late for a subset of monthly... [incident-2025-12-billing-delay.md | incident-2025-12-billing-delay.md#chunk-1 | 2025-12-12]\n- the postmortem for the november 2025 login outage.: Postmortem — Login Outage, November 2025 > Root Cause A recently deployed redirect rule introduced a loop for a subset of SSO configurati... [postmortem-2025-11-login-outage.md | postmortem-2025-11-login-outage.md#chunk-1 | 2025-11-21]",
+      "citations": [
+        "[incident-2025-11-login-outage.md | incident-2025-11-login-outage.md#chunk-1 | 2025-11-18]",
+        "[incident-2025-12-billing-delay.md | incident-2025-12-billing-delay.md#chunk-1 | 2025-12-12]",
+        "[postmortem-2025-11-login-outage.md | postmortem-2025-11-login-outage.md#chunk-1 | 2025-11-21]"
+      ]
+    },
+    "retrieved_chunks": [
+      {
+        "citation": "[incident-2025-11-login-outage.md | incident-2025-11-login-outage.md#chunk-1 | 2025-11-18]",
+        "source_path": "docs/incidents/incident-2025-11-login-outage.md",
+        "title": "Incident 2025-11 Login Outage",
+        "doc_type": "incident_report",
+        "department": "incidents",
+        "date": null,
+        "updated_at": "2025-11-18",
+        "score": 297,
+        "boost_reasons": [
+          "month match (2025-11)",
+          "doc_type match (incident_report)",
+          "department match (incidents)",
+          "metadata overlap (incident)",
+          "phrase overlap (incident)",
+          "metadata overlap (report)",
+          "phrase overlap (report)",
+          "metadata overlap (november)",
+          "phrase overlap (november)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)",
+          "metadata overlap (login)",
+          "phrase overlap (login)",
+          "metadata overlap (outage)",
+          "phrase overlap (outage)",
+          "comparison side (the incident report)"
+        ],
+        "content_preview": "Incident — Login Outage, November 2025 > Summary\nBetween 08:42 and 10:16 CET, some customers experienced login failures caused by an SSO redirect loop.\n\nIncident — Login Outage, November 2025 > Impact\nAffected tenants could not complete log"
+      },
+      {
+        "citation": "[incident-2025-12-billing-delay.md | incident-2025-12-billing-delay.md#chunk-1 | 2025-12-12]",
+        "source_path": "docs/incidents/incident-2025-12-billing-delay.md",
+        "title": "Incident 2025-12 Billing Delay",
+        "doc_type": "incident_report",
+        "department": "incidents",
+        "date": null,
+        "updated_at": "2025-12-12",
+        "score": 99,
+        "boost_reasons": [
+          "doc_type match (incident_report)",
+          "department match (incidents)",
+          "metadata overlap (incident)",
+          "phrase overlap (incident)",
+          "metadata overlap (report)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)",
+          "comparison side (the incident report)"
+        ],
+        "content_preview": "Incident — Billing Delay, December 2025\nA delayed billing job caused invoice generation to run several hours late for a subset of monthly accounts.\n\nIncident — Billing Delay, December 2025\nNo duplicate charges were created, but some custome"
+      },
+      {
+        "citation": "[postmortem-2025-11-login-outage.md | postmortem-2025-11-login-outage.md#chunk-1 | 2025-11-21]",
+        "source_path": "docs/incidents/postmortem-2025-11-login-outage.md",
+        "title": "Postmortem 2025-11 Login Outage",
+        "doc_type": "postmortem",
+        "department": "incidents",
+        "date": null,
+        "updated_at": "2025-11-21",
+        "score": 311,
+        "boost_reasons": [
+          "month match (2025-11)",
+          "doc_type match (postmortem)",
+          "department match (incidents)",
+          "metadata overlap (incident)",
+          "phrase overlap (incident)",
+          "metadata overlap (postmortem)",
+          "phrase overlap (postmortem)",
+          "metadata overlap (november)",
+          "phrase overlap (november)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)",
+          "metadata overlap (login)",
+          "phrase overlap (login)",
+          "metadata overlap (outage)",
+          "phrase overlap (outage)",
+          "comparison side (the postmortem for the november 2025 login outage.)"
+        ],
+        "content_preview": "Postmortem — Login Outage, November 2025 > Root Cause\nA recently deployed redirect rule introduced a loop for a subset of SSO configurations.\n\nPostmortem — Login Outage, November 2025 > Contributing Factors\n- insufficient tenant-specific re"
+      }
+    ],
+    "final_answer": "Side-by-side comparison evidence:\n- the incident report: Incident — Login Outage, November 2025 > Summary Between 08:42 and 10:16 CET, some customers experienced login failures caused by an SSO... [incident-2025-11-login-outage.md | incident-2025-11-login-outage.md#chunk-1 | 2025-11-18] Incident — Billing Delay, December 2025 A delayed billing job caused invoice generation to run several hours late for a subset of monthly... [incident-2025-12-billing-delay.md | incident-2025-12-billing-delay.md#chunk-1 | 2025-12-12]\n- the postmortem for the november 2025 login outage.: Postmortem — Login Outage, November 2025 > Root Cause A recently deployed redirect rule introduced a loop for a subset of SSO configurati... [postmortem-2025-11-login-outage.md | postmortem-2025-11-login-outage.md#chunk-1 | 2025-11-21]",
+    "citations": [
+      "[incident-2025-11-login-outage.md | incident-2025-11-login-outage.md#chunk-1 | 2025-11-18]",
+      "[incident-2025-12-billing-delay.md | incident-2025-12-billing-delay.md#chunk-1 | 2025-12-12]",
+      "[postmortem-2025-11-login-outage.md | postmortem-2025-11-login-outage.md#chunk-1 | 2025-11-21]"
+    ]
+  },
+  {
+    "difficulty": "hard",
+    "id": "hard-7",
+    "query": "Summarize the December 2025 enterprise support and billing issues across tickets and meetings.",
+    "expected_mode": "temporal_summary",
+    "analysis": {
+      "mode": "temporal_summary",
+      "broadQuery": true,
+      "filters": {
+        "dateRange": {
+          "start": "2025-12-01",
+          "end": "2025-12-31"
+        },
+        "explicitDate": null,
+        "month": "2025-12",
+        "months": [
+          "2025-12"
+        ],
+        "doc_type": "support_ticket",
+        "doc_types": [
+          "support_ticket",
+          "meeting_notes",
+          "policy",
+          "billing_doc",
+          "faq"
+        ],
+        "departments": [
+          "support",
+          "billing"
+        ],
+        "groups": [
+          "tickets",
+          "meetings",
+          "billing",
+          "support"
+        ],
+        "comparison": null,
+        "filename_clues": [],
+        "topic_keywords": [
+          "december",
+          "2025",
+          "enterprise",
+          "support",
+          "billing",
+          "issues",
+          "tickets",
+          "meetings"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": {
+      "summary": "Grounded period summary from the retrieved documents:\n- 2025-12-17 | Support Review 2025-12-17: Support Review — 2025-12-17 > Recurring Issues - password reset confusion - refund window misunderstandings - expectations about weekend support on non-Enterprise plans - delayed invoice... [support-review-2025-12-17.md | support-review-2025-12-17.md#chunk-1 | 2025-12-17]",
+      "citations": [
+        "[support-review-2025-12-17.md | support-review-2025-12-17.md#chunk-1 | 2025-12-17]"
+      ]
+    },
+    "retrieved_chunks": [
+      {
+        "citation": "[support-review-2025-12-17.md | support-review-2025-12-17.md#chunk-1 | 2025-12-17]",
+        "source_path": "docs/meetings/support-review-2025-12-17.md",
+        "title": "Support Review 2025-12-17",
+        "doc_type": "meeting_notes",
+        "department": "support",
+        "date": "2025-12-17",
+        "updated_at": "2025-12-17",
+        "score": 152,
+        "boost_reasons": [
+          "month match (2025-12)",
+          "doc_type match (meeting_notes)",
+          "department match (support)",
+          "phrase overlap (december)",
+          "metadata overlap (2025)",
+          "phrase overlap (2025)",
+          "phrase overlap (enterprise)",
+          "metadata overlap (support)",
+          "phrase overlap (support)",
+          "metadata overlap (billing)",
+          "phrase overlap (billing)",
+          "metadata overlap (issues)",
+          "phrase overlap (issues)",
+          "metadata overlap (meetings)"
+        ],
+        "content_preview": "Support Review — 2025-12-17 > Recurring Issues\n- password reset confusion\n- refund window misunderstandings\n- expectations about weekend support on non-Enterprise plans\n- delayed invoice visibility after the December billing incident"
+      }
+    ],
+    "final_answer": "Grounded period summary from the retrieved documents:\n- 2025-12-17 | Support Review 2025-12-17: Support Review — 2025-12-17 > Recurring Issues - password reset confusion - refund window misunderstandings - expectations about weekend support on non-Enterprise plans - delayed invoice... [support-review-2025-12-17.md | support-review-2025-12-17.md#chunk-1 | 2025-12-17]",
+    "citations": [
+      "[support-review-2025-12-17.md | support-review-2025-12-17.md#chunk-1 | 2025-12-17]"
+    ]
+  },
+  {
+    "difficulty": "hard",
+    "id": "hard-8",
+    "query": "Compare onboarding ownership and process expectations across the onboarding org and process docs.",
+    "expected_mode": "comparison",
+    "analysis": {
+      "mode": "comparison",
+      "broadQuery": true,
+      "filters": {
+        "dateRange": null,
+        "explicitDate": null,
+        "month": null,
+        "months": [],
+        "doc_type": "process",
+        "doc_types": [
+          "process",
+          "checklist",
+          "org_doc"
+        ],
+        "departments": [
+          "onboarding"
+        ],
+        "groups": [
+          "onboarding"
+        ],
+        "comparison": {
+          "sides": [
+            {
+              "label": "onboarding org docs",
+              "docTypes": [
+                "org_doc"
+              ],
+              "departments": [
+                "onboarding"
+              ],
+              "groups": [
+                "onboarding"
+              ],
+              "months": [],
+              "keywords": [
+                "onboarding",
+                "owner",
+                "lead",
+                "responsibilities",
+                "org"
+              ]
+            },
+            {
+              "label": "onboarding process docs",
+              "docTypes": [
+                "process",
+                "checklist"
+              ],
+              "departments": [
+                "onboarding"
+              ],
+              "groups": [
+                "onboarding"
+              ],
+              "months": [],
+              "keywords": [
+                "onboarding",
+                "process",
+                "checklist",
+                "steps",
+                "launch"
+              ]
+            }
+          ]
+        },
+        "filename_clues": [],
+        "topic_keywords": [
+          "compare",
+          "onboarding",
+          "ownership",
+          "process",
+          "expectations",
+          "org",
+          "docs"
+        ]
+      }
+    },
+    "retrieval_mode": "lexical_only",
+    "broad_summary": {
+      "summary": "Side-by-side comparison evidence:\n- onboarding org docs: Onboarding Team Responsibilities Nina Petrova is the Tech Lead for the Onboarding team. Onboarding Team Responsibilities The onboarding t... [team-responsibilities.md | team-responsibilities.md#chunk-1 | 2025-12-06]\n- onboarding process docs: Onboarding Process Enterprise onboarding usually lasts 2 to 4 weeks depending on data migration and stakeholder availability. Onboarding... [onboarding-process.md | onboarding-process.md#chunk-1 | 2025-12-06] Onboarding Checklist - Confirm customer stakeholders - Validate SSO requirements - Configure environments - Import baseline data - Schedu... [onboarding-checklist.md | onboarding-checklist.md#chunk-1 | 2025-12-06]",
+      "citations": [
+        "[team-responsibilities.md | team-responsibilities.md#chunk-1 | 2025-12-06]",
+        "[onboarding-process.md | onboarding-process.md#chunk-1 | 2025-12-06]",
+        "[onboarding-checklist.md | onboarding-checklist.md#chunk-1 | 2025-12-06]"
+      ]
+    },
+    "retrieved_chunks": [
+      {
+        "citation": "[team-responsibilities.md | team-responsibilities.md#chunk-1 | 2025-12-06]",
+        "source_path": "docs/onboarding/team-responsibilities.md",
+        "title": "Onboarding Team Responsibilities",
+        "doc_type": "org_doc",
+        "department": "onboarding",
+        "date": null,
+        "updated_at": "2025-12-06",
+        "score": 146,
+        "boost_reasons": [
+          "doc_type match (org_doc)",
+          "department match (onboarding)",
+          "metadata overlap (onboarding)",
+          "phrase overlap (onboarding)",
+          "metadata overlap (org)",
+          "metadata overlap (docs)",
+          "comparison side (onboarding org docs)"
+        ],
+        "content_preview": "Onboarding Team Responsibilities\nNina Petrova is the Tech Lead for the Onboarding team.\n\nOnboarding Team Responsibilities\nThe onboarding team handles:\n- new customer activation\n- access setup coordination\n- launch checklists\n- rollout follo"
+      },
+      {
+        "citation": "[onboarding-process.md | onboarding-process.md#chunk-1 | 2025-12-06]",
+        "source_path": "docs/onboarding/onboarding-process.md",
+        "title": "Onboarding Process",
+        "doc_type": "process",
+        "department": "onboarding",
+        "date": null,
+        "updated_at": "2025-12-06",
+        "score": 126,
+        "boost_reasons": [
+          "doc_type match (process)",
+          "department match (onboarding)",
+          "metadata overlap (onboarding)",
+          "phrase overlap (onboarding)",
+          "metadata overlap (process)",
+          "phrase overlap (process)",
+          "metadata overlap (docs)",
+          "comparison side (onboarding process docs)"
+        ],
+        "content_preview": "Onboarding Process\nEnterprise onboarding usually lasts 2 to 4 weeks depending on data migration and stakeholder availability.\n\nOnboarding Process\nNew Enterprise customers receive:\n- a kickoff session\n- configuration guidance\n- access setup "
+      },
+      {
+        "citation": "[onboarding-checklist.md | onboarding-checklist.md#chunk-1 | 2025-12-06]",
+        "source_path": "docs/onboarding/onboarding-checklist.md",
+        "title": "Onboarding Checklist",
+        "doc_type": "checklist",
+        "department": "onboarding",
+        "date": null,
+        "updated_at": "2025-12-06",
+        "score": 95,
+        "boost_reasons": [
+          "doc_type match (checklist)",
+          "department match (onboarding)",
+          "metadata overlap (onboarding)",
+          "phrase overlap (onboarding)",
+          "metadata overlap (docs)",
+          "comparison side (onboarding process docs)"
+        ],
+        "content_preview": "Onboarding Checklist\n- Confirm customer stakeholders\n- Validate SSO requirements\n- Configure environments\n- Import baseline data\n- Schedule training\n- Confirm support routing"
+      }
+    ],
+    "final_answer": "Side-by-side comparison evidence:\n- onboarding org docs: Onboarding Team Responsibilities Nina Petrova is the Tech Lead for the Onboarding team. Onboarding Team Responsibilities The onboarding t... [team-responsibilities.md | team-responsibilities.md#chunk-1 | 2025-12-06]\n- onboarding process docs: Onboarding Process Enterprise onboarding usually lasts 2 to 4 weeks depending on data migration and stakeholder availability. Onboarding... [onboarding-process.md | onboarding-process.md#chunk-1 | 2025-12-06] Onboarding Checklist - Confirm customer stakeholders - Validate SSO requirements - Configure environments - Import baseline data - Schedu... [onboarding-checklist.md | onboarding-checklist.md#chunk-1 | 2025-12-06]",
+    "citations": [
+      "[team-responsibilities.md | team-responsibilities.md#chunk-1 | 2025-12-06]",
+      "[onboarding-process.md | onboarding-process.md#chunk-1 | 2025-12-06]",
+      "[onboarding-checklist.md | onboarding-checklist.md#chunk-1 | 2025-12-06]"
+    ]
+  }
+]

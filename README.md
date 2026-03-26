@@ -1,29 +1,205 @@
-# MCP Docs RAG Phase 1
+# MCP Docs RAG
 
-Small local RAG-style knowledge search for Node.js with:
+Small local Node.js RAG demo for an enterprise documentation corpus, exposed through a simple MCP tool and a CLI chat loop.
 
-- metadata-aware indexing
-- lexical retrieval with optional embeddings
-- heuristic reranking
-- temporal daily-note analysis
-- MCP server access
-- CLI chat
+The project stays intentionally incremental:
 
-The project stays intentionally small. It still uses a JSON index on disk and a simple MCP tool, but the retrieval stack is stronger and easier to inspect.
+- JSON index on disk
+- metadata-aware chunking and retrieval
+- optional embedding support
+- MCP server interface unchanged
+- local grounded fallback when DeepSeek is unavailable
 
-## What Changed
+## Enterprise Demo Corpus
 
-The original version was a keyword-only chunk retriever. This phase adds:
+The demo corpus now centers on clean markdown documents under `docs/`, grouped by domain:
 
-- richer chunk metadata: `source_path`, `filename`, `extension`, `title`, `doc_type`, `date`, `month`, `tags`, `section_heading`, `chunk_id`
-- daily-note aware chunking for date-based files
-- optional hybrid retrieval with embeddings
-- a reranking layer with metadata boosts
-- query analysis and retrieval planning
-- broader evidence gathering for recurring themes / first mention / over-time questions
-- consistent citations
-- retrieval debug output
-- lightweight evaluation scaffolding
+- `company/`
+- `product/`
+- `support/`
+- `billing/`
+- `security/`
+- `onboarding/`
+- `incidents/`
+- `meetings/`
+- `tickets/`
+
+Typical document families:
+
+- company and org docs
+- policies and process docs
+- release notes and roadmap docs
+- incident reports and postmortems
+- meeting notes
+- support tickets
+
+## Frontmatter Parsing
+
+Markdown files can include YAML frontmatter like:
+
+```yaml
+---
+title: Refunds Policy
+doc_type: policy
+department: billing
+updated_at: 2025-12-02
+tags: [billing, refunds]
+---
+```
+
+During indexing, frontmatter values take precedence over inferred metadata when present:
+
+- `title`
+- `doc_type`
+- `department`
+- `updated_at`
+- `tags`
+
+The index also keeps:
+
+- `filename`
+- `source_path`
+- `section_heading`
+- `chunk_id`
+- `date`
+- `month`
+
+Dates and months are derived from filenames, paths, titles, or `updated_at` when possible.
+
+## Chunking
+
+Chunking is tuned for enterprise markdown:
+
+- splits by heading hierarchy and paragraph groups
+- preserves heading paths in `section_heading`
+- avoids over-splitting short sections
+- keeps bullets and short note sections together when practical
+- works reasonably across policies, release notes, incidents, tickets, and meeting notes
+
+## Query Modes
+
+The query analyzer routes queries into:
+
+- `fact_lookup`
+- `temporal_summary`
+- `recurring_themes`
+- `first_mention`
+- `evolution_over_time`
+- `comparison`
+
+Broad queries widen retrieval and build aggregated evidence before answer generation.
+
+Examples:
+
+- fact lookup: CEO, refund window, grace period, onboarding owner
+- temporal summary: December meeting notes, incident timeline
+- recurring themes: repeated support issues across tickets or meetings
+- first mention: earliest document mentioning a feature or issue
+- evolution over time: incident report to postmortem, multi-doc progression
+- comparison: policy vs tickets, November vs December release notes
+
+## Retrieval Notes
+
+Retrieval uses:
+
+1. lexical scoring over content and metadata
+2. optional embedding similarity
+3. metadata-aware reranking
+
+Comparison queries explicitly try to cover both sides instead of collapsing into one doc family.
+
+Citation format is stable and readable:
+
+```text
+[filename | chunk_id | date-or-updated_at]
+```
+
+## Setup
+
+Requirements:
+
+- Node.js 18+
+- optional `DEEPSEEK_API_KEY` for model-generated chat answers
+- optional `OPENAI_API_KEY` if you enable embeddings
+
+Install:
+
+```bash
+npm install
+```
+
+Example `.env`:
+
+```env
+INDEX_FILE=./data/index.json
+LOG_DIR=./logs
+
+# DeepSeek answer generation is optional.
+# Without it, chat falls back to local grounded answers.
+# DEEPSEEK_API_KEY=your_deepseek_api_key
+
+# Optional hybrid retrieval
+EMBEDDING_PROVIDER=none
+# EMBEDDING_PROVIDER=openai
+# OPENAI_API_KEY=your_openai_key
+# EMBEDDING_MODEL=text-embedding-3-small
+
+# Optional debug output
+# RETRIEVAL_DEBUG=1
+```
+
+## Rebuild The Index
+
+After changing corpus files:
+
+```bash
+npm run build-index
+```
+
+## Run Chat
+
+```bash
+npm run chat
+```
+
+The MCP tool name remains:
+
+```text
+search_internal_docs
+```
+
+## Run Eval
+
+```bash
+npm run eval
+```
+
+Eval outputs are written under `eval/results/`.
+
+## Eval Coverage
+
+The benchmark is grounded in the enterprise corpus and includes:
+
+- 8 easy questions
+- 8 medium questions
+- 8 hard questions
+
+Coverage includes:
+
+- fact lookup
+- policy lookup
+- release note comparison
+- incident timeline
+- ticket vs policy comparison
+- recurring support issue themes
+- access and security rules
+- onboarding ownership and process
+
+Each eval item stores:
+
+- `id`
+- `query`
+- `expected_mode`
 
 ## Project Structure
 
@@ -49,230 +225,9 @@ The original version was a keyword-only chunk retriever. This phase adds:
     └── run-eval.js
 ```
 
-## Requirements
-
-- Node.js 18+
-- `DEEPSEEK_API_KEY` for LLM answers in the CLI
-- optional `OPENAI_API_KEY` if you want embedding-based retrieval
-
-## Setup
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Create `.env`:
-
-```env
-DEEPSEEK_API_KEY=your_deepseek_api_key
-INDEX_FILE=./data/index.json
-LOG_DIR=./logs
-
-# Optional hybrid retrieval
-EMBEDDING_PROVIDER=none
-# EMBEDDING_PROVIDER=openai
-# OPENAI_API_KEY=your_openai_key
-# EMBEDDING_MODEL=text-embedding-3-small
-
-# Optional retrieval debugging
-# RETRIEVAL_DEBUG=1
-```
-
-## Metadata-Aware Retrieval
-
-When you run `npm run build-index`, each chunk now stores:
-
-- `source_path`
-- `filename`
-- `extension`
-- `title`
-- `doc_type`
-- `date`
-- `month`
-- `tags`
-- `section_heading`
-- `chunk_id`
-
-`doc_type` is inferred with simple heuristics:
-
-- `daily note`
-- `company doc`
-- `prep/interview note`
-- `app/product note`
-- `miscellaneous`
-
-Date-style filenames such as `20251204.txt` are parsed automatically into `date=2025-12-04` and `month=2025-12`.
-
-## Chunking
-
-Normal docs still use paragraph-oriented chunking with heading preservation.
-
-Daily notes use a special mode:
-
-- chunks are built from paragraph groups / bullet groups
-- tiny blocks are merged to avoid useless micro-chunks
-- heading linkage is preserved when detectable
-- local neighboring context is attached to chunks for debugging and answer synthesis
-
-## Hybrid Retrieval
-
-Retrieval works in two layers:
-
-1. lexical scoring over content, filename, path, title, heading, tags
-2. optional semantic scoring from embeddings
-
-If embeddings are enabled, the final retrieval score combines:
-
-- lexical score
-- semantic score
-- reranker boosts
-
-If embeddings are not configured, the system stays fully functional in lexical-only mode.
-
-To enable embeddings:
-
-```env
-EMBEDDING_PROVIDER=openai
-OPENAI_API_KEY=your_openai_key
-EMBEDDING_MODEL=text-embedding-3-small
-```
-
-Fallback mode without embeddings:
-
-```env
-EMBEDDING_PROVIDER=none
-```
-
-## Query Analysis And Temporal Search
-
-Before retrieval, the query is classified into one of these modes:
-
-- `fact_lookup`
-- `scoped_lookup`
-- `temporal_summary`
-- `recurring_themes`
-- `first_mention`
-- `evolution_over_time`
-- `comparison`
-- `unsupported / unknown`
-
-The pipeline also extracts filters where possible:
-
-- date range
-- month/year
-- doc type preference
-- filename clues
-- topic keywords
-
-Broad temporal questions do not stop at the top 5 chunks. The retriever widens the pool, filters by metadata, groups evidence by date or file, and produces aggregated evidence before the final answer step.
-
-This is especially useful for:
-
-- exact fact lookup
-- month-scoped daily-note queries
-- recurring themes across many notes
-- first-mentioned questions
-- evolution / over-time summaries
-
-## MCP Server
-
-The MCP tool name is still:
-
-```text
-search_internal_docs
-```
-
-It now returns:
-
-- query analysis
-- retrieval mode
-- aggregated evidence for broad queries when available
-- retrieved chunks with richer metadata
-- consistent citations in this format:
-
-```text
-[filename | chunk_id | date]
-```
-
-## Build The Index
-
-After changing docs:
-
-```bash
-npm run build-index
-```
-
-Example output:
-
-```text
-Index built: ./data/index.json
-Files indexed: 66
-Chunks indexed: 200
-Embeddings: disabled (lexical fallback only)
-```
-
-## Run The Chat CLI
-
-```bash
-npm run chat
-```
-
-The CLI still uses the MCP server for retrieval. If `DEEPSEEK_API_KEY` is not set, it falls back to a local grounded summary so the project still runs locally.
-
-## Debug Retrieval
-
-Enable retrieval debugging:
-
-```bash
-RETRIEVAL_DEBUG=1 npm run chat
-```
-
-Debug mode exposes:
-
-- query classification
-- extracted filters
-- retrieval mode used
-- top lexical hits
-- top semantic hits
-- final reranked hits
-- reranker boost reasons
-
-## Evaluation Scaffolding
-
-Sample queries live in:
-
-- `eval/questions.json`
-
-Run the evaluation script:
-
-```bash
-npm run eval
-```
-
-This writes a review-friendly JSON file under `eval/results/` containing:
-
-- query
-- expected mode
-- query analysis
-- retrieval mode
-- broad summary
-- retrieved chunks
-- final answer
-- citations
-
-## Suggested Questions
-
-- `Who is the CEO of Northstar Metrics?`
-- `What recurring priorities appear in the December 2025 daily notes?`
-- `On which date was Alipay first mentioned in the daily notes?`
-- `How did the focus on Chinese tutoring evolve over time in the daily notes?`
-- `Compare the company billing policy with what appears in the daily notes about billing or payments.`
-
-## Notes And Limits
-
-- broad summaries are heuristic and grounded, not model-perfect
-- theme extraction is token-based, so labels can still be rough
-- semantic retrieval only works if embeddings were built into the index
-- the system does not yet do permission filtering, structured scoring benchmarks, or true learned reranking
+## Limitations
+
+- frontmatter parsing is intentionally lightweight and expects simple scalar or inline array values
+- broad summaries are heuristic and grounded, not full document synthesis
+- comparison answers are stronger for two-sided questions than for three-way comparisons
+- embedding retrieval is optional; lexical fallback still needs clean wording in queries for best results
