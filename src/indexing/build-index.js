@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { buildIndex } from "./lib/indexing.js";
+import { buildIndex } from "./indexing.js";
 
 const DOCS_DIR = process.env.DOCS_DIR || "./docs";
 const INDEX_FILE = process.env.INDEX_FILE || "./data/index.json";

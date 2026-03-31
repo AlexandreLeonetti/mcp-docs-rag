@@ -1,4 +1,4 @@
-import { compactText, makeCitation, sentenceSplit, tokenize } from "./text-utils.js";
+import { compactText, makeCitation, sentenceSplit, tokenize } from "../indexing/text-utils.js";
 
 function citationsFromChunks(chunks, limit = 4) {
   return [...new Set(chunks.slice(0, limit).map((chunk) => makeCitation(chunk)))];

@@ -10,7 +10,7 @@ import {
   parseDateFromFilename,
   parseFrontmatter,
 } from "./text-utils.js";
-import { createEmbeddingProviderFromEnv } from "./embeddings.js";
+import { createEmbeddingProviderFromEnv } from "../llm/embeddings.js";
 
 function ensureDirForFile(filePath) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });

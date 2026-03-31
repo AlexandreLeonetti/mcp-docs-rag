@@ -1,4 +1,4 @@
-import { tokenize } from "./text-utils.js";
+import { tokenize } from "../indexing/text-utils.js";
 
 const MONTHS = {
   january: "01",

@@ -205,22 +205,28 @@ Each eval item stores:
 
 ```text
 .
-├── build-index.js
-├── chat.js
-├── server.js
 ├── docs/
+├── src/
+│   ├── cli/
+│   │   └── chat.js
+│   ├── indexing/
+│   │   ├── build-index.js
+│   │   ├── indexing.js
+│   │   └── text-utils.js
+│   ├── llm/
+│   │   ├── answering.js
+│   │   └── embeddings.js
+│   ├── mcp/
+│   │   └── server.js
+│   └── retrieval/
+│       ├── query-analysis.js
+│       └── retrieval.js
 ├── data/
 │   └── index.json
 ├── eval/
 │   ├── questions.json
 │   └── results/
-├── lib/
-│   ├── answering.js
-│   ├── embeddings.js
-│   ├── indexing.js
-│   ├── query-analysis.js
-│   ├── retrieval.js
-│   └── text-utils.js
+├── logs/
 └── scripts/
     └── run-eval.js
 ```

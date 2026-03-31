@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import { analyzeQuery, findRelevantDateRange } from "./query-analysis.js";
-import { createEmbeddingProviderFromEnv } from "./embeddings.js";
+import { createEmbeddingProviderFromEnv } from "../llm/embeddings.js";
 import {
   compactText,
   cosineSimilarity,
@@ -8,7 +8,7 @@ import {
   normalizeText,
   sentenceSplit,
   tokenize,
-} from "./text-utils.js";
+} from "../indexing/text-utils.js";
 
 const INDEX_FILE = process.env.INDEX_FILE || "./data/index.json";
 const GENERIC_THEME_TAGS = new Set([

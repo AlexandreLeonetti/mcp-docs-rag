@@ -6,7 +6,7 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import fs from "node:fs";
 import path from "node:path";
-import { generateGroundedAnswer } from "./lib/answering.js";
+import { generateGroundedAnswer } from "../llm/answering.js";
 
 const LOG_DIR = process.env.LOG_DIR || "./logs";
 const RETRIEVAL_DEBUG = /^1|true|yes$/i.test(String(process.env.RETRIEVAL_DEBUG || ""));
@@ -72,7 +72,7 @@ const openai = useDeepSeek
 
 const transport = new StdioClientTransport({
   command: "node",
-  args: ["server.js"],
+  args: ["src/mcp/server.js"],
 });
 
 const mcpClient = new Client({
@@ -84,7 +84,7 @@ await mcpClient.connect(transport);
 
 addEvent("chat_client", "mcp_connected", {
   command: "node",
-  args: ["server.js"],
+  args: ["src/mcp/server.js"],
 });
 
 const rl = readline.createInterface({ input, output });

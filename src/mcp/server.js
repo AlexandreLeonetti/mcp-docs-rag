@@ -2,7 +2,7 @@ import "dotenv/config";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
-import { searchInternalDocs } from "./lib/retrieval.js";
+import { searchInternalDocs } from "../retrieval/retrieval.js";
 
 const server = new McpServer({
   name: "internal-docs-server",

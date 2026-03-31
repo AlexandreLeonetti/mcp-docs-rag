@@ -2,15 +2,15 @@
   "name": "mcp-docs-rag",
   "version": "1.0.0",
   "description": "",
-   "main": "chat.js",
+   "main": "src/cli/chat.js",
    "type":"module",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "build-index": "node build-index.js",
-    "server": "node server.js",
-    "chat": "node chat.js",
+    "build-index": "node src/indexing/build-index.js",
+    "server": "node src/mcp/server.js",
+    "chat": "node src/cli/chat.js",
     "eval": "node scripts/run-eval.js"
   },
   "repository": {

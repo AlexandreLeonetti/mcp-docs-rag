@@ -2,9 +2,9 @@ import "dotenv/config";
 import fs from "node:fs";
 import path from "node:path";
 import OpenAI from "openai";
-import { retrieveCandidates } from "../lib/retrieval.js";
-import { generateGroundedAnswer } from "../lib/answering.js";
-import { makeCitation } from "../lib/text-utils.js";
+import { retrieveCandidates } from "../src/retrieval/retrieval.js";
+import { generateGroundedAnswer } from "../src/llm/answering.js";
+import { makeCitation } from "../src/indexing/text-utils.js";
 
 const EVAL_FILE = "./eval/questions.json";
 const OUTPUT_DIR = "./eval/results";
