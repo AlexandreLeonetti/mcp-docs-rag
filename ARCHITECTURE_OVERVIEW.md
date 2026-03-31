@@ -1,16 +1,18 @@
 # Architecture Overview
 
-This project is a small local RAG-style assistant for files in `docs/`. It first reads local documents, splits them into smaller chunks, and writes those chunks plus metadata into `data/index.json`. At runtime, an MCP server exposes a search tool over that JSON index, a CLI chat client calls that tool for each user question, and the retrieved chunks are then sent to DeepSeek so the model can answer using grounded evidence and citations.
+This project is a small local RAG-style assistant for files in `docs/`. It first reads local documents, splits them into smaller chunks, and writes those chunks plus metadata into `data/index.json`. When local embeddings are enabled, chunk embeddings are also stored directly in that same JSON file. At runtime, an MCP server exposes a search tool over the JSON index, a CLI chat client calls that tool for each user question, and the retrieved chunks are then sent to DeepSeek so the model can answer using grounded evidence and citations.
 
 ## Quick mental model
 
 1. Files in `docs/` are read during indexing.
 2. Each document is split into chunks.
 3. The chunks and metadata are stored in `data/index.json`.
-4. `src/mcp/server.js` starts an MCP server that exposes a search tool.
-5. `src/cli/chat.js` acts as the MCP client and calls that tool.
-6. Retrieved chunks are turned into prompt context for DeepSeek.
-7. The final answer is printed in the CLI, usually with citations from the retrieved chunks.
+4. If enabled, each chunk also gets a local embedding generated in Node.js.
+5. `src/mcp/server.js` starts an MCP server that exposes a search tool.
+6. `src/cli/chat.js` acts as the MCP client and calls that tool.
+7. Retrieval can run in lexical-only mode or hybrid mode.
+8. Retrieved chunks are turned into prompt context for DeepSeek.
+9. The final answer is printed in the CLI, usually with citations from the retrieved chunks.
 
 ## Project structure
 
@@ -18,7 +20,7 @@ This project is a small local RAG-style assistant for files in `docs/`. It first
   Local source documents. This is the knowledge base the project searches over.
 
 - `data/index.json`
-  Generated index file. It stores chunked document content plus metadata such as file path, title, tags, date fields, and keyword frequencies.
+  Generated index file. It stores chunked document content plus metadata such as file path, title, tags, date fields, keyword frequencies, and optional local embeddings.
 
 - `src/indexing/build-index.js`
   Small entry script for index building. It reads env config, calls the indexing code, and writes the final JSON index file.
@@ -33,7 +35,7 @@ This project is a small local RAG-style assistant for files in `docs/`. It first
   Runtime chat logs. `src/cli/chat.js` creates JSON session logs here so each session records user inputs, MCP calls, DeepSeek requests, responses, and errors.
 
 - `package.json`
-  Defines the project scripts such as `npm run build-index`, `npm run server`, and `npm run chat`.
+  Defines the project scripts such as `npm run build-index`, `npm run server`, and `npm run chat`, plus the local embedding dependency.
 
 ## Where the key RAG pieces are implemented
 
@@ -44,10 +46,10 @@ This project is a small local RAG-style assistant for files in `docs/`. It first
   Chunking happens in [`src/indexing/indexing.js`](/Users/alexandreleonetti/Documents/Code_CV/mcp/mcp-docs-rag/src/indexing/indexing.js). The main functions are `splitNormalDocument()` and `splitDailyNote()`.
 
 - What chunking strategy is currently used
-  It is rule-based chunking, not embedding-based chunking. Normal documents are split around headings and paragraphs with character limits; daily-note-style documents use a smaller block-based strategy.
+  It is still rule-based chunking, not embedding-based chunking. Normal documents are split around headings and paragraphs with character limits; daily-note-style documents use a smaller block-based strategy.
 
 - Where the index JSON is created
-  The JSON structure is assembled in `buildIndex()` inside [`src/indexing/indexing.js`](/Users/alexandreleonetti/Documents/Code_CV/mcp/mcp-docs-rag/src/indexing/indexing.js), and then written to `data/index.json` with `fs.writeFileSync()`.
+  The JSON structure is assembled in `buildIndex()` inside [`src/indexing/indexing.js`](/Users/alexandreleonetti/Documents/Code_CV/mcp/mcp-docs-rag/src/indexing/indexing.js), and then written to `data/index.json` with `fs.writeFileSync()`. If local embeddings are enabled, they are generated there and saved inline on each chunk.
 
 - Where retrieval/search logic is implemented
   Retrieval is implemented in [`src/retrieval/retrieval.js`](/Users/alexandreleonetti/Documents/Code_CV/mcp/mcp-docs-rag/src/retrieval/retrieval.js), mainly through `retrieveCandidates()` and `searchInternalDocs()`.
@@ -91,7 +93,10 @@ This means the current chunking is mostly paragraph-based and heading-aware, wit
 
 ## Current retrieval system
 
-The current retriever is primarily lexical, using the JSON index in `data/index.json`.
+The current retriever uses the JSON index in `data/index.json` and can run in two modes:
+
+- lexical-only mode
+- hybrid mode that combines lexical and semantic signals
 
 In practical terms:
 
@@ -99,6 +104,7 @@ In practical terms:
 - it is not using pgvector or any external search engine
 - it scores chunks from token matches and occurrences in chunk text and metadata
 - metadata such as filename, source path, title, section heading, tags, doc type, and department also affect scoring
+- when available, it also computes a local query embedding in Node.js and compares it against chunk embeddings stored in the JSON index
 
 The main lexical scoring is in `scoreLexical()` in [`src/retrieval/retrieval.js`](/Users/alexandreleonetti/Documents/Code_CV/mcp/mcp-docs-rag/src/retrieval/retrieval.js). It counts overlaps between query tokens and:
 
@@ -108,6 +114,13 @@ The main lexical scoring is in `scoreLexical()` in [`src/retrieval/retrieval.js`
 - tags
 - doc type and department
 
+After lexical scoring, the retriever can add semantic scoring:
+
+- query embeddings are generated locally with `@huggingface/transformers`
+- chunk embeddings come from `data/index.json`
+- similarity uses cosine similarity
+- lexical and semantic scores are normalized and combined with explicit weights in code
+
 After that, the code applies extra heuristic boosts in `computeBoosts()` for things like:
 
 - month/date matches
@@ -116,11 +129,11 @@ After that, the code applies extra heuristic boosts in `computeBoosts()` for thi
 - topic keyword overlap
 - comparison-side matching for comparison queries
 
-There is optional embedding support in the codebase, but the checked-in index currently shows:
+There is still no vector database in this project:
 
-- `"embedding": { "enabled": false, "provider": null, "model": null }`
-
-So in the current project state, retrieval is effectively lexical-only. The code can compute semantic scores only if embeddings were enabled during indexing and are available again at query time.
+- embeddings live inside `data/index.json`
+- there is no Postgres, pgvector, Pinecone, or Qdrant yet
+- this is intentionally a local stepping stone before a database-backed vector layer
 
 ## MCP in this project
 
@@ -147,7 +160,7 @@ When a user asks one question in the CLI, the flow is:
 1. The user types a question into `src/cli/chat.js`.
 2. `src/cli/chat.js` logs the input and sends an MCP tool call to `search_internal_docs`.
 3. `src/mcp/server.js` receives that tool call and forwards the query to `searchInternalDocs()` in [`src/retrieval/retrieval.js`](/Users/alexandreleonetti/Documents/Code_CV/mcp/mcp-docs-rag/src/retrieval/retrieval.js).
-4. Retrieval loads `data/index.json`, analyzes the query, filters candidate chunks, scores them lexically, optionally adds semantic scores if embeddings exist, and applies heuristic reranking boosts.
+4. Retrieval loads `data/index.json`, analyzes the query, filters candidate chunks, scores them lexically, optionally computes a local query embedding, optionally adds semantic scores if chunk embeddings exist, and applies heuristic reranking boosts.
 5. The best chunks are formatted into readable retrieved context, including `CITATION` lines and metadata.
 6. That retrieved context is returned through MCP back to `src/cli/chat.js`.
 7. `src/cli/chat.js` builds a DeepSeek prompt containing:
@@ -162,11 +175,11 @@ When a user asks one question in the CLI, the flow is:
 
 - The index is a single JSON file on disk, not a database. That is simple, but it will not scale well to larger corpora or concurrent workloads.
 
-- The current checked-in setup is lexical-first and effectively lexical-only, because embeddings are disabled in the current index. Semantic search will therefore be limited.
+- The current setup still keeps lexical retrieval as the base path. Semantic retrieval is additive and only works when local embeddings are enabled and available.
 
-- There is no vector database. Even though embedding hooks exist, vectors are stored inside the JSON index when enabled, not in a dedicated vector store.
+- There is no vector database. Even though embeddings now work locally, vectors are still stored inside the JSON index, not in a dedicated vector store.
 
-- Retrieval quality depends heavily on token overlap, metadata clues, and heuristic boosts. Queries that use different wording from the docs may be weaker.
+- Retrieval quality still depends heavily on token overlap, metadata clues, and heuristic boosts. Hybrid scoring improves wording mismatch cases, but it is still a small local prototype.
 
 - Chunking is simple rule-based chunking. It is heading-aware and practical, but not adaptive or learned.
 
@@ -181,18 +194,19 @@ When a user asks one question in the CLI, the flow is:
 - This prototype indexes local docs into a JSON file.
 - Chunking happens during index build, not at query time.
 - The current chunking is heading-aware and paragraph/block-based with character limits.
+- Local embeddings can be generated in Node.js and stored directly in the JSON index.
 - The MCP server is `src/mcp/server.js` and it exposes the `search_internal_docs` tool.
 - The CLI app in `src/cli/chat.js` is the MCP client.
-- Retrieval is currently lexical-first and, in the current checked-in index, effectively lexical-only.
+- Retrieval is lexical-first and can now become hybrid when embeddings are available.
 - The chat client sends retrieved chunks to DeepSeek for the final answer.
 - Logs are written as JSON session files under `logs/`.
-- A realistic next step would be enabling embeddings, moving vectors into proper storage, and improving retrieval quality.
+- A realistic next step would be moving the stored embeddings out of JSON and into Postgres plus pgvector.
 
 ## Next upgrades
 
 1. Improve metadata consistency and document typing so filtering and ranking become more reliable.
 2. Refine chunking with better boundaries and optional overlap for long sections.
-3. Enable embeddings by default and store vectors in a more suitable system.
-4. Add hybrid retrieval that combines lexical search with vector search more deliberately.
+3. Move embeddings out of `data/index.json` and into Postgres with pgvector.
+4. Keep the current hybrid retrieval logic, but push semantic search down into SQL/vector search.
 5. Add a stronger reranking step after retrieval.
 6. Add a small eval set so retrieval and answer quality can be measured after each change.

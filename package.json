@@ -2,8 +2,8 @@
   "name": "mcp-docs-rag",
   "version": "1.0.0",
   "description": "",
-   "main": "src/cli/chat.js",
-   "type":"module",
+  "main": "src/cli/chat.js",
+  "type": "module",
   "directories": {
     "doc": "docs"
   },
@@ -20,12 +20,12 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-
   "bugs": {
     "url": "https://github.com/AlexandreLeonetti/mcp-docs-rag/issues"
   },
   "homepage": "https://github.com/AlexandreLeonetti/mcp-docs-rag#readme",
   "dependencies": {
+    "@huggingface/transformers": "^4.0.0",
     "@modelcontextprotocol/sdk": "^1.27.1",
     "dotenv": "^17.3.1",
     "openai": "^6.32.0",

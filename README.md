@@ -6,7 +6,7 @@ The project stays intentionally incremental:
 
 - JSON index on disk
 - metadata-aware chunking and retrieval
-- optional embedding support
+- optional local embedding support
 - MCP server interface unchanged
 - local grounded fallback when DeepSeek is unavailable
 
@@ -103,8 +103,16 @@ Examples:
 Retrieval uses:
 
 1. lexical scoring over content and metadata
-2. optional embedding similarity
+2. optional local embedding similarity from `@huggingface/transformers`
 3. metadata-aware reranking
+
+When local embeddings are available, retrieval is hybrid:
+
+- lexical score stays in place
+- semantic score is cosine similarity between the query embedding and stored chunk embeddings
+- a small weighted hybrid score combines both signals before reranking
+
+When local embeddings are disabled, missing from the JSON index, or fail to load, retrieval falls back to lexical-only mode without crashing.
 
 Comparison queries explicitly try to cover both sides instead of collapsing into one doc family.
 
@@ -120,12 +128,14 @@ Requirements:
 
 - Node.js 18+
 - optional `DEEPSEEK_API_KEY` for model-generated chat answers
-- optional `OPENAI_API_KEY` if you enable embeddings
+- no embedding API key is required
 
 Install:
 
 ```bash
 npm install
+# or install the new dependency explicitly if you are updating an existing clone:
+# npm install @huggingface/transformers
 ```
 
 Example `.env`:
@@ -138,15 +148,22 @@ LOG_DIR=./logs
 # Without it, chat falls back to local grounded answers.
 # DEEPSEEK_API_KEY=your_deepseek_api_key
 
-# Optional hybrid retrieval
-EMBEDDING_PROVIDER=none
-# EMBEDDING_PROVIDER=openai
-# OPENAI_API_KEY=your_openai_key
-# EMBEDDING_MODEL=text-embedding-3-small
+# Optional local embeddings for indexing + hybrid retrieval
+ENABLE_LOCAL_EMBEDDINGS=false
+LOCAL_EMBEDDING_MODEL=Xenova/all-MiniLM-L6-v2
+# Optional batching knob if you want to reduce memory usage
+# LOCAL_EMBEDDING_BATCH_SIZE=16
 
 # Optional debug output
 # RETRIEVAL_DEBUG=1
 ```
+
+Notes:
+
+- local embeddings use `@huggingface/transformers`
+- the default model is `Xenova/all-MiniLM-L6-v2`
+- the model may be downloaded once on first use and cached locally
+- if the model cannot be loaded, indexing and retrieval still work in lexical-only mode
 
 ## Rebuild The Index
 
@@ -156,11 +173,35 @@ After changing corpus files:
 npm run build-index
 ```
 
+To rebuild with local embeddings stored directly inside `data/index.json`:
+
+```bash
+ENABLE_LOCAL_EMBEDDINGS=true npm run build-index
+```
+
+You can verify that embeddings were written by checking:
+
+```bash
+node -e "const index=require('./data/index.json'); console.log(index.embedding); console.log(index.chunks.find(chunk => Array.isArray(chunk.embedding))?.embedding?.length || 0)"
+```
+
 ## Run Chat
 
 ```bash
 npm run chat
 ```
+
+With retrieval debug enabled:
+
+```bash
+ENABLE_LOCAL_EMBEDDINGS=true RETRIEVAL_DEBUG=1 npm run chat
+```
+
+In debug mode you will see:
+
+- whether local embeddings were configured and used
+- whether retrieval ran in lexical-only or hybrid mode
+- lexical, semantic, and combined scores on each hit
 
 The MCP tool name remains:
 
@@ -237,3 +278,4 @@ Each eval item stores:
 - broad summaries are heuristic and grounded, not full document synthesis
 - comparison answers are stronger for two-sided questions than for three-way comparisons
 - embedding retrieval is optional; lexical fallback still needs clean wording in queries for best results
+- there is still no vector database; embeddings are stored inline in `data/index.json`

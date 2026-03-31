@@ -10,7 +10,7 @@ import {
   parseDateFromFilename,
   parseFrontmatter,
 } from "./text-utils.js";
-import { createEmbeddingProviderFromEnv } from "../llm/embeddings.js";
+import { createEmbeddingProviderFromEnv, getLocalEmbeddingConfig } from "../llm/embeddings.js";
 
 function ensureDirForFile(filePath) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
@@ -337,11 +337,14 @@ function buildDocumentMetadata(rootDir, filePath, rawText) {
 async function maybeAttachEmbeddings(chunks) {
   const provider = createEmbeddingProviderFromEnv();
   if (!provider) {
+    const config = getLocalEmbeddingConfig();
     return {
       providerInfo: {
         enabled: false,
         provider: null,
-        model: null,
+        model: config.model,
+        dimensions: null,
+        reason: "disabled_by_env",
       },
       chunks,
     };
@@ -372,6 +375,7 @@ async function maybeAttachEmbeddings(chunks) {
         provider: provider.name,
         model: provider.model,
         dimensions: vectors[0]?.length || null,
+        reason: null,
       },
       chunks: enrichedChunks,
     };
@@ -383,8 +387,11 @@ async function maybeAttachEmbeddings(chunks) {
     return {
       providerInfo: {
         enabled: false,
-        provider: null,
-        model: null,
+        provider: provider.name,
+        model: provider.model,
+        dimensions: null,
+        reason: "load_failed",
+        error: error?.message || "unknown error",
       },
       chunks,
     };

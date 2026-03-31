@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import { analyzeQuery, findRelevantDateRange } from "./query-analysis.js";
-import { createEmbeddingProviderFromEnv } from "../llm/embeddings.js";
+import { createEmbeddingProviderFromEnv, getLocalEmbeddingConfig } from "../llm/embeddings.js";
 import {
   compactText,
   cosineSimilarity,
@@ -67,6 +67,11 @@ const GENERIC_TOPIC_KEYWORDS = new Set([
   "report",
   "summary",
 ]);
+
+const HYBRID_WEIGHTS = {
+  lexicalWeight: 0.7,
+  semanticWeight: 0.3,
+};
 
 function loadIndex(indexFile = INDEX_FILE) {
   if (!fs.existsSync(indexFile)) {
@@ -280,31 +285,88 @@ function dedupeByChunkId(results) {
   return deduped;
 }
 
+function normalizeLexicalScore(score, maxScore) {
+  if (!maxScore || maxScore <= 0) {
+    return 0;
+  }
+
+  return Math.max(0, Number(score || 0) / maxScore);
+}
+
+function normalizeSemanticScore(score) {
+  // Cosine similarity is usually in [-1, 1]. Convert it to a simple [0, 1] range
+  // before mixing it with lexical scores.
+  return Math.max(0, Math.min(1, (Number(score || 0) + 1) / 2));
+}
+
+function combineHybridScore({ lexicalScore, semanticScore, maxLexicalScore, useSemantic }) {
+  const lexicalComponent = normalizeLexicalScore(lexicalScore, maxLexicalScore);
+
+  if (!useSemantic) {
+    return lexicalComponent;
+  }
+
+  const semanticComponent = normalizeSemanticScore(semanticScore);
+
+  return (
+    HYBRID_WEIGHTS.lexicalWeight * lexicalComponent +
+    HYBRID_WEIGHTS.semanticWeight * semanticComponent
+  );
+}
+
 async function getSemanticScores(index, query, candidates) {
   if (!index.embedding?.enabled) {
-    return new Map();
+    return {
+      scores: new Map(),
+      localEmbeddingsUsed: false,
+      reason: "index_has_no_embeddings",
+    };
   }
 
   const provider = createEmbeddingProviderFromEnv();
   if (!provider) {
-    return new Map();
+    return {
+      scores: new Map(),
+      localEmbeddingsUsed: false,
+      reason: "local_embeddings_disabled",
+    };
   }
 
   try {
     const queryEmbedding = await provider.embedQuery(query);
+    if (!Array.isArray(queryEmbedding) || queryEmbedding.length === 0) {
+      return {
+        scores: new Map(),
+        localEmbeddingsUsed: false,
+        reason: "query_embedding_unavailable",
+      };
+    }
+
     const scores = new Map();
 
     for (const chunk of candidates) {
+      if (!Array.isArray(chunk.embedding) || chunk.embedding.length === 0) {
+        continue;
+      }
+
       const semanticScore = cosineSimilarity(queryEmbedding, chunk.embedding || []);
       scores.set(chunk.chunk_id || chunk.chunkId, semanticScore);
     }
 
-    return scores;
+    return {
+      scores,
+      localEmbeddingsUsed: scores.size > 0,
+      reason: scores.size > 0 ? null : "candidate_embeddings_missing",
+    };
   } catch (error) {
     console.warn(
       `Semantic retrieval failed (${error?.message || "unknown error"}). Falling back to lexical-only retrieval.`
     );
-    return new Map();
+    return {
+      scores: new Map(),
+      localEmbeddingsUsed: false,
+      reason: error?.message || "query_embedding_failed",
+    };
   }
 }
 
@@ -768,7 +830,13 @@ function formatDebug(debug) {
     "DEBUG:",
     `QUERY_MODE: ${debug.analysis.mode}`,
     `FILTERS: ${JSON.stringify(debug.analysis.filters)}`,
+    `LOCAL_EMBEDDINGS_CONFIGURED: ${debug.embeddingDebug.configured ? "yes" : "no"}`,
+    `LOCAL_EMBEDDINGS_INDEX: ${debug.embeddingDebug.indexHasEmbeddings ? "yes" : "no"}`,
+    `LOCAL_QUERY_EMBEDDING_USED: ${debug.embeddingDebug.queryEmbeddingUsed ? "yes" : "no"}`,
+    `LOCAL_EMBEDDING_MODEL: ${debug.embeddingDebug.model}`,
     `RETRIEVAL_MODE: ${debug.retrievalMode}`,
+    `HYBRID_WEIGHTS: lexical=${debug.hybridWeights.lexicalWeight}, semantic=${debug.hybridWeights.semanticWeight}`,
+    `SEMANTIC_STATUS: ${debug.embeddingDebug.reason || "ok"}`,
     `TOP_LEXICAL_HITS: ${debug.topLexicalHits.map((hit) => hit.chunk_id).join(", ") || "none"}`,
     `TOP_SEMANTIC_HITS: ${debug.topSemanticHits.map((hit) => hit.chunk_id).join(", ") || "none"}`,
     `FINAL_RERANKED_HITS: ${debug.finalHits.map((hit) => hit.chunk_id).join(", ") || "none"}`,
@@ -779,6 +847,7 @@ function formatDebug(debug) {
 export async function retrieveCandidates(query, options = {}) {
   const limit = Number(options.limit || 5);
   const index = loadIndex(options.indexFile || INDEX_FILE);
+  const embeddingConfig = getLocalEmbeddingConfig();
   const analysis = analyzeQuery(query);
   const analyzedTokens = [
     ...(analysis.filters.topic_keywords || []).flatMap((keyword) => tokenize(keyword)),
@@ -820,12 +889,20 @@ export async function retrieveCandidates(query, options = {}) {
 
   const wideLimit = analysis.broadQuery ? Math.max(limit * 6, 30) : Math.max(limit * 3, 12);
   const lexicalCandidates = lexicalRanked.slice(0, wideLimit);
-  const semanticScoreMap = await getSemanticScores(index, query, lexicalCandidates);
+  const semanticResult = await getSemanticScores(index, query, lexicalCandidates);
+  const semanticScoreMap = semanticResult.scores;
+  const retrievalMode = semanticResult.localEmbeddingsUsed ? "hybrid" : "lexical_only";
+  const maxLexicalScore = Math.max(...lexicalCandidates.map((chunk) => chunk.lexicalScore), 0);
 
   const hybridRanked = lexicalCandidates
     .map((chunk) => {
       const semanticScore = semanticScoreMap.get(chunk.chunk_id || chunk.chunkId) || 0;
-      const combinedScore = chunk.lexicalScore + semanticScore * 35;
+      const combinedScore = combineHybridScore({
+        lexicalScore: chunk.lexicalScore,
+        semanticScore,
+        maxLexicalScore,
+        useSemantic: retrievalMode === "hybrid",
+      });
       return {
         ...chunk,
         semanticScore,
@@ -856,7 +933,15 @@ export async function retrieveCandidates(query, options = {}) {
 
   const debug = {
     analysis,
-    retrievalMode: semanticScoreMap.size > 0 ? "hybrid" : "lexical_only",
+    retrievalMode,
+    hybridWeights: HYBRID_WEIGHTS,
+    embeddingDebug: {
+      configured: embeddingConfig.enabled,
+      model: embeddingConfig.model,
+      indexHasEmbeddings: Boolean(index.embedding?.enabled),
+      queryEmbeddingUsed: semanticResult.localEmbeddingsUsed,
+      reason: semanticResult.reason,
+    },
     topLexicalHits: lexicalRanked.slice(0, Math.min(5, lexicalRanked.length)).map((hit) => ({
       chunk_id: hit.chunk_id || hit.chunkId,
       lexicalScore: hit.lexicalScore,
@@ -877,7 +962,7 @@ export async function retrieveCandidates(query, options = {}) {
 
   return {
     analysis,
-    retrievalMode: debug.retrievalMode,
+    retrievalMode,
     topLexicalHits: lexicalRanked.slice(0, 5),
     topSemanticHits: hybridRanked.filter((hit) => hit.semanticScore > 0).slice(0, 5),
     finalHits,
