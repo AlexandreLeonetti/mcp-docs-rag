@@ -1,12 +1,11 @@
 import "dotenv/config";
-import OpenAI from "openai";
 import readline from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import fs from "node:fs";
 import path from "node:path";
-import { generateGroundedAnswer } from "../llm/answering.js";
+import { runChatTurn } from "../chat/run-chat-turn.js";
 
 const LOG_DIR = process.env.LOG_DIR || "./logs";
 const RETRIEVAL_DEBUG = /^1|true|yes$/i.test(String(process.env.RETRIEVAL_DEBUG || ""));
@@ -135,12 +134,6 @@ function addEvent(actor, type, data = {}) {
 persistSessionLog();
 
 const useDeepSeek = Boolean(process.env.DEEPSEEK_API_KEY);
-const openai = useDeepSeek
-  ? new OpenAI({
-      apiKey: process.env.DEEPSEEK_API_KEY,
-      baseURL: "https://api.deepseek.com",
-    })
-  : null;
 
 const transport = new StdioClientTransport({
   command: "node",
@@ -208,67 +201,43 @@ while (true) {
   const structured = toolResult.structuredContent || toolResult.structured || null;
   renderRetrievalDebug(structured?.result || null);
 
-  if (!useDeepSeek) {
-    const fallback = generateGroundedAnswer(userInput, structured?.result || {
-      analysis: { mode: "fact_lookup" },
-      finalHits: [],
-      broadSummary: null,
-    });
-    addEvent("assistant", "assistant_final_local", fallback);
-    console.log(`\nAssistant: ${fallback.answer}\n`);
-    continue;
-  }
-
-  const payload = {
-    model: "deepseek-chat",
-    stream: false,
-    messages: [
-      {
-        role: "system",
-        content: [
-          "You are a helpful internal knowledge assistant.",
-          "Answer only from the retrieved documentation.",
-          "If the retrieved documentation is insufficient, say so clearly.",
-          "For broad questions such as recurring themes, first mention, or evolution over time, only answer if the evidence spans multiple chunks or dates.",
-          "Do not ask to search again.",
-          "Do not mention tools.",
-          "Use the provided CITATION values exactly when citing sources.",
-        ].join(" "),
-      },
-      {
-        role: "user",
-        content: [
-          `Question: ${userInput}`,
-          "",
-          "Retrieved documentation:",
-          retrievedContext,
-        ].join("\n"),
-      },
-    ],
-  };
-
-  addEvent("chat_client", "deepseek_request", payload);
-
   try {
-    const response = await openai.chat.completions.create(payload);
-    addEvent("deepseek", "deepseek_response", response);
+    const turn = await runChatTurn({
+      query: userInput,
+      retrievalResult: structured?.result || null,
+      retrievedContext,
+      limit: 5,
+      debug: RETRIEVAL_DEBUG,
+      onDeepSeekRequest(payload) {
+        addEvent("chat_client", "deepseek_request", payload);
+      },
+      onDeepSeekResponse(response) {
+        addEvent("deepseek", "deepseek_response", response);
+      },
+      onDeepSeekError(error) {
+        addEvent("deepseek", "deepseek_error", {
+          message: error?.message,
+          stack: error?.stack,
+        });
+      },
+    });
 
-    const finalText = response.choices[0].message.content || "";
-    addEvent("assistant", "assistant_final", { text: finalText });
-
-    console.log(`\nAssistant: ${finalText}\n`);
+    addEvent(
+      "assistant",
+      turn.answerSource === "deepseek" ? "assistant_final" : "assistant_final_local",
+      {
+        text: turn.answer,
+        source: turn.answerSource,
+        citations: turn.citations,
+      }
+    );
+    console.log(`\nAssistant: ${turn.answer}\n`);
   } catch (error) {
-    addEvent("deepseek", "deepseek_error", {
+    addEvent("assistant", "assistant_turn_error", {
       message: error?.message,
       stack: error?.stack,
     });
-    const fallback = generateGroundedAnswer(userInput, structured?.result || {
-      analysis: { mode: "fact_lookup" },
-      finalHits: [],
-      broadSummary: null,
-    });
-    addEvent("assistant", "assistant_final_fallback", fallback);
-    console.log(`\nAssistant: ${fallback.answer}\n`);
+    console.log("\nAssistant: Error while generating an answer.\n");
   }
 }
 

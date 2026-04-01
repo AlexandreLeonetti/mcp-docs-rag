@@ -7,6 +7,7 @@ The migration stays intentionally incremental:
 - docs still live under `docs/`
 - `npm run build-index` still reads, chunks, enriches, and indexes docs
 - CLI chat and the MCP tool still use the same retrieval entrypoints
+- a separate `web/` Next.js app now provides a simple browser chat UI
 - retrieval still follows the same mental model: lexical first, optional semantic rerank, then metadata-aware reranking
 
 ## Postgres MVP Architecture
@@ -32,8 +33,21 @@ src/
 │   └── retrieval.js
 ├── cli/
 │   └── chat.js
+├── chat/
+│   └── run-chat-turn.js
 └── mcp/
     └── server.js
+
+web/
+├── app/
+│   ├── api/chat/route.ts
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+└── components/
+    ├── ChatShell.tsx
+    ├── Composer.tsx
+    └── MessageBubble.tsx
 ```
 
 Postgres now stores:
@@ -191,6 +205,40 @@ The MCP tool name remains:
 search_internal_docs
 ```
 
+## Run Web Chat
+
+The browser UI lives in a separate `web/` app and reuses the same backend chat-turn helper as the CLI.
+
+Install the web app dependencies:
+
+```bash
+cd web
+npm install
+```
+
+Start the web app:
+
+```bash
+cd web
+npm run dev
+```
+
+Or from the repo root:
+
+```bash
+npm run web
+```
+
+Then open `http://localhost:3000`.
+
+The web app adds:
+
+- one chat page
+- one API route at `web/app/api/chat/route.ts`
+- a thin bridge into `src/chat/run-chat-turn.js`
+
+The existing CLI workflow is unchanged and still works with `npm run chat`.
+
 ## Run Eval
 
 ```bash
@@ -205,6 +253,9 @@ npm install
 npm run db:init
 npm run build-index
 npm run chat
+
+# optional web UI
+cd web && npm install && npm run dev
 ```
 
 ## Notes And MVP Limits
@@ -214,6 +265,7 @@ npm run chat
 - Embedding storage assumes the current local model dimension of 384.
 - The schema is migration-based but intentionally lightweight.
 - Approximate vector indexing, advanced metadata filters, and zero-downtime reindexing are out of scope for this MVP.
+- The web UI is intentionally isolated from the backend under `web/` and calls the existing retrieval/answer flow through a small shared helper.
 ```txt
 docs/
   ↓
@@ -237,5 +289,7 @@ src/retrieval/hybrid-search.js
   ↓
 src/retrieval/retrieval.js
   ↓
-MCP / CLI chat
+src/chat/run-chat-turn.js
+  ↓
+MCP / CLI chat / Next.js web API
 ```
