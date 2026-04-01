@@ -1,15 +1,12 @@
 import "dotenv/config";
+import { closePool, getDatabaseUrl } from "../db/client.js";
 import { buildIndex } from "./indexing.js";
 
 const DOCS_DIR = process.env.DOCS_DIR || "./docs";
-const INDEX_FILE = process.env.INDEX_FILE || "./data/index.json";
 
-const { index, fileCount } = await buildIndex({
-  docsDir: DOCS_DIR,
-  indexFile: INDEX_FILE,
-});
+const { index, fileCount } = await buildIndex({ docsDir: DOCS_DIR });
 
-console.log(`Index built: ${INDEX_FILE}`);
+console.log(`Index built in Postgres: ${getDatabaseUrl()}`);
 console.log(`Files indexed: ${fileCount}`);
 console.log(`Chunks indexed: ${index.chunkCount}`);
 console.log(
@@ -19,3 +16,4 @@ console.log(
       : "disabled (lexical fallback only)"
   }`
 );
+await closePool();

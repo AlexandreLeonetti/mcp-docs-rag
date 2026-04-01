@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import OpenAI from "openai";
 import { retrieveCandidates } from "../src/retrieval/retrieval.js";
+import { closePool } from "../src/db/client.js";
 import { generateGroundedAnswer } from "../src/llm/answering.js";
 import { makeCitation } from "../src/indexing/text-utils.js";
 
@@ -168,3 +169,4 @@ const outputFile = path.join(OUTPUT_DIR, `eval-${safeFileTimestamp()}.json`);
 fs.writeFileSync(outputFile, JSON.stringify(results, null, 2), "utf8");
 
 console.log(`Evaluation results written to ${outputFile}`);
+await closePool();

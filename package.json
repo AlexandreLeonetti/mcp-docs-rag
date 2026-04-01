@@ -8,6 +8,7 @@
     "doc": "docs"
   },
   "scripts": {
+    "db:init": "node src/db/init.js",
     "build-index": "node src/indexing/build-index.js",
     "server": "node src/mcp/server.js",
     "chat": "node src/cli/chat.js",
@@ -29,6 +30,7 @@
     "@modelcontextprotocol/sdk": "^1.27.1",
     "dotenv": "^17.3.1",
     "openai": "^6.32.0",
+    "pg": "^8.16.3",
     "zod": "^4.3.6"
   }
 }
