@@ -11,6 +11,78 @@ import { generateGroundedAnswer } from "../llm/answering.js";
 const LOG_DIR = process.env.LOG_DIR || "./logs";
 const RETRIEVAL_DEBUG = /^1|true|yes$/i.test(String(process.env.RETRIEVAL_DEBUG || ""));
 
+function yesNo(value) {
+  return value ? "yes" : "no";
+}
+
+function formatSkipReason(reason) {
+  const labels = {
+    no_lexical_candidates: "no lexical candidates",
+    embeddings_disabled: "embeddings disabled",
+    index_has_no_chunk_embeddings: "index has no chunk embeddings",
+    no_embedding_provider: "no embedding provider",
+    query_embedding_unavailable: "query embedding unavailable",
+    candidate_embeddings_missing: "candidate embeddings missing",
+    query_embedding_failed: "query embedding failed",
+  };
+
+  return labels[reason] || reason || null;
+}
+
+function renderRetrievalDebug(result) {
+  const debug = result?.debug;
+  if (!RETRIEVAL_DEBUG || !debug) {
+    return;
+  }
+
+  const analysisMode = debug.analysis?.mode || result?.analysis?.mode || "unknown";
+  const broadQuery = debug.broadQuery ?? result?.analysis?.broadQuery ?? false;
+  const embeddingDebug = debug.embeddingDebug || {};
+  const lexicalCandidateCount = Number(debug.lexicalCandidateCount || 0);
+  const totalChunks = Number(debug.totalChunks || 0);
+  const candidatesWithEmbeddings = Number(embeddingDebug.candidatesWithEmbeddings || 0);
+  const queryEmbeddingAttempted = Boolean(embeddingDebug.queryEmbeddingAttempted);
+  const queryEmbeddingSucceeded = Boolean(embeddingDebug.queryEmbeddingSucceeded);
+  const queryEmbeddingDimension = embeddingDebug.queryEmbeddingDimension || null;
+  const semanticSkipReason = formatSkipReason(embeddingDebug.semanticSkipReason || embeddingDebug.reason);
+  const topFinalHits = debug.summaries?.topFinalHits || debug.finalHits?.map((hit) => hit.chunk_id) || [];
+
+  process.stderr.write(
+    `[retrieval] analysis mode=${analysisMode}, broadQuery=${broadQuery ? "yes" : "no"}\n`
+  );
+  process.stderr.write(
+    `[retrieval] local embeddings enabled in env: ${yesNo(embeddingDebug.configured)}\n`
+  );
+  process.stderr.write(
+    `[retrieval] loaded index has chunk embeddings: ${yesNo(embeddingDebug.indexHasEmbeddings)}\n`
+  );
+  process.stderr.write(`[retrieval] total chunks in index: ${totalChunks}\n`);
+  process.stderr.write(
+    `[retrieval] lexical candidates selected before semantic scoring: ${lexicalCandidateCount}\n`
+  );
+
+  if (queryEmbeddingAttempted) {
+    process.stderr.write("[retrieval] converting query to embedding...\n");
+    if (queryEmbeddingSucceeded && queryEmbeddingDimension) {
+      process.stderr.write(`[retrieval] query embedding created (dim=${queryEmbeddingDimension})\n`);
+    }
+  }
+
+  if (!queryEmbeddingAttempted || !queryEmbeddingSucceeded) {
+    if (semanticSkipReason) {
+      process.stderr.write(`[retrieval] semantic scoring skipped: ${semanticSkipReason}\n`);
+    }
+  }
+
+  process.stderr.write(
+    `[retrieval] candidates with embeddings: ${candidatesWithEmbeddings}/${lexicalCandidateCount}\n`
+  );
+  process.stderr.write(`[retrieval] retrieval mode: ${debug.retrievalMode || "unknown"}\n`);
+  process.stderr.write(
+    `[retrieval] top final hits: ${topFinalHits.length ? topFinalHits.join(", ") : "none"}\n`
+  );
+}
+
 function ensureDir(dir) {
   fs.mkdirSync(dir, { recursive: true });
 }
@@ -108,6 +180,9 @@ while (true) {
 
   let toolResult;
   try {
+    if (RETRIEVAL_DEBUG) {
+      process.stderr.write("[chat] sending query to MCP search tool\n");
+    }
     toolResult = await mcpClient.callTool({
       name: "search_internal_docs",
       arguments: {
@@ -131,6 +206,7 @@ while (true) {
     "No relevant results found.";
 
   const structured = toolResult.structuredContent || toolResult.structured || null;
+  renderRetrievalDebug(structured?.result || null);
 
   if (!useDeepSeek) {
     const fallback = generateGroundedAnswer(userInput, structured?.result || {

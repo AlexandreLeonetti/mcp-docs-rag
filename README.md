@@ -194,14 +194,25 @@ npm run chat
 With retrieval debug enabled:
 
 ```bash
+RETRIEVAL_DEBUG=1 npm run chat
+```
+
+This shows retrieval debug lines directly in the CLI chat, including query analysis, lexical candidate selection, retrieval mode, and top final hits.
+
+With local embeddings and retrieval debug enabled:
+
+```bash
 ENABLE_LOCAL_EMBEDDINGS=true RETRIEVAL_DEBUG=1 npm run chat
 ```
+
+This also shows whether the query was converted to an embedding and whether hybrid retrieval is active for that query.
 
 In debug mode you will see:
 
 - whether local embeddings were configured and used
+- whether the query embedding step ran
 - whether retrieval ran in lexical-only or hybrid mode
-- lexical, semantic, and combined scores on each hit
+- a compact retrieval summary in the visible chat terminal
 
 The MCP tool name remains:
 

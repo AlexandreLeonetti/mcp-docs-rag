@@ -210,3 +210,17 @@ When a user asks one question in the CLI, the flow is:
 4. Keep the current hybrid retrieval logic, but push semantic search down into SQL/vector search.
 5. Add a stronger reranking step after retrieval.
 6. Add a small eval set so retrieval and answer quality can be measured after each change.
+
+
+
+R A G 
+pipeline
+user question
+- query analysis
+- lexical preselection
+- embed query
+- compare query vector to candidate chunk vectors
+- combine lexical + semantic scores
+- choose final hits
+- send evidence to LLM
+- generate answer

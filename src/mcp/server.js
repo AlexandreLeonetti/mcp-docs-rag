@@ -22,6 +22,14 @@ server.tool(
 
     if (!trimmedQuery) {
       return {
+        structuredContent: {
+          result: {
+            analysis: { mode: "fact_lookup", broadQuery: false, filters: {} },
+            finalHits: [],
+            broadSummary: null,
+            debug: null,
+          },
+        },
         content: [
           {
             type: "text",
@@ -38,6 +46,9 @@ server.tool(
 
     if (!result.finalHits.length) {
       return {
+        structuredContent: {
+          result,
+        },
         content: [
           {
             type: "text",

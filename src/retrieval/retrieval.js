@@ -73,6 +73,28 @@ const HYBRID_WEIGHTS = {
   semanticWeight: 0.3,
 };
 
+function isRetrievalDebugEnabled() {
+  return /^1|true|yes$/i.test(String(process.env.RETRIEVAL_DEBUG || ""));
+}
+
+function retrievalDebug(message) {
+  if (!isRetrievalDebugEnabled()) {
+    return;
+  }
+
+  process.stderr.write(`[retrieval] ${message}\n`);
+}
+
+function formatTopHitSummary(hits, scoreKey, limit = 5) {
+  return hits
+    .slice(0, limit)
+    .map((hit) => {
+      const chunkId = hit.chunk_id || hit.chunkId || "unknown";
+      return `${chunkId}:${Number(hit[scoreKey] || 0).toFixed(4)}`;
+    })
+    .join(", ");
+}
+
 function loadIndex(indexFile = INDEX_FILE) {
   if (!fs.existsSync(indexFile)) {
     throw new Error(`Index file not found: ${indexFile}. Run: npm run build-index`);
@@ -315,40 +337,92 @@ function combineHybridScore({ lexicalScore, semanticScore, maxLexicalScore, useS
 }
 
 async function getSemanticScores(index, query, candidates) {
-  if (!index.embedding?.enabled) {
+  const localEmbeddingsEnabled = getLocalEmbeddingConfig().enabled;
+  const indexHasChunkEmbeddings = index.chunks.some(
+    (chunk) => Array.isArray(chunk.embedding) && chunk.embedding.length > 0
+  );
+
+  if (!Array.isArray(candidates) || candidates.length === 0) {
+    retrievalDebug("semantic scoring skipped: no lexical candidates");
     return {
       scores: new Map(),
       localEmbeddingsUsed: false,
-      reason: "index_has_no_embeddings",
+      reason: "no_lexical_candidates",
+      queryEmbeddingDimension: null,
+      candidatesWithEmbeddings: 0,
+      queryEmbeddingAttempted: false,
+      queryEmbeddingSucceeded: false,
+    };
+  }
+
+  if (!localEmbeddingsEnabled) {
+    retrievalDebug("semantic scoring skipped: embeddings disabled");
+    return {
+      scores: new Map(),
+      localEmbeddingsUsed: false,
+      reason: "embeddings_disabled",
+      queryEmbeddingDimension: null,
+      candidatesWithEmbeddings: 0,
+      queryEmbeddingAttempted: false,
+      queryEmbeddingSucceeded: false,
+    };
+  }
+
+  if (!index.embedding?.enabled || !indexHasChunkEmbeddings) {
+    retrievalDebug("semantic scoring skipped: index has no chunk embeddings");
+    return {
+      scores: new Map(),
+      localEmbeddingsUsed: false,
+      reason: "index_has_no_chunk_embeddings",
+      queryEmbeddingDimension: null,
+      candidatesWithEmbeddings: 0,
+      queryEmbeddingAttempted: false,
+      queryEmbeddingSucceeded: false,
     };
   }
 
   const provider = createEmbeddingProviderFromEnv();
   if (!provider) {
+    retrievalDebug("semantic scoring skipped: no embedding provider");
     return {
       scores: new Map(),
       localEmbeddingsUsed: false,
-      reason: "local_embeddings_disabled",
+      reason: "no_embedding_provider",
+      queryEmbeddingDimension: null,
+      candidatesWithEmbeddings: 0,
+      queryEmbeddingAttempted: false,
+      queryEmbeddingSucceeded: false,
     };
   }
 
   try {
+    retrievalDebug("converting query to embedding...");
     const queryEmbedding = await provider.embedQuery(query);
     if (!Array.isArray(queryEmbedding) || queryEmbedding.length === 0) {
+      retrievalDebug("semantic scoring skipped: query embedding unavailable");
       return {
         scores: new Map(),
         localEmbeddingsUsed: false,
         reason: "query_embedding_unavailable",
+        queryEmbeddingDimension: null,
+        candidatesWithEmbeddings: 0,
+        queryEmbeddingAttempted: true,
+        queryEmbeddingSucceeded: false,
       };
     }
 
+    retrievalDebug(`query embedding created (dim=${queryEmbedding.length})`);
     const scores = new Map();
+    let candidatesWithEmbeddings = 0;
+
+    retrievalDebug("semantic scoring started");
 
     for (const chunk of candidates) {
       if (!Array.isArray(chunk.embedding) || chunk.embedding.length === 0) {
         continue;
       }
 
+      candidatesWithEmbeddings += 1;
       const semanticScore = cosineSimilarity(queryEmbedding, chunk.embedding || []);
       scores.set(chunk.chunk_id || chunk.chunkId, semanticScore);
     }
@@ -356,7 +430,11 @@ async function getSemanticScores(index, query, candidates) {
     return {
       scores,
       localEmbeddingsUsed: scores.size > 0,
+      queryEmbeddingDimension: queryEmbedding.length,
+      candidatesWithEmbeddings,
       reason: scores.size > 0 ? null : "candidate_embeddings_missing",
+      queryEmbeddingAttempted: true,
+      queryEmbeddingSucceeded: true,
     };
   } catch (error) {
     console.warn(
@@ -366,6 +444,10 @@ async function getSemanticScores(index, query, candidates) {
       scores: new Map(),
       localEmbeddingsUsed: false,
       reason: error?.message || "query_embedding_failed",
+      queryEmbeddingDimension: null,
+      candidatesWithEmbeddings: 0,
+      queryEmbeddingAttempted: true,
+      queryEmbeddingSucceeded: false,
     };
   }
 }
@@ -834,6 +916,8 @@ function formatDebug(debug) {
     `LOCAL_EMBEDDINGS_INDEX: ${debug.embeddingDebug.indexHasEmbeddings ? "yes" : "no"}`,
     `LOCAL_QUERY_EMBEDDING_USED: ${debug.embeddingDebug.queryEmbeddingUsed ? "yes" : "no"}`,
     `LOCAL_EMBEDDING_MODEL: ${debug.embeddingDebug.model}`,
+    `QUERY_EMBEDDING_DIMENSION: ${debug.embeddingDebug.queryEmbeddingDimension || "n/a"}`,
+    `CANDIDATES_WITH_EMBEDDINGS: ${debug.embeddingDebug.candidatesWithEmbeddings || 0}`,
     `RETRIEVAL_MODE: ${debug.retrievalMode}`,
     `HYBRID_WEIGHTS: lexical=${debug.hybridWeights.lexicalWeight}, semantic=${debug.hybridWeights.semanticWeight}`,
     `SEMANTIC_STATUS: ${debug.embeddingDebug.reason || "ok"}`,
@@ -848,6 +932,9 @@ export async function retrieveCandidates(query, options = {}) {
   const limit = Number(options.limit || 5);
   const index = loadIndex(options.indexFile || INDEX_FILE);
   const embeddingConfig = getLocalEmbeddingConfig();
+  const indexHasChunkEmbeddings = index.chunks.some(
+    (chunk) => Array.isArray(chunk.embedding) && chunk.embedding.length > 0
+  );
   const analysis = analyzeQuery(query);
   const analyzedTokens = [
     ...(analysis.filters.topic_keywords || []).flatMap((keyword) => tokenize(keyword)),
@@ -858,7 +945,16 @@ export async function retrieveCandidates(query, options = {}) {
   ];
   const queryTokens = [...new Set(analyzedTokens)].filter(Boolean);
 
+  retrievalDebug(`query received: ${query}`);
+  retrievalDebug(
+    `analysis mode=${analysis.mode}, broadQuery=${analysis.broadQuery ? "yes" : "no"}`
+  );
+  retrievalDebug(`local embeddings enabled in env: ${embeddingConfig.enabled ? "yes" : "no"}`);
+  retrievalDebug(`loaded index has chunk embeddings: ${indexHasChunkEmbeddings ? "yes" : "no"}`);
+  retrievalDebug(`total chunks in index: ${index.chunks.length}`);
+
   if (queryTokens.length === 0) {
+    retrievalDebug("no query tokens extracted; skipping retrieval");
     return {
       analysis,
       retrievalMode: "empty_query",
@@ -889,10 +985,19 @@ export async function retrieveCandidates(query, options = {}) {
 
   const wideLimit = analysis.broadQuery ? Math.max(limit * 6, 30) : Math.max(limit * 3, 12);
   const lexicalCandidates = lexicalRanked.slice(0, wideLimit);
+  const lexicalCandidateCount = lexicalCandidates.length;
+  retrievalDebug(`lexical candidates selected before semantic scoring: ${lexicalCandidates.length}`);
   const semanticResult = await getSemanticScores(index, query, lexicalCandidates);
   const semanticScoreMap = semanticResult.scores;
   const retrievalMode = semanticResult.localEmbeddingsUsed ? "hybrid" : "lexical_only";
   const maxLexicalScore = Math.max(...lexicalCandidates.map((chunk) => chunk.lexicalScore), 0);
+
+  if (semanticResult.queryEmbeddingDimension) {
+    retrievalDebug(`query embedding dimension: ${semanticResult.queryEmbeddingDimension}`);
+  }
+  retrievalDebug(
+    `candidates with embeddings: ${semanticResult.candidatesWithEmbeddings || 0}/${lexicalCandidates.length}`
+  );
 
   const hybridRanked = lexicalCandidates
     .map((chunk) => {
@@ -910,6 +1015,10 @@ export async function retrieveCandidates(query, options = {}) {
       };
     })
     .sort((a, b) => b.combinedScore - a.combinedScore);
+
+  retrievalDebug(
+    `hybrid scoring/reranking completed: mode=${retrievalMode}, semantic_status=${semanticResult.reason || "ok"}`
+  );
 
   const reranked = hybridRanked
     .map((chunk) => {
@@ -931,16 +1040,35 @@ export async function retrieveCandidates(query, options = {}) {
       : broadSourceHits;
   const broadSummary = analysis.broadQuery ? buildBroadSummary(analysis, summarySourceHits) : null;
 
+  retrievalDebug(
+    `top lexical hits: ${formatTopHitSummary(lexicalRanked, "lexicalScore") || "none"}`
+  );
+  retrievalDebug(
+    `top semantic hits: ${formatTopHitSummary(
+      hybridRanked.filter((hit) => hit.semanticScore > 0),
+      "semanticScore"
+    ) || "none"}`
+  );
+  retrievalDebug(`top final hits: ${formatTopHitSummary(finalHits, "finalScore") || "none"}`);
+
   const debug = {
     analysis,
+    broadQuery: analysis.broadQuery,
     retrievalMode,
+    totalChunks: index.chunks.length,
+    lexicalCandidateCount,
     hybridWeights: HYBRID_WEIGHTS,
     embeddingDebug: {
       configured: embeddingConfig.enabled,
       model: embeddingConfig.model,
-      indexHasEmbeddings: Boolean(index.embedding?.enabled),
+      indexHasEmbeddings: indexHasChunkEmbeddings,
+      queryEmbeddingAttempted: semanticResult.queryEmbeddingAttempted,
       queryEmbeddingUsed: semanticResult.localEmbeddingsUsed,
+      queryEmbeddingSucceeded: semanticResult.queryEmbeddingSucceeded,
       reason: semanticResult.reason,
+      semanticSkipReason: semanticResult.reason,
+      queryEmbeddingDimension: semanticResult.queryEmbeddingDimension,
+      candidatesWithEmbeddings: semanticResult.candidatesWithEmbeddings,
     },
     topLexicalHits: lexicalRanked.slice(0, Math.min(5, lexicalRanked.length)).map((hit) => ({
       chunk_id: hit.chunk_id || hit.chunkId,
@@ -958,6 +1086,14 @@ export async function retrieveCandidates(query, options = {}) {
       finalScore: hit.finalScore,
       rerankBoostReasons: hit.rerankBoostReasons,
     })),
+    summaries: {
+      topLexicalHits: lexicalRanked
+        .slice(0, Math.min(5, lexicalRanked.length))
+        .map((hit) => hit.chunk_id || hit.chunkId),
+      topFinalHits: finalHits
+        .slice(0, Math.min(5, finalHits.length))
+        .map((hit) => hit.chunk_id || hit.chunkId),
+    },
   };
 
   return {
