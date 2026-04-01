@@ -4,6 +4,8 @@ tree -I "venv|pycache|say"
 zip -r content-gen.zip . \
   -x "venv/*" \
      "node_modules/*" \
+     "web/node_modules/*" \
+     "web/.next/*" \
      "build/*" \
      "remotion/node_modules/*" \
      "assets/*" \
