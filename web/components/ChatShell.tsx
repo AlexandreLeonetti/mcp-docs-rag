@@ -8,6 +8,10 @@ type ChatMessage = {
   id: string;
   role: "user" | "assistant";
   content: string;
+  sources?: Array<{
+    id: string;
+    label: string;
+  }>;
 };
 
 const INITIAL_MESSAGES: ChatMessage[] = [
@@ -66,7 +70,8 @@ export function ChatShell() {
         {
           id: `${Date.now()}-assistant`,
           role: "assistant",
-          content: payload.answer || "No answer returned.",
+          content: payload.content || payload.answer || "No answer returned.",
+          sources: Array.isArray(payload.sources) ? payload.sources : [],
         },
       ]);
     } catch (error) {
@@ -99,7 +104,12 @@ export function ChatShell() {
 
         <div ref={listRef} className="message-list">
           {messages.map((message) => (
-            <MessageBubble key={message.id} role={message.role} content={message.content} />
+            <MessageBubble
+              key={message.id}
+              role={message.role}
+              content={message.content}
+              sources={message.sources}
+            />
           ))}
 
           {isLoading ? (
