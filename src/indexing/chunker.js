@@ -263,6 +263,16 @@ function inferTags(text, metadata) {
   return [...tags].slice(0, 8);
 }
 
+function buildStableDocumentKey(metadata) {
+  const shortHash = crypto.createHash("sha256").update(metadata.source_path).digest("hex").slice(0, 12);
+  return `${metadata.filename}__${shortHash}`;
+}
+
+function buildChunkId(metadata, index) {
+  // Filename-only chunk IDs collide when different folders contain the same file name.
+  return `${buildStableDocumentKey(metadata)}#chunk-${index + 1}`;
+}
+
 export function buildDocumentMetadata(rootDir, filePath, rawText) {
   const relPath = path.relative(process.cwd(), filePath);
   const filename = path.basename(filePath);
@@ -317,7 +327,7 @@ export function buildChunksForDocument(metadata) {
       : splitNormalDocument(metadata.raw_content);
 
   return parts.map((part, index) => {
-    const chunk_id = `${metadata.filename}#chunk-${index + 1}`;
+    const chunk_id = buildChunkId(metadata, index);
     const content = normalizeWhitespace(part.text);
     return {
       chunk_id,
